@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bad Optics Media</title>
+
+	<!-- Style -->
+	<link rel="stylesheet" href="static/style.css">
+
+	<!-- Scripts -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<sciprt src="static/js/jquery-hashchange-plugin.js"></sciprt>
+</head>
+
+<body>
+	<div id="logoHeader">
+		<div class="logo-line-spacer"></div>
+		<div class="logo-line"></div>
+		<div id="logoWrapper">
+			<a href="#"><img id="logo" src="static/bad-optics.png" alt="Bad Optics"></a>
+		</div>
+		<div class="logo-line"></div>
+		<div class="logo-line-spacer"></div>
+	</div>
+
+	<div id="mainNav">
+		<div id="mainNavWrapper">
+			<div class="nav-choices">
+				<div id="musicChoiceContainer" class="choice-container">
+					<div class="choice-hover"></div>
+					<a href="#music" class="unstyle-link">Music</a>
+				</div>
+				<div id="photographyChoiceContainer" class="choice-container">
+					<div class="choice-hover"></div>
+					<a href="#photography" class="unstyle-link">Photography</a>
+				</div>
+				<div id="gamesChoiceContainer" class="choice-container">
+					<div class="choice-hover"></div>
+					<a href="#games" class="unstyle-link">Games</a>
+				</div>
+				<div id="peopleChoiceContainer" class="choice-container">
+					<div class="choice-hover"></div>
+					<a href="#people" class="unstyle-link">People</a>
+				</div>
+			</div>
+			<div id="mainNavUnderline"></div>
+		</div>
+	</div>
+
+	
+
+	<!-- Working Scripts -->
+	<!-- HASH CHANGE HANDLER -->
+	<script type="application/javascript">
+		const nav_choice_margin = 10;
+		const crawl_speed = 200;
+		let cur_crawl_timeout;
+
+		$(window).bind('hashchange', function() {
+			let nav_choices = $('#mainNavWrapper .nav-choices').children('.choice-container');
+			let container_id = location.hash.toLowerCase() + 'ChoiceContainer';
+			// Unselect any selected choices
+			nav_choices.not(container_id).removeClass('selected');
+			// Select proper choice
+			let selected_choice_container = $(nav_choices).filter(container_id);
+			if(!$(selected_choice_container).hasClass('selected')) {
+				$(selected_choice_container).addClass('selected');
+			}
+			
+			// Adjust css on under-line
+			let underline = $('#mainNavUnderline');
+			if($(selected_choice_container).length === 0) {
+				underline.css('left', 0);
+				underline.css('right', 0);
+			}
+			else {
+				// Cancel current timeout crawl
+				clearTimeout(cur_crawl_timeout);
+				// Get new left and right values
+				let nav_width = $('#mainNavWrapper').innerWidth();
+				let selected_position = $(selected_choice_container).position();
+				let selected_width = $(selected_choice_container).innerWidth();
+				let left_val = selected_position.left;
+				let right_val = nav_width - (left_val + selected_width);
+				if(Math.abs(left_val) < 0.1)
+					left_val = 0;
+				else 
+					left_val += nav_choice_margin;
+				if(Math.abs(right_val) < 0.1)
+					right_val = 0;
+				else
+					right_val += nav_choice_margin;
+				let cur_left = parseInt(underline.css('left'), 10);
+				let cur_right = parseInt(underline.css('right'), 10);
+				console.log(cur_left);
+				console.log(cur_right);
+				// If currently fully stretched, instantly focus on target
+				if(cur_left === 0 && cur_right === 0) {
+					underline.css('left', left_val+'px');
+					underline.css('right', right_val+'px');
+				}
+				// Otherwise crawl towards it
+				else {
+					// Crawl right
+					if(left_val > cur_left) {
+						underline.css('right', right_val+'px');
+						cur_crawl_timeout = setTimeout(function() {
+							underline.css('left', left_val+'px');
+						}, crawl_speed);
+					}
+					// Crawl left
+					else {
+						underline.css('left', left_val+'px');
+						cur_crawl_timeout = setTimeout(function() {
+							underline.css('right', right_val+'px');
+						}, crawl_speed);
+					}
+				}
+			}
+
+			// Perform action dependent on choice
+				// DO LATER
+		});
+	</script>
+	<!-- LOADED SCRIPT -->
+	<script type="application/javascript">
+		function setBodyLoaded() {
+			document.body.classList.add("loaded");
+		}
+		$(document).ready(function() {
+			window.setTimeout(setBodyLoaded, 50);
+			$(window).trigger('hashchange');
+		});
+	</script>
+</body>
+</html>
