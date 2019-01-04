@@ -1,17 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Bad Optics Media</title>
+	<title>Bad Optics Collective</title>
 
 	<!-- Style -->
 	<link rel="stylesheet" href="static/style.css">
 
 	<!-- Scripts -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+	<script src="static/js/jquery.min.js"></script>
 	<sciprt src="static/js/jquery-hashchange-plugin.js"></sciprt>
 </head>
 
 <body>
+	<!-- no-script version -->
+	<noscript>
+		<div id="logoHeader">
+			<div class="logo-line-spacer"></div>
+			<div class="logo-line"></div>
+			<div id="logoWrapper">
+				<a href="#"><img id="logo" src="static/bad-optics.png" alt="Bad Optics"></a>
+			</div>
+			<div class="logo-line"></div>
+			<div class="logo-line-spacer"></div>
+		</div>
+
+		<div id="noscriptMessage" class="antialias">
+			<p>Please enable javascript to use the full features of this site. Thanks :)</p>
+		</div>
+	</noscript>
+
+	<!-- tile popup scrim -->
+	<div id="popupScrim"></div> 
+
 	<div id="logoHeader">
 		<div class="logo-line-spacer"></div>
 		<div class="logo-line"></div>
@@ -22,36 +43,86 @@
 		<div class="logo-line-spacer"></div>
 	</div>
 
-	<div id="mainNav">
+	<div id="mainNav" class="antialias">
 		<div id="mainNavWrapper">
 			<div class="nav-choices">
-				<div id="musicChoiceContainer" class="choice-container">
-					<div class="choice-hover"></div>
-					<a href="#music" class="unstyle-link">Music</a>
-				</div>
-				<div id="photographyChoiceContainer" class="choice-container">
-					<div class="choice-hover"></div>
-					<a href="#photography" class="unstyle-link">Photography</a>
-				</div>
-				<div id="gamesChoiceContainer" class="choice-container">
-					<div class="choice-hover"></div>
-					<a href="#games" class="unstyle-link">Games</a>
-				</div>
-				<div id="peopleChoiceContainer" class="choice-container">
-					<div class="choice-hover"></div>
-					<a href="#people" class="unstyle-link">People</a>
-				</div>
+				<a href="#sonic" id="sonicChoiceContainer" class="choice-container unstyle-link">
+					<span>Sonic<div class="choice-hover"></div></span>
+				</a>
+				<a href="#visual" id="visualChoiceContainer" class="choice-container unstyle-link">
+					<span>Visual<div class="choice-hover"></div></span>
+				</a>
+				<a href="#interactive" id="interactiveChoiceContainer" class="choice-container unstyle-link">
+					<span>Interactive<div class="choice-hover"></div></span>
+				</a>
 			</div>
 			<div id="mainNavUnderline"></div>
 		</div>
 	</div>
 
-	
+	<div id="mainContent">
+		<div id="musicContent" class="tile-set">
+			<div class="tile">
+				<div class="tile-content">
+					<p style="text-align: center;">poop scoop</p>
+				</div>
+				<div class="tile-borders">
+					<div class="tile-border-top"></div>
+					<div class="tile-border-right"></div>
+					<div class="tile-border-bottom"></div>
+					<div class="tile-border-left"></div>
+				</div>
+			</div>
+			<div class="tile">
+				<div class="tile-content">
+					<p style="text-align: center;">ineed all my bitches same color as thanos</p>
+				</div>
+				<div class="tile-borders">
+					<div class="tile-border-top"></div>
+					<div class="tile-border-right"></div>
+					<div class="tile-border-bottom"></div>
+					<div class="tile-border-left"></div>
+				</div>
+			</div>
+			<div class="tile">
+				<div class="tile-content">
+					<img src="static/knuckles.jpg" style="height: 100%;">
+				</div>
+				<div class="tile-borders">
+					<div class="tile-border-top"></div>
+					<div class="tile-border-right"></div>
+					<div class="tile-border-bottom"></div>
+					<div class="tile-border-left"></div>
+				</div>
+			</div>
+			<div class="tile">
+				<div class="tile-content">
+					<p style="text-align: center;">matt's first album</p>
+				</div>
+				<div class="tile-borders">
+					<div class="tile-border-top"></div>
+					<div class="tile-border-right"></div>
+					<div class="tile-border-bottom"></div>
+					<div class="tile-border-left"></div>
+				</div>
+			</div>
+			<div class="tile">
+				<div class="tile-content">
+					<p style="text-align: center;">benis</p>
+				</div>
+				<div class="tile-borders">
+					<div class="tile-border-top"></div>
+					<div class="tile-border-right"></div>
+					<div class="tile-border-bottom"></div>
+					<div class="tile-border-left"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- Working Scripts -->
 	<!-- HASH CHANGE HANDLER -->
-	<script type="application/javascript">
-		const nav_choice_margin = 10;
+	<script type="text/javascript">
 		const crawl_speed = 200;
 		let cur_crawl_timeout;
 
@@ -62,10 +133,8 @@
 			nav_choices.not(container_id).removeClass('selected');
 			// Select proper choice
 			let selected_choice_container = $(nav_choices).filter(container_id);
-			if(!$(selected_choice_container).hasClass('selected')) {
-				$(selected_choice_container).addClass('selected');
-			}
-			
+			$(selected_choice_container).addClass('selected');
+
 			// Adjust css on under-line
 			let underline = $('#mainNavUnderline');
 			if($(selected_choice_container).length === 0) {
@@ -76,42 +145,35 @@
 				// Cancel current timeout crawl
 				clearTimeout(cur_crawl_timeout);
 				// Get new left and right values
-				let nav_width = $('#mainNavWrapper').innerWidth();
-				let selected_position = $(selected_choice_container).position();
-				let selected_width = $(selected_choice_container).innerWidth();
+				let nav_width = $('#mainNavWrapper')[0].getBoundingClientRect().width;
+				let selected_span = $(selected_choice_container).children('span');
+				let selected_position = $(selected_span).position();
+				let selected_width = $(selected_span)[0].getBoundingClientRect().width;
 				let left_val = selected_position.left;
 				let right_val = nav_width - (left_val + selected_width);
-				if(Math.abs(left_val) < 0.1)
-					left_val = 0;
-				else 
-					left_val += nav_choice_margin;
-				if(Math.abs(right_val) < 0.1)
-					right_val = 0;
-				else
-					right_val += nav_choice_margin;
 				let cur_left = parseInt(underline.css('left'), 10);
 				let cur_right = parseInt(underline.css('right'), 10);
-				console.log(cur_left);
-				console.log(cur_right);
+				let left_val_perc = (left_val/nav_width)*100.0;
+				let right_val_perc = (right_val/nav_width)*100.0;
 				// If currently fully stretched, instantly focus on target
 				if(cur_left === 0 && cur_right === 0) {
-					underline.css('left', left_val+'px');
-					underline.css('right', right_val+'px');
+					underline.css('left', left_val_perc+'%');
+					underline.css('right', right_val_perc+'%');
 				}
 				// Otherwise crawl towards it
 				else {
 					// Crawl right
 					if(left_val > cur_left) {
-						underline.css('right', right_val+'px');
+						underline.css('right', right_val_perc+'%');
 						cur_crawl_timeout = setTimeout(function() {
-							underline.css('left', left_val+'px');
+							underline.css('left', left_val_perc+'%');
 						}, crawl_speed);
 					}
 					// Crawl left
 					else {
-						underline.css('left', left_val+'px');
+						underline.css('left', left_val_perc+'%');
 						cur_crawl_timeout = setTimeout(function() {
-							underline.css('right', right_val+'px');
+							underline.css('right', right_val_perc+'%');
 						}, crawl_speed);
 					}
 				}
@@ -121,10 +183,45 @@
 				// DO LATER
 		});
 	</script>
+	<!-- TILE SCRIPT -->
+	<script type="text/javascript">
+		// Tile content initializer
+		$('.tile-content').each(function() {
+			// Set tile-content top position
+			let tile = $(this).parent();
+			let tile_top = $(tile).position().top;
+			let tile_height = $(tile).outerHeight(true);
+			let top_val = tile_top + tile_height;
+			$(this).css('top', top_val+'px');
+			// Set tile-content height and tile margin-bottom
+			let tile_content_outer_height = $(this).outerHeight(true);
+			tile.css('margin-bottom', tile_content_outer_height+'px');
+			let tile_content_height = $(this)[0].getBoundingClientRect().height;
+			$(this).css('height', tile_content_height+'px');
+			// Set tile-content to initialized
+			$(this).addClass('initialized');
+		});
+
+		// Tile click handler
+		const tile_show_transition_duration = 200;
+		let tile_show_timeout;
+		$('.tile').bind('click', function() {
+			if($(this).hasClass('show')) {
+				$(this).removeClass('show');
+			}
+			else {
+				clearTimeout(tile_show_timeout);
+				$('.tile.show').removeClass('show');
+				tile_show_timeout = setTimeout(
+					(() => $(this).addClass('show')).bind(this), 
+					tile_show_transition_duration);
+			}
+		});
+	</script>
 	<!-- LOADED SCRIPT -->
-	<script type="application/javascript">
+	<script type="text/javascript">
 		function setBodyLoaded() {
-			document.body.classList.add("loaded");
+			$(document.body).addClass('loaded');
 		}
 		$(document).ready(function() {
 			window.setTimeout(setBodyLoaded, 50);
