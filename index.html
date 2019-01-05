@@ -14,19 +14,24 @@
 
 <body>
 	<!-- no-script version -->
-	<noscript class="text-sans antialias">
-		<div id="logoHeader">
-			<div class="logo-line-spacer"></div>
-			<div class="logo-line"></div>
-			<div id="logoWrapper">
-				<a href="#"><img id="logo" src="static/bad-optics.png" alt="Bad Optics"></a>
+	<noscript class="text-mono antialias">
+		<div id="header">
+			<div id="infoHeader">
+				<a href="/subscribe" class="unstyle-link">subscribe</a>
 			</div>
-			<div class="logo-line"></div>
-			<div class="logo-line-spacer"></div>
-		</div>
+			<div id="logoHeader">
+				<div class="logo-line-spacer"></div>
+				<div class="logo-line"></div>
+				<div id="logoWrapper">
+					<img id="logo" src="static/bad-optics-borderless.png" alt="Bad Optics">
+				</div>
+				<div class="logo-line"></div>
+				<div class="logo-line-spacer"></div>
+			</div>
 
-		<div id="noscriptMessage" class="antialias">
-			<p>Please enable javascript to use the full features of this site. Thanks :)</p>
+			<div id="noscriptMessage" class="antialias">
+				<p>invalid [[javascript-state]] => enable javascript</p>
+			</div>
 		</div>
 	</noscript>
 
@@ -42,10 +47,8 @@
 			<div class="logo-line-spacer"></div>
 			<div class="logo-line"></div>
 			<div id="logoWrapper">
-				<a href="#all">
-					<img id="logoInvert" src="static/bad-optics-borderless-invert.png" alt="Bad Optics Invert">
-					<img id="logo" src="static/bad-optics-borderless.png" alt="Bad Optics">
-				</a>
+				<img id="logoInvert" src="static/bad-optics-borderless-invert.png" alt="Bad Optics Invert">
+				<img id="logo" src="static/bad-optics-borderless.png" alt="Bad Optics">
 				<svg id="logoInvertSpot" width="100%" height="100%">
 					<circle cx="18.75%" cy="68.70%" r="12.17%" fill="white" />
 				</svg>
@@ -192,13 +195,19 @@
 			setTimeout(() => $(empty_message).addClass('show'), 100);
 		}
 
+		// Logo click filter reset
+		$('#logo, #logoInvert, #mainNavHeader span').bind('click', function(e) {
+			window.location.hash = '';
+			e.preventDefault();
+		});
+
 		// Hash change handler
 		const main_fade_duration = 500;
 		let main_fade_timeout;
 		const crawl_speed = 200;
 		let cur_crawl_timeout;
 
-		$(window).bind('hashchange', function() {
+		$(window).bind('hashchange', function(e) {
 			let hash = location.hash.toLowerCase();
 			let hash_word = hash.substr(1);
 			let nav_choices = $('#mainNavWrapper .nav-choices').children('.choice-container');

@@ -44,6 +44,11 @@ END WHOLE PAGE */
 
 /* HEADER 
 ========= */
+#header {
+	opacity: 0;
+	transition: opacity 0.5s cubic-bezier(.8,0,.83,.67);
+}
+
 #infoHeader {
 	display: flex;
 	justify-content: space-between;
@@ -52,6 +57,7 @@ END WHOLE PAGE */
 
 	color: #fff;
 }
+noscript #infoHeader { justify-content: center; }
 html.invert #infoHeader { color: #080808; }
 
 #logoHeader {
@@ -63,12 +69,9 @@ html.invert #infoHeader { color: #080808; }
 	display: flex;
 	justify-content: center;
 	align-items: center;
-
-	opacity: 0;
-	transition: opacity 0.5s cubic-bezier(.8,0,.83,.67);
 }
 
-#logoWrapper, #logoWrapper > a, #logo {
+#logoWrapper, #logo {
 	height: inherit;
 }
 
@@ -79,7 +82,9 @@ html.invert #infoHeader { color: #080808; }
 #logo {
 	position: relative;
 	border: 6px solid #fff;
+
 	z-index: 2;
+	cursor: pointer;
 }
 html.invert #logo { visibility: hidden; }
 #logoInvert {
@@ -92,6 +97,7 @@ html.invert #logo { visibility: hidden; }
 	border: 6px solid #080808;
 
 	z-index: 1;
+	cursor: pointer;
 }
 
 .logo-line {
@@ -130,7 +136,7 @@ html.invert .logo-line { border-color: #080808; }
 html.invert #logoInvertSpot circle { fill: #080808; }
 
 /* ENTRANCE ANIMATIONS */
-body.loaded #logoHeader, noscript #logoHeader { opacity: 1; }
+body.loaded #header, noscript #header { opacity: 1; }
 body.loaded .logo-line-spacer, noscript .logo-line-spacer { width: 0; }
 body.loaded #mainNav { opacity: 1; }
 body.loaded #mainNavUnderline { transform: scaleX(1); }
@@ -176,6 +182,7 @@ html.invert #mainNav { color: #080808; }
 #mainNavHeader span {
 	font-weight: 400;
 	font-size: 64px;
+	cursor: pointer;
 }
 
 #mainNavWrapper {
@@ -434,7 +441,7 @@ END MAIN CONTENT */
 
 	margin-bottom: 30px;
 }
-html.invert #fotoer { color: #080808; }
+html.invert #footer { color: #080808; }
 /* =======
 END FOOTER */
 
