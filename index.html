@@ -33,20 +33,26 @@
 	<!-- tile popup scrim -->
 	<div id="popupScrim"></div> 
 
-	<div id="logoHeader">
-		<div class="logo-line-spacer"></div>
-		<div class="logo-line"></div>
-		<div id="logoWrapper">
-			<a href="#all">
-				<img id="logoInvert" src="static/bad-optics-borderless-invert.png" alt="Bad Optics Invert">
-				<img id="logo" src="static/bad-optics-borderless.png" alt="Bad Optics">
-			</a>
-			<svg id="logoInvertSpot" width="100%" height="100%">
-				<circle cx="18.75%" cy="68.70%" r="12.17%" fill="white" />
-			</svg>
+	<div id="header">
+		<div id="infoHeader" class="text-mono antialias">
+			<a href="/subscribe" class="unstyle-link">subscribe</a>
+			<a href="#about" class="unstyle-link">about us</a>
 		</div>
-		<div class="logo-line"></div>
-		<div class="logo-line-spacer"></div>
+		<div id="logoHeader">
+			<div class="logo-line-spacer"></div>
+			<div class="logo-line"></div>
+			<div id="logoWrapper">
+				<a href="#all">
+					<img id="logoInvert" src="static/bad-optics-borderless-invert.png" alt="Bad Optics Invert">
+					<img id="logo" src="static/bad-optics-borderless.png" alt="Bad Optics">
+				</a>
+				<svg id="logoInvertSpot" width="100%" height="100%">
+					<circle cx="18.75%" cy="68.70%" r="12.17%" fill="white" />
+				</svg>
+			</div>
+			<div class="logo-line"></div>
+			<div class="logo-line-spacer"></div>
+		</div>
 	</div>
 
 	<div id="mainNav" class="text-sans antialias">
@@ -80,7 +86,7 @@
 
 	<div id="mainContent">
 		<div class="tile-set text-sans antialias">
-			<div class="tile sonic-tile">
+			<div class="tile sonic-tile" style="background-image: url('static/powers-that-b.jpg');">
 				<div class="tile-content-container">
 					<div class="tile-content">
 						<p style="text-align: center;">poop scoop</p>
@@ -146,6 +152,10 @@
 				</div>
 			</div>
 		</div>
+	</div>
+
+	<div id="footer" class="text-mono antialias">
+		<span>&copy; 2019 Bad Optics Collective. All Rights Reserved.</span>
 	</div>
 
 	<!-- Working Scripts -->

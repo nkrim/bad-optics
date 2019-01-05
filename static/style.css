@@ -41,13 +41,24 @@ html.invert #noscriptMessage { color: #080808; }
 END WHOLE PAGE */
 
 
-/* LOGO HEADER 
-============== */
+
+/* HEADER 
+========= */
+#infoHeader {
+	display: flex;
+	justify-content: space-between;
+
+	padding: 10px 20px 20px;
+
+	color: #fff;
+}
+html.invert #infoHeader { color: #080808; }
+
 #logoHeader {
 	position: relative;
 	height: 160px;
 
-	margin: 40px 0;
+	margin-bottom: 40px;
 
 	display: flex;
 	justify-content: center;
@@ -124,8 +135,8 @@ body.loaded .logo-line-spacer, noscript .logo-line-spacer { width: 0; }
 body.loaded #mainNav { opacity: 1; }
 body.loaded #mainNavUnderline { transform: scaleX(1); }
 body.loaded #mainContent { opacity: 1; }
-/* ============
-END LOGO HEADER */
+/* =======
+END HEADER */
 
 
 /* MAIN NAVIGATION
@@ -278,6 +289,7 @@ html.invert .empty-message div { border-color: #080808; }
 #mainContent {
 	position: relative;
 	width: 660px;
+	min-height: 100vh;
 	margin: auto;
 	margin-bottom: 80px;
 
@@ -411,6 +423,20 @@ html.invert .tile-borders > div { background: #080808; }
 .tile-borders:hover .tile-border-right, .tile-borders:hover .tile-border-left { transform: scaleY(1); }
 /* =============
 END MAIN CONTENT */
+
+
+/* FOOTER
+========= */
+#footer {
+	text-align: center;
+	color: #fff;
+	font-size: 10px;
+
+	margin-bottom: 30px;
+}
+html.invert #fotoer { color: #080808; }
+/* =======
+END FOOTER */
 
 
 /* GENERIC CLASSES
