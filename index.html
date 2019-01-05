@@ -14,7 +14,7 @@
 
 <body>
 	<!-- no-script version -->
-	<noscript>
+	<noscript class="text-sans antialias">
 		<div id="logoHeader">
 			<div class="logo-line-spacer"></div>
 			<div class="logo-line"></div>
@@ -37,30 +37,38 @@
 		<div class="logo-line-spacer"></div>
 		<div class="logo-line"></div>
 		<div id="logoWrapper">
-			<a href="#"><img id="logo" src="static/bad-optics-borderless.png" alt="Bad Optics"></a>
+			<a href="#all"><img id="logo" src="static/bad-optics-borderless.png" alt="Bad Optics"></a>
 		</div>
 		<div class="logo-line"></div>
 		<div class="logo-line-spacer"></div>
 	</div>
 
-	<div id="mainNav" class="antialias">
-		<div id="mainNavHeader">
-			<span>Expressions</span>
-		</div>
-
-		<div id="mainNavWrapper">
-			<div class="nav-choices">
-				<a href="#sonic" id="sonicChoiceContainer" class="choice-container unstyle-link">
-					<span>Sonic<div class="choice-hover"></div></span>
-				</a>
-				<a href="#visual" id="visualChoiceContainer" class="choice-container unstyle-link">
-					<span>Visual<div class="choice-hover"></div></span>
-				</a>
-				<a href="#interactive" id="interactiveChoiceContainer" class="choice-container unstyle-link">
-					<span>Interactive<div class="choice-hover"></div></span>
-				</a>
+	<div id="mainNav" class="text-sans antialias">
+		<div style="position: relative; display: inline-block; margin: auto;">
+			<div id="mainNavHeader">
+				<span>Expressions</span>
 			</div>
-			<div id="mainNavUnderline"></div>
+
+			<div id="mainNavWrapper">
+				<div class="nav-choices">
+					<a href="#sonic" id="sonicChoiceContainer" class="choice-container unstyle-link">
+						<span>Sonic<div class="choice-hover"></div></span>
+					</a>
+					<a href="#visual" id="visualChoiceContainer" class="choice-container unstyle-link">
+						<span>Visual<div class="choice-hover"></div></span>
+					</a>
+					<a href="#interactive" id="interactiveChoiceContainer" class="choice-container unstyle-link">
+						<span>Interactive<div class="choice-hover"></div></span>
+					</a>
+				</div>
+				<div id="mainNavUnderline"></div>
+			</div>
+
+			<div class="empty-message text-mono antialias">
+				<div>
+					<span></span>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -135,9 +143,42 @@
 	</div>
 
 	<!-- Working Scripts -->
-	<!-- HASH CHANGE HANDLER -->
+	<!-- MAIN NAV SETTINGS -->
 	<script type="text/javascript">
+		// Function for opening and closing empty message box with details
+		function closeEmptyMessage() { 
+			$('.empty-message').removeClass('show');
+		}
+		function openEmptyMessage(media_type) {
+			let empty_message = $('.empty-message');
+			console.log($(empty_message));
+			$(empty_message).removeClass('show');
+			if(media_type !== '') {
+				// Get div and span
+				let empty_message_div = $('.empty-message div');
+				let empty_message_span = $('.empty-message span');
+				// Uninitialize to reset width
+				$(empty_message).removeClass('initialized');
+				$(empty_message_div).css('width', '');
+				(empty_message_span).css('width', '');
+				// Set text
+				$(empty_message_span).text('media-type [['+media_type+']] => not found');
+				// Adjust width
+				let span_rect = $(empty_message_span)[0].getBoundingClientRect();
+				$(empty_message_div).css({
+					'height': span_rect.height,
+					'width': span_rect.width,
+				})
+				$(empty_message_span).css('width', span_rect.width);
+				// Re-initiailize
+				$(empty_message).addClass('initialized');
+			}
+			setTimeout(() => $(empty_message).addClass('show'), 100);
+		}
+
+		// Hash change handler
 		const main_fade_duration = 500;
+		let main_fade_timeout;
 		const crawl_speed = 200;
 		let cur_crawl_timeout;
 
@@ -157,6 +198,7 @@
 			if($(selected_choice_container).length === 0) {
 				underline.css('left', 0);
 				underline.css('right', 0);
+				console.log('poo');
 			}
 			else {
 				// Cancel current timeout crawl
@@ -197,19 +239,41 @@
 			}
 
 			// Perform action dependent on choice
+			clearTimeout(main_fade_timeout);
 
-			if(hash_word === '' || hash_word === 'sonic' || hash_word === 'visual' || hash_word === 'interactive') {
-				let main_content = $('#mainContent');
-				main_content.addClass('hidden');
-				setTimeout(() => {
-					let tile_class = '.'+hash_word+'-tile';
-					let tiles = $('#mainContent .tile');
-					$(tiles).show();
-					if(hash_word !== '')
-						$(tiles).not(tile_class).hide();
-					main_content.removeClass('hidden');
-				}, main_fade_duration);
+			if(!(hash_word === 'sonic' || hash_word === 'visual' || hash_word === 'interactive')) {
+				hash_word = '';
 			}
+
+			let main_content = $('#mainContent');
+			main_content.addClass('hidden');
+
+			let tile_class = '.'+hash_word+'-tile';
+			let tiles = $('#mainContent .tile');
+			let matching_tiles = $(tiles).filter(tile_class);
+			if(hash_word === '') {
+				if($(tiles).length === 0)
+					openEmptyMessage('all')
+				else
+					closeEmptyMessage();
+			}
+			else {
+				if($(matching_tiles).length === 0)
+					openEmptyMessage(hash_word);
+				else
+					closeEmptyMessage();
+			}
+
+			main_fade_timeout = setTimeout(() => {
+				if(hash_word === '') {
+					$(tiles).show();
+				}
+				else {
+					$(tiles).not(tile_class).hide();
+					$(matching_tiles).show();
+				}
+				main_content.removeClass('hidden');
+			}, main_fade_duration);
 		});
 	</script>
 	<!-- TILE SCRIPT -->
