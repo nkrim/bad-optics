@@ -59,6 +59,10 @@ END WHOLE PAGE */
 	height: inherit;
 }
 
+#logo {
+	border: 6px solid #fff;
+}
+
 .logo-line {
 	height: 0px;
 	width: 0px;
@@ -87,10 +91,10 @@ END LOGO HEADER */
 /* MAIN NAVIGATION
 ================== */
 #mainNav {
-	position: relative;
 	width: 100%;
+
 	margin: auto;
-	margin-bottom: 40px;
+	/*margin-bottom: 40px;*/
 	text-align: center;
 
 	font-family: sans-serif;
@@ -100,6 +104,27 @@ END LOGO HEADER */
 
 	opacity: 0;
 	transition: opacity 0.5s cubic-bezier(.8,0,.83,.67) 0.2s;
+
+	z-index: 10;
+}
+
+#mainNav > div {
+	margin: 0 5px;
+}
+
+#mainNavHeader {
+	position: relative;
+	display: inline-block;
+	margin: auto;
+
+	height: 74px;
+	padding-top: 20px;
+
+	cursor: default;
+}
+#mainNavHeader span {
+	font-weight: 400;
+	font-size: 64px;
 }
 
 #mainNavWrapper {
@@ -169,28 +194,32 @@ END LOGO HEADER */
 =============== */
 #mainContent {
 	position: relative;
-	width: 600px;
+	width: 660px;
 	margin: auto;
+	margin-bottom: 80px;
 
 	opacity: 0;
-	transition: opacity 0.5s cubic-bezier(.8,0,.83,.67) 0.4s;
+	transition: opacity 0.5s cubic-bezier(.8,0,.83,.67);
+}
+#mainContent.hidden {
+	opacity: 0 !important;
 }
 
+/* TILES AND TILE SETS
+---------------------- */
 .tile-set {
 	position: relative;
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: flex-start;
 
 }
 
 .tile {
-/*	position: relative; */
-	width: 180px;
-	height: 180px;
-	margin-top: 30px;
-	margin-bottom: 0;
+	width: 160px;
+	height: 160px;
+	margin: 60px 30px 0;
 
 	background: #333;
 	background-size: cover;
@@ -202,64 +231,41 @@ END LOGO HEADER */
 	margin-bottom: 0 !important;
 }
 
-/* POPUP VERSION OF TILE-CONTENT*/
-/*.tile-content {
-	position: fixed;
-	width: 600px;
-	height: 500px;
-	background: rgba(8,8,8,0.9);
-	z-index: 110;
-
-	top: -50%;
-	left: 0;
-	right: 0;
-	margin: auto;
-	transform-origin: center;
-	transform: translateY(100%);
-	border: 2px solid #fff;
-	pointer-events: auto;
-	cursor: all;
-
-	font-family: sans-serif;
-	font-size: 14px;
-	color: #fff;
-
-	visibility: hidden;
-	opacity: 0;
-	transition: opacity 0.2s linear, visibility 0s linear 0.2s;
-}
-.tile.show .tile-content {
-	visibility: visible;
-	opacity: 1;
-	transition: opacity 0.2s linear, visibility 0s linear;
-}*/
-
-.tile-content {
-	background: #ccc;
-
+/* TILE CONTENT
+--------------- */
+.tile-content-container {
 	position: absolute;
-	width: 100%;
 	height: auto;
-	left: -3px;
-	border-left: 3px solid white;
-	margin: 30px 0 0;
+	left: 27px;
+	right: 27px;
 	overflow: hidden;
+
+	box-sizing: border-box;
+	border-left: 3px solid white;
+	border-right: 3px solid white;;
+	margin: 0;
 
 	visibility: hidden;
 	transition: height 0.2s ease-in-out, visibility 0.2s linear 0.2s;
 }
-.tile:not(.show) .tile-content.initialized {
+.tile:not(.show) .tile-content-container.initialized {
 	height: 0 !important;
 }
-.tile.show .tile-content {
+.tile.show .tile-content-container {
 	visibility: visible;
 	transition: height 0.2s ease-in-out, visibility 0.2s linear;
 }
 
+.tile-content {
+	padding: 20px;
+}
+
+/* TILE BORDERS
+--------------- */
 .tile-borders {
 	position: relative;
-	width: 180px;
-	height: 180px;
+	width: 160px;
+	height: 160px;
 	cursor: pointer;
 }
 .tile-border-top, .tile-border-right, .tile-border-bottom, .tile-border-left {

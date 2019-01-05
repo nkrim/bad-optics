@@ -37,13 +37,17 @@
 		<div class="logo-line-spacer"></div>
 		<div class="logo-line"></div>
 		<div id="logoWrapper">
-			<a href="#"><img id="logo" src="static/bad-optics.png" alt="Bad Optics"></a>
+			<a href="#"><img id="logo" src="static/bad-optics-borderless.png" alt="Bad Optics"></a>
 		</div>
 		<div class="logo-line"></div>
 		<div class="logo-line-spacer"></div>
 	</div>
 
 	<div id="mainNav" class="antialias">
+		<div id="mainNavHeader">
+			<span>Expressions</span>
+		</div>
+
 		<div id="mainNavWrapper">
 			<div class="nav-choices">
 				<a href="#sonic" id="sonicChoiceContainer" class="choice-container unstyle-link">
@@ -61,10 +65,12 @@
 	</div>
 
 	<div id="mainContent">
-		<div id="musicContent" class="tile-set">
-			<div class="tile">
-				<div class="tile-content">
-					<p style="text-align: center;">poop scoop</p>
+		<div class="tile-set">
+			<div class="tile sonic-tile">
+				<div class="tile-content-container">
+					<div class="tile-content">
+						<p style="text-align: center;">poop scoop</p>
+					</div>
 				</div>
 				<div class="tile-borders">
 					<div class="tile-border-top"></div>
@@ -73,9 +79,11 @@
 					<div class="tile-border-left"></div>
 				</div>
 			</div>
-			<div class="tile">
-				<div class="tile-content">
-					<p style="text-align: center;">ineed all my bitches same color as thanos</p>
+			<div class="tile visual-tile">
+				<div class="tile-content-container">
+					<div class="tile-content">
+						<p style="text-align: center;">ineed all my bitches same color as thanos</p>
+					</div>
 				</div>
 				<div class="tile-borders">
 					<div class="tile-border-top"></div>
@@ -84,9 +92,11 @@
 					<div class="tile-border-left"></div>
 				</div>
 			</div>
-			<div class="tile">
-				<div class="tile-content">
-					<img src="static/knuckles.jpg" style="height: 100%;">
+			<div class="tile sonic-tile">
+				<div class="tile-content-container">
+					<div class="tile-content">
+						<img src="static/knuckles.jpg" style="height: 100%;">
+					</div>
 				</div>
 				<div class="tile-borders">
 					<div class="tile-border-top"></div>
@@ -95,9 +105,11 @@
 					<div class="tile-border-left"></div>
 				</div>
 			</div>
-			<div class="tile">
-				<div class="tile-content">
-					<p style="text-align: center;">matt's first album</p>
+			<div class="tile visual-tile">
+				<div class="tile-content-container">
+					<div class="tile-content">
+						<p style="text-align: center;">matt's first album</p>
+					</div>
 				</div>
 				<div class="tile-borders">
 					<div class="tile-border-top"></div>
@@ -106,9 +118,11 @@
 					<div class="tile-border-left"></div>
 				</div>
 			</div>
-			<div class="tile">
-				<div class="tile-content">
-					<p style="text-align: center;">benis</p>
+			<div class="tile sonic-tile">
+				<div class="tile-content-container">
+					<div class="tile-content">
+						<p style="text-align: center;">benis</p>
+					</div>
 				</div>
 				<div class="tile-borders">
 					<div class="tile-border-top"></div>
@@ -123,12 +137,15 @@
 	<!-- Working Scripts -->
 	<!-- HASH CHANGE HANDLER -->
 	<script type="text/javascript">
+		const main_fade_duration = 500;
 		const crawl_speed = 200;
 		let cur_crawl_timeout;
 
 		$(window).bind('hashchange', function() {
+			let hash = location.hash.toLowerCase();
+			let hash_word = hash.substr(1);
 			let nav_choices = $('#mainNavWrapper .nav-choices').children('.choice-container');
-			let container_id = location.hash.toLowerCase() + 'ChoiceContainer';
+			let container_id = hash + 'ChoiceContainer';
 			// Unselect any selected choices
 			nav_choices.not(container_id).removeClass('selected');
 			// Select proper choice
@@ -180,18 +197,31 @@
 			}
 
 			// Perform action dependent on choice
-				// DO LATER
+
+			if(hash_word === '' || hash_word === 'sonic' || hash_word === 'visual' || hash_word === 'interactive') {
+				let main_content = $('#mainContent');
+				main_content.addClass('hidden');
+				setTimeout(() => {
+					let tile_class = '.'+hash_word+'-tile';
+					let tiles = $('#mainContent .tile');
+					$(tiles).show();
+					if(hash_word !== '')
+						$(tiles).not(tile_class).hide();
+					main_content.removeClass('hidden');
+				}, main_fade_duration);
+			}
 		});
 	</script>
 	<!-- TILE SCRIPT -->
 	<script type="text/javascript">
 		// Tile content initializer
-		$('.tile-content').each(function() {
+		let tile_content_top_offset = 30;
+		$('.tile-content-container').each(function() {
 			// Set tile-content top position
 			let tile = $(this).parent();
 			let tile_top = $(tile).position().top;
 			let tile_height = $(tile).outerHeight(true);
-			let top_val = tile_top + tile_height;
+			let top_val = tile_top + tile_height + tile_content_top_offset;
 			$(this).css('top', top_val+'px');
 			// Set tile-content height and tile margin-bottom
 			let tile_content_outer_height = $(this).outerHeight(true);
@@ -214,7 +244,7 @@
 				$('.tile.show').removeClass('show');
 				tile_show_timeout = setTimeout(
 					(() => $(this).addClass('show')).bind(this), 
-					tile_show_transition_duration);
+					tile_show_transition_duration+10);
 			}
 		});
 	</script>
