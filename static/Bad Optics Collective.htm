@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html>
-<head>
+<!-- saved from url=(0026)http://localhost:8000/#all -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 	<title>Bad Optics Collective</title>
 
 	<!-- Style -->
-	<link rel="stylesheet" href="static/style.css">
+	<link rel="stylesheet" href="./Bad Optics Collective_files/style.css">
 
 	<!-- Scripts -->
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-	<script src="static/js/jquery.min.js"></script>
-	<sciprt src="static/js/jquery-hashchange-plugin.js"></sciprt>
-</head>
+	<script src="./Bad Optics Collective_files/jquery.min.js"></script>
+	</head><body class="loaded"><sciprt src="static/js/jquery-hashchange-plugin.js"></sciprt>
 
-<body>
+
+
 	<!-- no-script version -->
 	<noscript class="text-sans antialias">
 		<div id="logoHeader">
@@ -37,13 +37,10 @@
 		<div class="logo-line-spacer"></div>
 		<div class="logo-line"></div>
 		<div id="logoWrapper">
-			<a href="#all">
-				<img id="logoInvert" src="static/bad-optics-borderless-invert.png" alt="Bad Optics Invert">
-				<img id="logo" src="static/bad-optics-borderless.png" alt="Bad Optics">
-			</a>
-			<svg id="logoInvertSpot" width="100%" height="100%">
-				<circle cx="18.75%" cy="68.70%" r="12.17%" fill="white" />
-			</svg>
+			<a href="http://localhost:8000/#all"><img id="logo" src="./Bad Optics Collective_files/bad-optics-borderless.png" alt="Bad Optics" usemap="logo-map"></a>
+			<map name="logo-map">
+				<area shape="circle" coords="120,316,59" href="http://localhost:8000/#sonic">
+			</map>
 		</div>
 		<div class="logo-line"></div>
 		<div class="logo-line-spacer"></div>
@@ -57,17 +54,17 @@
 
 			<div id="mainNavWrapper">
 				<div class="nav-choices">
-					<a href="#sonic" id="sonicChoiceContainer" class="choice-container unstyle-link">
+					<a href="http://localhost:8000/#sonic" id="sonicChoiceContainer" class="choice-container unstyle-link">
 						<span>Sonic<div class="choice-hover"></div></span>
 					</a>
-					<a href="#visual" id="visualChoiceContainer" class="choice-container unstyle-link">
+					<a href="http://localhost:8000/#visual" id="visualChoiceContainer" class="choice-container unstyle-link">
 						<span>Visual<div class="choice-hover"></div></span>
 					</a>
-					<a href="#interactive" id="interactiveChoiceContainer" class="choice-container unstyle-link">
+					<a href="http://localhost:8000/#interactive" id="interactiveChoiceContainer" class="choice-container unstyle-link">
 						<span>Interactive<div class="choice-hover"></div></span>
 					</a>
 				</div>
-				<div id="mainNavUnderline"></div>
+				<div id="mainNavUnderline" style="left: 0px; right: 0px;"></div>
 			</div>
 
 			<div class="empty-message text-mono antialias">
@@ -78,10 +75,10 @@
 		</div>
 	</div>
 
-	<div id="mainContent">
-		<div class="tile-set text-sans antialias">
-			<div class="tile sonic-tile">
-				<div class="tile-content-container">
+	<div id="mainContent" class="">
+		<div class="tile-set">
+			<div class="tile sonic-tile" style="margin-bottom: 90px;">
+				<div class="tile-content-container initialized" style="top: 250px; height: 90px;">
 					<div class="tile-content">
 						<p style="text-align: center;">poop scoop</p>
 					</div>
@@ -93,8 +90,8 @@
 					<div class="tile-border-left"></div>
 				</div>
 			</div>
-			<div class="tile visual-tile">
-				<div class="tile-content-container">
+			<div class="tile visual-tile" style="margin-bottom: 90px;">
+				<div class="tile-content-container initialized" style="top: 250px; height: 90px;">
 					<div class="tile-content">
 						<p style="text-align: center;">ineed all my bitches same color as thanos</p>
 					</div>
@@ -106,10 +103,10 @@
 					<div class="tile-border-left"></div>
 				</div>
 			</div>
-			<div class="tile sonic-tile">
-				<div class="tile-content-container">
+			<div class="tile sonic-tile" style="margin-bottom: 382px;">
+				<div class="tile-content-container initialized" style="top: 250px; height: 382px;">
 					<div class="tile-content">
-						<img src="static/knuckles.jpg" style="height: 100%;">
+						<img src="./Bad Optics Collective_files/knuckles.jpg" style="height: 100%;">
 					</div>
 				</div>
 				<div class="tile-borders">
@@ -119,8 +116,8 @@
 					<div class="tile-border-left"></div>
 				</div>
 			</div>
-			<div class="tile visual-tile">
-				<div class="tile-content-container">
+			<div class="tile visual-tile" style="margin-bottom: 90px;">
+				<div class="tile-content-container initialized" style="top: 470px; height: 90px;">
 					<div class="tile-content">
 						<p style="text-align: center;">matt's first album</p>
 					</div>
@@ -132,8 +129,8 @@
 					<div class="tile-border-left"></div>
 				</div>
 			</div>
-			<div class="tile sonic-tile">
-				<div class="tile-content-container">
+			<div class="tile sonic-tile" style="margin-bottom: 90px;">
+				<div class="tile-content-container initialized" style="top: 470px; height: 90px;">
 					<div class="tile-content">
 						<p style="text-align: center;">benis</p>
 					</div>
@@ -318,12 +315,6 @@
 			}
 		});
 	</script>
-	<!-- INVERT SCRIPT -->
-	<script type="text/javascript">
-		$('#logoInvertSpot circle').bind('click', function() {
-			$('html').toggleClass('invert');
-		});
-	</script>
 	<!-- LOADED SCRIPT -->
 	<script type="text/javascript">
 		function setBodyLoaded() {
@@ -334,5 +325,5 @@
 			$(window).trigger('hashchange');
 		});
 	</script>
-</body>
-</html>
+
+</body></html>

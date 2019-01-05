@@ -1,21 +1,18 @@
 /* WHOLE PAGE 
 ============= */
 html, body {
-	position: relative;
 	margin: 0;
 	width: 100%;
 	height: 100%;
 
 	background-color: #080808;
 }
-html.invert, html.invert body { background-color: #fff; }
 
 #noscriptMessage {
 	font-size: 18px;
 	color: #fff;
 	text-align: center;
 }
-html.invert #noscriptMessage { color: #080808; }
 
 #popupScrim {
 	position: fixed;
@@ -61,26 +58,8 @@ END WHOLE PAGE */
 	height: inherit;
 }
 
-#logoWrapper {
-	position: relative;
-}
-
 #logo {
-	position: relative;
 	border: 6px solid #fff;
-	z-index: 2;
-}
-html.invert #logo { visibility: hidden; }
-#logoInvert {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: inherit;
-	height: 100%;
-
-	border: 6px solid #080808;
-
-	z-index: 1;
 }
 
 .logo-line {
@@ -90,7 +69,6 @@ html.invert #logo { visibility: hidden; }
 	border-top:	2px solid #fff;
 	border-bottom: 2px solid #fff;
 }
-html.invert .logo-line { border-color: #080808; }
 
 .logo-line-spacer {
 	height: 0px;
@@ -98,25 +76,6 @@ html.invert .logo-line { border-color: #080808; }
 	width: 50%;
 	transition: width 0.5s ease-out 0.5s;
 }
-
-#logoInvertSpot {
-	position: absolute;
-	top: 6px;
-	left: 0;
-	pointer-events: none;
-	z-index: 3;
-}
-#logoInvertSpot circle {
-	pointer-events: fill;
-	cursor: pointer;
-
-	opacity: 0;
-	transition: opacity 0.2s linear;
-}
-#logoInvertSpot circle:hover {
-	opacity: 1;
-}
-html.invert #logoInvertSpot circle { fill: #080808; }
 
 /* ENTRANCE ANIMATIONS */
 body.loaded #logoHeader, noscript #logoHeader { opacity: 1; }
@@ -146,7 +105,6 @@ END LOGO HEADER */
 
 	z-index: 10;
 }
-html.invert #mainNav { color: #080808; }
 
 #mainNav > div > div {
 	margin: 0 5px;
@@ -206,7 +164,6 @@ html.invert #mainNav { color: #080808; }
 	transform: scaleX(0);
 	transition: transform 0.2s ease-in-out;
 }
-html.invert .choice-hover {	background: #080808; }
 .choice-container:hover .choice-hover {
 	transform: scaleX(1) !important;
 }
@@ -229,7 +186,6 @@ html.invert .choice-hover {	background: #080808; }
 	transform: scaleX(0);
 	transition: left 0.2s ease-in-out, right 0.2s ease-in-out, transform 0.5s ease-in-out 0.5s;
 }
-html.invert #mainNavUnderline {	background: #080808; }
 
 .empty-message {
 	position: absolute;
@@ -241,7 +197,6 @@ html.invert #mainNavUnderline {	background: #080808; }
 	color: #fff;
 	font-size: 14px;
 }
-html.invert .empty-message { color: #080808; }
 .empty-message div {
 	position: relative;
 	display: inline-block;
@@ -257,7 +212,6 @@ html.invert .empty-message { color: #080808; }
 	text-align: center;
 	overflow: hidden;
 }
-html.invert .empty-message div { border-color: #080808; }
 .empty-message.initialized:not(.show) div {
 	width: 0 !important;
 }
@@ -304,13 +258,12 @@ html.invert .empty-message div { border-color: #080808; }
 	height: 160px;
 	margin: 60px 30px 0;
 
-	background-color: #333;
+	background: #333;
 	background-size: cover;
 	background-position: center center;
 
 	transition: margin-bottom 0.2s ease-in-out;
 }
-html.invert .tile { background-color: #ccc; }
 .tile:not(.show) {
 	margin-bottom: 0 !important;
 }
@@ -324,19 +277,13 @@ html.invert .tile { background-color: #ccc; }
 	right: 27px;
 	overflow: hidden;
 
-	color: #fff;
-
 	box-sizing: border-box;
-	border-left: 3px solid #fff;
-	border-right: 3px solid #fff;;
+	border-left: 3px solid white;
+	border-right: 3px solid white;;
 	margin: 0;
 
 	visibility: hidden;
 	transition: height 0.2s ease-in-out, visibility 0s linear 0.2s;
-}
-html.invert .tile-content-container {
-	color: #080808;
-	border-color: #080808;
 }
 .tile:not(.show) .tile-content-container.initialized {
 	height: 0 !important;
@@ -363,7 +310,6 @@ html.invert .tile-content-container {
 	background: #fff;
 	transition: none;
 }
-html.invert .tile-borders > div { background: #080808; }
 .tile-border-top {
 	height: 3px;
 	top: -3px;
