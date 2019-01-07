@@ -3,18 +3,20 @@
 <head>
 	<title>Bad Optics Collective</title>
 
+	<!-- Fonts -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu" rel="stylesheet""> -->
 	<!-- Style -->
 	<link rel="stylesheet" href="static/style.css">
 
 	<!-- Scripts -->
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
 	<script src="static/js/jquery.min.js"></script>
-	<sciprt src="static/js/jquery-hashchange-plugin.js"></sciprt>
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 </head>
 
 <body>
 	<!-- no-script version -->
-	<noscript class="text-mono antialias">
+	<noscript class="antialias" class="text-mono antialias">
 		<div id="header">
 			<div id="infoHeader">
 				<a href="/subscribe" class="unstyle-link">subscribe</a>
@@ -29,7 +31,7 @@
 				<div class="logo-line-spacer"></div>
 			</div>
 
-			<div id="noscriptMessage" class="antialias">
+			<div id="noscriptMessage">
 				<p>invalid [[javascript-state]] => enable javascript</p>
 			</div>
 		</div>
@@ -38,8 +40,8 @@
 	<!-- tile popup scrim -->
 	<div id="popupScrim"></div> 
 
-	<div id="header">
-		<div id="infoHeader" class="text-mono antialias">
+	<div id="header" class="text-mono antialias">
+		<div id="infoHeader">
 			<a href="/subscribe" class="unstyle-link">subscribe</a>
 			<a href="#about" class="unstyle-link">about us</a>
 		</div>
@@ -47,8 +49,10 @@
 			<div class="logo-line-spacer"></div>
 			<div class="logo-line"></div>
 			<div id="logoWrapper">
-				<img id="logoInvert" src="static/bad-optics-borderless-invert.png" alt="Bad Optics Invert">
-				<img id="logo" src="static/bad-optics-borderless.png" alt="Bad Optics">
+				<a href="#all">
+					<img id="logoInvert" src="static/bad-optics-borderless-invert.png" alt="Bad Optics Invert">
+					<img id="logo" src="static/bad-optics-borderless.png" alt="Bad Optics">
+				</a>
 				<svg id="logoInvertSpot" width="100%" height="100%">
 					<circle cx="18.75%" cy="68.70%" r="12.17%" fill="white" />
 				</svg>
@@ -58,13 +62,13 @@
 		</div>
 	</div>
 
-	<div id="mainNav" class="text-sans antialias">
+	<div id="mainNav" class="text-header antialias">
 		<div style="position: relative; display: inline-block; margin: auto;">
 			<div id="mainNavHeader">
 				<span>Expressions</span>
 			</div>
 
-			<div id="mainNavWrapper">
+			<div id="mainNavWrapper" class="text-sans-web" style="font-weight: 200;">
 				<div class="nav-choices">
 					<a href="#sonic" id="sonicChoiceContainer" class="choice-container unstyle-link">
 						<span>Sonic<div class="choice-hover"></div></span>
@@ -96,10 +100,13 @@
 					</div>
 				</div>
 				<div class="tile-borders">
-					<div class="tile-border-top"></div>
-					<div class="tile-border-right"></div>
-					<div class="tile-border-bottom"></div>
-					<div class="tile-border-left"></div>
+					<div class="tile-title-text text-sans-web" style="font-weight: 200">
+						<span>&#x227C;<span class="issue-number">001</span>&#x227D;</span>
+					</div>
+					<div class="tile-border tile-border-top"></div>
+					<div class="tile-border tile-border-right"></div>
+					<div class="tile-border tile-border-bottom"></div>
+					<div class="tile-border tile-border-left"></div>
 				</div>
 			</div>
 			<div class="tile visual-tile">
@@ -109,10 +116,13 @@
 					</div>
 				</div>
 				<div class="tile-borders">
-					<div class="tile-border-top"></div>
-					<div class="tile-border-right"></div>
-					<div class="tile-border-bottom"></div>
-					<div class="tile-border-left"></div>
+					<div class="tile-title-text text-sans-web" style="font-weight: 200">
+						<span>&#x227C;<span class="issue-number">002</span>&#x227D;</span>
+					</div>
+					<div class="tile-border tile-border-top"></div>
+					<div class="tile-border tile-border-right"></div>
+					<div class="tile-border tile-border-bottom"></div>
+					<div class="tile-border tile-border-left"></div>
 				</div>
 			</div>
 			<div class="tile sonic-tile">
@@ -122,10 +132,13 @@
 					</div>
 				</div>
 				<div class="tile-borders">
-					<div class="tile-border-top"></div>
-					<div class="tile-border-right"></div>
-					<div class="tile-border-bottom"></div>
-					<div class="tile-border-left"></div>
+					<div class="tile-title-text text-sans-web" style="font-weight: 200">
+						<span>&#x227C;<span class="issue-number">003</span>&#x227D;</span>
+					</div>
+					<div class="tile-border tile-border-top"></div>
+					<div class="tile-border tile-border-right"></div>
+					<div class="tile-border tile-border-bottom"></div>
+					<div class="tile-border tile-border-left"></div>
 				</div>
 			</div>
 			<div class="tile visual-tile">
@@ -135,10 +148,13 @@
 					</div>
 				</div>
 				<div class="tile-borders">
-					<div class="tile-border-top"></div>
-					<div class="tile-border-right"></div>
-					<div class="tile-border-bottom"></div>
-					<div class="tile-border-left"></div>
+					<div class="tile-title-text text-sans-web" style="font-weight: 200">
+						<span>&#x227C;</span><span class="issue-number">004</span><span>&#x227D;</span>
+					</div>
+					<div class="tile-border tile-border-top"></div>
+					<div class="tile-border tile-border-right"></div>
+					<div class="tile-border tile-border-bottom"></div>
+					<div class="tile-border tile-border-left"></div>
 				</div>
 			</div>
 			<div class="tile sonic-tile">
@@ -148,10 +164,13 @@
 					</div>
 				</div>
 				<div class="tile-borders">
-					<div class="tile-border-top"></div>
-					<div class="tile-border-right"></div>
-					<div class="tile-border-bottom"></div>
-					<div class="tile-border-left"></div>
+					<div class="tile-title-text text-sans-web" style="font-weight: 200">
+						<span>&#x227C;<span class="issue-number">005</span>&#x227D;</span>
+					</div>
+					<div class="tile-border tile-border-top"></div>
+					<div class="tile-border tile-border-right"></div>
+					<div class="tile-border tile-border-bottom"></div>
+					<div class="tile-border tile-border-left"></div>
 				</div>
 			</div>
 		</div>
@@ -162,6 +181,23 @@
 	</div>
 
 	<!-- Working Scripts -->
+	<!-- WEB FONT LOADING -->
+	<!--<script type="text/javascript">
+		WebFontConfig = {
+		    google: {
+		      families: ['Open Sans', 'Ubuntu:300,400']
+		    },
+		    active: function() {
+		    	$(window).trigger('hashchange');
+		    },
+		    inactive: function() {
+		    	$(window).trigger('hashchange');
+		    	$('html').addClass('wf-active');
+		    },
+		    timeout: 1000,
+		};
+		WebFont.load(WebFontConfig);
+	</script>-->
 	<!-- MAIN NAV SETTINGS -->
 	<script type="text/javascript">
 		// Function for opening and closing empty message box with details
@@ -170,7 +206,6 @@
 		}
 		function openEmptyMessage(media_type) {
 			let empty_message = $('.empty-message');
-			console.log($(empty_message));
 			$(empty_message).removeClass('show');
 			if(media_type !== '') {
 				// Get div and span
@@ -195,15 +230,15 @@
 			setTimeout(() => $(empty_message).addClass('show'), 100);
 		}
 
-		// Logo click filter reset
-		$('#logo, #logoInvert, #mainNavHeader span').bind('click', function(e) {
-			window.location.hash = '';
+		// NavHeader filter reset
+		$('#mainNavHeader span').bind('click', function(e) {
+			window.location.hash = '#all';
 			e.preventDefault();
 		});
 
 		// Hash change handler
 		const main_fade_duration = 500;
-		let main_fade_timeout;
+		let main_fade_timeout = null;
 		const crawl_speed = 200;
 		let cur_crawl_timeout;
 
@@ -270,41 +305,58 @@
 				hash_word = '';
 			}
 
-			let main_content = $('#mainContent');
-			main_content.addClass('hidden');
-
 			let tile_class = '.'+hash_word+'-tile';
 			let tiles = $('#mainContent .tile');
 			let matching_tiles = $(tiles).filter(tile_class);
 			if(hash_word === '') {
-				if($(tiles).length === 0)
-					openEmptyMessage('all')
-				else
+				if($(tiles).length > 0)
 					closeEmptyMessage();
+				else
+					openEmptyMessage('all');
 			}
 			else {
-				if($(matching_tiles).length === 0)
-					openEmptyMessage(hash_word);
-				else
+				if($(matching_tiles).length > 0)
 					closeEmptyMessage();
+				else
+					openEmptyMessage(hash_word);
 			}
 
-			main_fade_timeout = setTimeout(() => {
+			let filterTiles = function() {
 				if(hash_word === '') {
-					$(tiles).show();
+					if($(tiles).length > 0) {
+						$(tiles).show();
+						$(main_content).removeClass('hidden');
+					}
 				}
 				else {
 					$(tiles).not(tile_class).hide();
-					$(matching_tiles).show();
+					if($(matching_tiles).length > 0) {
+						$(matching_tiles).show();
+						$(main_content).removeClass('hidden');
+					}
 				}
-				main_content.removeClass('hidden');
+			}
+
+			let main_content = $('#mainContent');
+			if(!main_fade_timeout && $(main_content).hasClass('hidden')) {
+				console.log('hi');
+				filterTiles();
+				$(main_content).removeClass('hidden');
+			}
+			else {
+				$(main_content).addClass('hidden');
+				main_fade_timeout = setTimeout(() => {
+				filterTiles();
+				main_fade_timeout = null;
 			}, main_fade_duration);
+			}
 		});
 	</script>
 	<!-- TILE SCRIPT -->
 	<script type="text/javascript">
 		// Tile content initializer
 		let tile_content_top_offset = 30;
+
 		$('.tile-content-container').each(function() {
 			// Set tile-content top position
 			let tile = $(this).parent();
@@ -323,17 +375,28 @@
 
 		// Tile click handler
 		const tile_show_transition_duration = 200;
-		let tile_show_timeout;
+		let tile_show_timeout = null;
+
 		$('.tile').bind('click', function() {
 			if($(this).hasClass('show')) {
 				$(this).removeClass('show');
+				$(this).removeClass('selected');
 			}
 			else {
 				clearTimeout(tile_show_timeout);
-				$('.tile.show').removeClass('show');
-				tile_show_timeout = setTimeout(
-					(() => $(this).addClass('show')).bind(this), 
+				$('.tile.selected').removeClass('selected');
+				$(this).addClass('selected');
+				if(tile_show_timeout !== null || $('.tile.show').length > 0) {
+					$('.tile.show').removeClass('show');
+					tile_show_timeout = setTimeout((() => {
+						$(this).addClass('show');
+						tile_show_timeout = null;
+					}).bind(this), 
 					tile_show_transition_duration+10);
+				}
+				else {
+					$(this).addClass('show');
+				}
 			}
 		});
 	</script>
@@ -345,12 +408,11 @@
 	</script>
 	<!-- LOADED SCRIPT -->
 	<script type="text/javascript">
-		function setBodyLoaded() {
-			$(document.body).addClass('loaded');
+		function setHtmlLoaded() {
+			$('html').addClass('loaded');
 		}
 		$(document).ready(function() {
-			window.setTimeout(setBodyLoaded, 50);
-			$(window).trigger('hashchange');
+			window.setTimeout(setHtmlLoaded, 50);
 		});
 	</script>
 </body>
