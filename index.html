@@ -96,12 +96,21 @@
 			<div class="tile sonic-tile" style="background-image: url('static/powers-that-b.jpg');">
 				<div class="tile-content-container">
 					<div class="tile-content">
-						<p style="text-align: center;">poop scoop</p>
+						<img src="static/powers-that-b.jpg" alt="The Powers That B" class="tile-content-header-image">
+						<div>
+							<span class="text-small text-mono">[[sonic]]</span>
+							<br>
+							<span class="text-large">The Powers That B</span>
+							<br>
+							<span class="text-medium">Death Grips</span>
+							</p>
+							<p class="text-regular">woopdy scoop</p>
+						</div>
 					</div>
 				</div>
 				<div class="tile-borders">
 					<div class="tile-title-text text-sans-web" style="font-weight: 200">
-						<span>&#x227C;<span class="issue-number">001</span>&#x227D;</span>
+						<span>&#x227C;<span class="issue-number">s/001</span>&#x227D;</span>
 					</div>
 					<div class="tile-border tile-border-top"></div>
 					<div class="tile-border tile-border-right"></div>
@@ -117,7 +126,7 @@
 				</div>
 				<div class="tile-borders">
 					<div class="tile-title-text text-sans-web" style="font-weight: 200">
-						<span>&#x227C;<span class="issue-number">002</span>&#x227D;</span>
+						<span>&#x227C;<span class="issue-number">v002</span>&#x227D;</span>
 					</div>
 					<div class="tile-border tile-border-top"></div>
 					<div class="tile-border tile-border-right"></div>
@@ -133,7 +142,7 @@
 				</div>
 				<div class="tile-borders">
 					<div class="tile-title-text text-sans-web" style="font-weight: 200">
-						<span>&#x227C;<span class="issue-number">003</span>&#x227D;</span>
+						<span>&#x227C;<span class="issue-number">s/003</span>&#x227D;</span>
 					</div>
 					<div class="tile-border tile-border-top"></div>
 					<div class="tile-border tile-border-right"></div>
@@ -149,7 +158,7 @@
 				</div>
 				<div class="tile-borders">
 					<div class="tile-title-text text-sans-web" style="font-weight: 200">
-						<span>&#x227C;</span><span class="issue-number">004</span><span>&#x227D;</span>
+						<span>&#x227C;</span><span class="issue-number">v004</span><span>&#x227D;</span>
 					</div>
 					<div class="tile-border tile-border-top"></div>
 					<div class="tile-border tile-border-right"></div>
@@ -165,7 +174,7 @@
 				</div>
 				<div class="tile-borders">
 					<div class="tile-title-text text-sans-web" style="font-weight: 200">
-						<span>&#x227C;<span class="issue-number">005</span>&#x227D;</span>
+						<span>&#x227C;<span class="issue-number">s/005</span>&#x227D;</span>
 					</div>
 					<div class="tile-border tile-border-top"></div>
 					<div class="tile-border tile-border-right"></div>
@@ -198,6 +207,61 @@
 		};
 		WebFont.load(WebFontConfig);
 	</script>-->
+	<!-- TILE SCRIPT -->
+	<script type="text/javascript">
+		// Tile content initializer
+		let tile_content_top_offset = 30;
+
+		function set_tile_content_container_positions() {
+			$('.tile-content-container').each(function() {
+				// Uninitialize tile
+				$(this).removeClass('initialized');
+				$(this).css('margin-bottom', '');
+				$(this).css('height', '');
+				// Set tile-content top position
+				let tile = $(this).parent();
+				let tile_top = $(tile).position().top;
+				let tile_height = $(tile).outerHeight(true);
+				let top_val = tile_top + tile_height + tile_content_top_offset;
+				$(this).css('top', top_val+'px');
+				// Set tile-content height and tile margin-bottom
+				let tile_content_outer_height = $(this).outerHeight(true);
+				tile.css('margin-bottom', tile_content_outer_height+'px');
+				let tile_content_height = $(this)[0].getBoundingClientRect().height;
+				$(this).css('height', tile_content_height+'px');
+				// Set tile-content to initialized
+				$(this).addClass('initialized');
+			});
+		}
+		set_tile_content_container_positions();
+
+		// Tile click handler
+		const tile_show_transition_duration = 200;
+		let tile_show_timeout = null;
+
+		$('.tile').bind('click', function() {
+			if($(this).hasClass('show')) {
+				$(this).removeClass('show');
+				$(this).removeClass('selected');
+			}
+			else {
+				clearTimeout(tile_show_timeout);
+				$('.tile.selected').removeClass('selected');
+				$(this).addClass('selected');
+				if(tile_show_timeout !== null || $('.tile.show').length > 0) {
+					$('.tile.show').removeClass('show');
+					tile_show_timeout = setTimeout((() => {
+						$(this).addClass('show');
+						tile_show_timeout = null;
+					}).bind(this), 
+					tile_show_transition_duration+10);
+				}
+				else {
+					$(this).addClass('show');
+				}
+			}
+		});
+	</script>
 	<!-- MAIN NAV SETTINGS -->
 	<script type="text/javascript">
 		// Function for opening and closing empty message box with details
@@ -258,7 +322,6 @@
 			if($(selected_choice_container).length === 0) {
 				underline.css('left', 0);
 				underline.css('right', 0);
-				console.log('poo');
 			}
 			else {
 				// Cancel current timeout crawl
@@ -298,6 +361,9 @@
 				}
 			}
 
+			// Close drop-down box
+			$('.tile').removeClass('show selected');
+
 			// Perform action dependent on choice
 			clearTimeout(main_fade_timeout);
 
@@ -325,6 +391,7 @@
 				if(hash_word === '') {
 					if($(tiles).length > 0) {
 						$(tiles).show();
+						set_tile_content_container_positions();
 						$(main_content).removeClass('hidden');
 					}
 				}
@@ -332,6 +399,7 @@
 					$(tiles).not(tile_class).hide();
 					if($(matching_tiles).length > 0) {
 						$(matching_tiles).show();
+						set_tile_content_container_positions();
 						$(main_content).removeClass('hidden');
 					}
 				}
@@ -346,57 +414,9 @@
 			else {
 				$(main_content).addClass('hidden');
 				main_fade_timeout = setTimeout(() => {
-				filterTiles();
-				main_fade_timeout = null;
-			}, main_fade_duration);
-			}
-		});
-	</script>
-	<!-- TILE SCRIPT -->
-	<script type="text/javascript">
-		// Tile content initializer
-		let tile_content_top_offset = 30;
-
-		$('.tile-content-container').each(function() {
-			// Set tile-content top position
-			let tile = $(this).parent();
-			let tile_top = $(tile).position().top;
-			let tile_height = $(tile).outerHeight(true);
-			let top_val = tile_top + tile_height + tile_content_top_offset;
-			$(this).css('top', top_val+'px');
-			// Set tile-content height and tile margin-bottom
-			let tile_content_outer_height = $(this).outerHeight(true);
-			tile.css('margin-bottom', tile_content_outer_height+'px');
-			let tile_content_height = $(this)[0].getBoundingClientRect().height;
-			$(this).css('height', tile_content_height+'px');
-			// Set tile-content to initialized
-			$(this).addClass('initialized');
-		});
-
-		// Tile click handler
-		const tile_show_transition_duration = 200;
-		let tile_show_timeout = null;
-
-		$('.tile').bind('click', function() {
-			if($(this).hasClass('show')) {
-				$(this).removeClass('show');
-				$(this).removeClass('selected');
-			}
-			else {
-				clearTimeout(tile_show_timeout);
-				$('.tile.selected').removeClass('selected');
-				$(this).addClass('selected');
-				if(tile_show_timeout !== null || $('.tile.show').length > 0) {
-					$('.tile.show').removeClass('show');
-					tile_show_timeout = setTimeout((() => {
-						$(this).addClass('show');
-						tile_show_timeout = null;
-					}).bind(this), 
-					tile_show_transition_duration+10);
-				}
-				else {
-					$(this).addClass('show');
-				}
+					filterTiles();
+					main_fade_timeout = null;
+				}, main_fade_duration);
 			}
 		});
 	</script>
@@ -412,7 +432,8 @@
 			$('html').addClass('loaded');
 		}
 		$(document).ready(function() {
-			window.setTimeout(setHtmlLoaded, 50);
+			setTimeout(setHtmlLoaded, 50);
+			$(window).trigger('hashchange');
 		});
 	</script>
 </body>

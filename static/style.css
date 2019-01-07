@@ -399,7 +399,15 @@ html.invert .tile-content-container {
 }
 
 .tile-content {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+
 	padding: 20px;
+}
+.tile-content .tile-content-header-image {
+	width: 300px;
+	padding-right: 40px;
 }
 
 /* TILE BORDERS
@@ -510,6 +518,11 @@ a.unstyle-link:hover, a.unstyle-link:focus {
 .text-sans { /*font-family: 'Open Sans', Helvetica, sans-serif;*/font-family: 'Trebuchet MS', Helvetica, sans-serif; }
 .text-sans-web { font-family: Helvetica, sans-serif; }
 .text-mono { font-family: 'Courier New', Courier, monospace; }
+
+.text-small { font-size: 12px; }
+.text-regular { font-size: 16px; }
+.text-medium { font-size: 24px; }
+.text-large {font-size: 32px; }
 /* ================
 END GENERIC CLASSES */
 
