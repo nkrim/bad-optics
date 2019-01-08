@@ -597,7 +597,7 @@ a.unstyle-link:hover, a.unstyle-link:focus {
 
 .text-header { /*font-family: 'Ubuntu', Helvetica, sans-serif;*/font-family: 'Trebuchet MS', Helvetica, sans-serif; }
 .text-sans { /*font-family: 'Open Sans', Helvetica, sans-serif;*/font-family: 'Trebuchet MS', Helvetica, sans-serif; }
-.text-sans-web { font-family: Helvetica, sans-serif; }
+.text-sans-web { font-family: 'Trebuchet MS', Helvetica, sans-serif }
 .text-mono { font-family: 'Courier New', Courier, monospace; }
 
 .text-small { font-size: 12px; }

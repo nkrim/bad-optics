@@ -491,25 +491,26 @@
 		const tile_show_transition_duration = 200;
 		let tile_show_timeout = null;
 
-		$('.tile').bind('click', function() {
-			if($(this).hasClass('show')) {
-				$(this).removeClass('show');
-				$(this).removeClass('selected');
+		$('.tile-borders').bind('click', function() {
+			let tile = $(this).parent('.tile');
+			if($(tile).hasClass('show')) {
+				$(tile).removeClass('show');
+				$(tile).removeClass('selected');
 			}
 			else {
 				clearTimeout(tile_show_timeout);
 				$('.tile.selected').removeClass('selected');
-				$(this).addClass('selected');
+				$(tile).addClass('selected');
 				if(tile_show_timeout !== null || $('.tile.show').length > 0) {
 					$('.tile.show').removeClass('show');
 					tile_show_timeout = setTimeout((() => {
-						$(this).addClass('show');
+						$(tile).addClass('show');
 						tile_show_timeout = null;
-					}).bind(this), 
+					}).bind(tile), 
 					tile_show_transition_duration+10);
 				}
 				else {
-					$(this).addClass('show');
+					$(tile).addClass('show');
 				}
 			}
 		});
