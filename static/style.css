@@ -59,7 +59,7 @@ END WHOLE PAGE */
 	display: flex;
 	justify-content: space-between;
 
-	padding: 10px 20px;
+	padding: 10px 20px 14px;
 
 	background: #080808;
 
@@ -94,7 +94,7 @@ html.invert #infoHeader { color: #080808; background: #fff;}
 #logoWrapper {
 	position: relative;
 	transform: scale(1);
-	transition: transform 0.05s ease-in-out;
+	/*transition: transform 0.1s linear;*/
 }
 
 #logo {
@@ -108,8 +108,6 @@ html.invert #infoHeader { color: #080808; background: #fff;}
 
 	z-index: 3;
 	cursor: pointer;
-
-	transition: width 0.2s linear;
 }
 html.invert #logo { visibility: hidden; }
 #logoInvert {
@@ -121,13 +119,11 @@ html.invert #logo { visibility: hidden; }
 	height: 100%;
 
 	box-sizing: border-box;
-	border: 6px solid #080808;
+	border: 4px solid #080808;
 	background: #fff;
 
 	z-index: 2;
 	cursor: pointer;
-
-	transition: width 0.2s linear;
 }
 
 .logo-line {
@@ -397,6 +393,9 @@ html.invert .tile-title-text { color: #080808; }
 .tile-title-text .issue-number {
 	position: relative;
 	bottom: -1px;
+}
+.tile-title-text .personnel-name {
+	position: relative;
 }
 /*.tile:hover .tile-title-text .issue-number {
 	text-decoration: underline;

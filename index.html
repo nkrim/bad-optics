@@ -95,16 +95,16 @@
 		<div class="tile-set text-sans antialias">
 			<!-- TEMPLATE TILE -->
 			<!--
-			<div class="tile sonic-tile" style="background-image: url('');">
+			<div class="tile release-tile sonic-tile" style="background-image: url('');">
 				<div class="tile-content-container">
 					<div class="tile-content">
 						<img src="" alt="" class="tile-content-header-image">
 						<div>
 							<a href="#sonic" class="text-small text-mono unstyle-link">[[<span class="tile-media">sonic</span>]]</a>
 							<br>
-							<span class="text-large"></span>
+							<span class="tile-content-h1 text-large"></span>
 							<br>
-							<span class="text-medium"></span>
+							<span class="tile-content-h2 text-medium"></span>
 							</p>
 							<p class="text-regular"></p>
 							<p class="text-mono tile-content-link-list">
@@ -124,9 +124,9 @@
 				</div>
 			</div>
 			-->
-			<!-- TILES -->
+			<!-- RELEASE TILES -->
 			<!-- 005 -->
-			<div class="tile sonic-tile" style="background-image: url('static/powers-that-b.jpg');">
+			<div class="tile release-tile sonic-tile" style="background-image: url('static/powers-that-b.jpg');">
 				<div class="tile-content-container">
 					<div class="tile-content">
 						<img src="static/powers-that-b.jpg" alt="The Powers That B" class="tile-content-header-image">
@@ -158,7 +158,7 @@
 				</div>
 			</div>
 			<!-- 004 -->
-			<div class="tile visual-tile" style="background-image: /*url('static/xavier.jpg');*/">
+			<div class="tile release-tile visual-tile" style="background-image: /*url('static/xavier.jpg');*/">
 				<div class="tile-content-container">
 					<div class="tile-content">
 						<img src="static/xavier.jpg" alt="Xavier Renegade Angel" class="tile-content-header-image">
@@ -189,7 +189,7 @@
 				</div>
 			</div>
 			<!-- 003 -->
-			<div class="tile sonic-tile" style="background-image: /*url('static/veteran.jpg');*/">
+			<div class="tile release-tile sonic-tile" style="background-image: /*url('static/veteran.jpg');*/">
 				<div class="tile-content-container">
 					<div class="tile-content">
 						<img src="static/veteran.jpg" alt="The Powers That B" class="tile-content-header-image">
@@ -221,7 +221,7 @@
 				</div>
 			</div>
 			<!-- 002 -->
-			<div class="tile visual-tile" style="background-image: /*url('static/sponge.jpg');*/">
+			<div class="tile release-tile visual-tile" style="background-image: /*url('static/sponge.jpg');*/">
 				<div class="tile-content-container">
 					<div class="tile-content">
 						<img src="static/sponge.jpg" alt="Xavier Renegade Angel" class="tile-content-header-image">
@@ -252,7 +252,7 @@
 				</div>
 			</div>
 			<!-- 001 -->
-			<div class="tile sonic-tile" style="background-image: /*url('static/knuckles.jpg');*/">
+			<div class="tile release-tile sonic-tile" style="background-image: /*url('static/knuckles.jpg');*/">
 				<div class="tile-content-container">
 					<div class="tile-content">
 						<img src="static/knuckles.jpg" alt="The Powers That B" class="tile-content-header-image">
@@ -284,6 +284,32 @@
 				</div>
 			</div>
 			<!-- -- -->
+
+			<!-- ABOUT US TILES -->
+			<div class="tile about-tile" style="background-image: url('static/sponge.jpg');">
+				<div class="tile-content-container">
+					<div class="tile-content">
+						<img src="static/sponge.jpg" alt="spongebob" class="tile-content-header-image">
+						<div>
+							<span class="tile-content-h1 text-large">Spongethug</span>
+							</p>
+							<p class="text-regular">Literally spongebob</p>
+							<p class="text-mono tile-content-link-list">
+								<a class="unstyle-link tile-content-link" href="google.com">Website</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="tile-borders">
+					<div class="tile-title-text text-sans-web" style="font-weight: 200">
+						<span>&#x227C;<span class="personnel-name">spongethug</span>&#x227D;</span>
+					</div>
+					<div class="tile-border tile-border-top"></div>
+					<div class="tile-border tile-border-right"></div>
+					<div class="tile-border tile-border-bottom"></div>
+					<div class="tile-border tile-border-left"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -469,12 +495,14 @@
 			// Perform action dependent on choice
 			clearTimeout(main_fade_timeout);
 
-			if(!(hash_word === 'sonic' || hash_word === 'visual' || hash_word === 'interactive')) {
+			if(!(hash_word === 'sonic' || hash_word === 'visual' || hash_word === 'interactive' || hash_word === 'about')) {
 				hash_word = '';
 			}
 
 			let tile_class = '.'+hash_word+'-tile';
 			let tiles = $('#mainContent .tile');
+			let release_tiles = $(tiles).filter('.release-tile');
+			let about_tiles = $(tiles).filter('.about-tile');
 			let matching_tiles = $(tiles).filter(tile_class);
 			if(hash_word === '') {
 				if($(tiles).length > 0)
@@ -491,8 +519,9 @@
 
 			let filterTiles = function() {
 				if(hash_word === '') {
-					if($(tiles).length > 0) {
-						$(tiles).show();
+					$(about_tiles).hide();
+					if($(release_tiles).length > 0) {
+						$(release_tiles).show();
 						set_tile_content_container_positions();
 						$(main_content).removeClass('hidden');
 					}
@@ -540,25 +569,8 @@
 		// Scroll Handler
 		let scroll_thresh = 76;
 		let initial_header_scale = 2;
-		let last_scroll_throttle = null;
-		let throttle_ensure_execute = null;
-		$(window).scroll(function() {
-			// Throttle scrolling once every 50ms
-			let scroll_throttle = 50;
-    		let now = new Date().getTime();
-    		if(last_scroll_throttle && now - last_scroll_throttle < scroll_throttle) {
-    			if(!throttle_ensure_execute) {
-	    			throttle_ensure_execute = setTimeout(() => { 
-	    					throttle_ensure_execute = null;
-		    				$(window).trigger('scroll'); 
-		    			}, scroll_throttle+10);
-	    		}
-    			return;
-    		}
-    		else {
-    			last_scroll_throttle = now;
-    		}
 
+		$(window).scroll(function() {
 			let y = window.scrollY;
 			let crossed_thresh = $('html').hasClass('scroll-threshold'); 
 			let logos = $('#logoWrapper');
@@ -573,7 +585,7 @@
 				 	'transform'         : transform_scale,
 				});
 			}
-			else {
+			else if(!$('html').hasClass('scroll-threshold')) {
 				$('html').addClass('scroll-threshold');
 				let transform_scale = 'scale(1.1)';
 				$(logos).css({
