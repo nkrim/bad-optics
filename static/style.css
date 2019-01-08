@@ -1,15 +1,20 @@
 /* WHOLE PAGE 
 ============= */
+html {
+	background-color: #080808;
+	/*background-image: url('backroo.jpg');
+	background-position: center top;
+	background-size: 100% auto;
+	background-repeat: repeat-y;*/
+}
 html, body {
 	position: relative;
 	margin: 0;
 	width: 100%;
 	min-height: 100vh;
 	height: auto;
-
-	background-color: #080808;
 }
-html.invert, html.invert body { background-color: #fff; }
+html.invert { background-color: #fff; background-image: none; }
 
 #noscriptMessage {
 	font-size: 18px;
@@ -49,6 +54,22 @@ END WHOLE PAGE */
 	opacity: 0;
 	transition: opacity 0.5s cubic-bezier(.8,0,.83,.67);
 }
+
+/*#headerBackground {
+	position: absolute;
+	top: -80px;
+	left: 0;
+	right: 0;
+	height: 160px;
+
+	background: #080808;
+	background-image: url('backroo.jpg');
+	background-position: center top;
+	background-size: 100% auto;
+
+	z-index: 9;
+}
+html.invert #headerBackground { background: #fff; }*/
 
 #infoHeader {
 	position: fixed;
@@ -173,6 +194,10 @@ html.scroll-threshold #logoHeader {
 html.scroll-threshold #header {
 	height: 240px;
 }
+/*html.scroll-threshold #headerBackground {
+	position: fixed;
+	top: -116px;
+}*/
 
 /* ENTRANCE ANIMATIONS */
 html.loaded #header, noscript #header { opacity: 1; }
@@ -329,6 +354,7 @@ html.invert .empty-message div { border-color: #080808; }
 	position: absolute;
 	top: 6px;
 	transform: translateX(-50%);
+	white-space: nowrap;
 }
 
 
@@ -392,7 +418,6 @@ html.invert .tile { background-color: #ccc; }
 html.invert .tile-title-text { color: #080808; }
 .tile-title-text .issue-number {
 	position: relative;
-	bottom: -1px;
 }
 .tile-title-text .personnel-name {
 	position: relative;
@@ -608,4 +633,24 @@ a.unstyle-link:hover, a.unstyle-link:focus {
 END GENERIC CLASSES */
 
 
+/* MEDIA QUERIES
+================ */
+@media only screen and (max-device-width: 879px) and (min-device-width: 660px) {
+	#mainContent {
+		width: 660px;
+	}
+}
 
+@media only screen and (max-device-width: 659px) and (min-device-width: 440px) {
+	#mainContent {
+		width: 440px;
+	}
+}
+@media only screen and (max-device-width: 439px) {
+	#mainContent {
+		width: 100%;
+	}
+	.tile-set {
+		justify-content: center;
+	}
+}
