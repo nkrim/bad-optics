@@ -1,26 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Bad Optics Collective</title>
-
 	<!-- General Meta Tags -->
+	<title>Bad Optics Collective</title>
 	<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="description" content="Bad Optics Collective">
+	<meta name="description" content="Bad Optics is a sonic, visual, and interactive art collective formed by friends who met in Chicago.">
+	<meta name="keywords" content="bad optics,badoptics,bad optics collective,badopticscollective,bad optics co,badopticsco,label,publisher,music,video,photography,games,video games,media,sonic,visual,interactive,interactive media,something soft,hassaan">
 	<!-- Theme color -->
 	<meta name="theme-color" content="#080808"> <!-- Chrome, Firefox OS and Opera -->
 	<meta name="msapplication-navbutton-color" content="#080808"> <!-- Windows Phone -->
 	<meta name="apple-mobile-web-app-status-bar-style" content="#080808"> <!-- iOS Safari -->
 	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- Favicon -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/favi/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/favi/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/favi/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/favi/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/favi/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/favi/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/favi/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/favi/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/favi/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192"  href="/favi/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favi/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/favi/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favi/favicon-16x16.png">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="msapplication-TileColor" content="#080808">
+	<meta name="msapplication-TileImage" content="/favi/ms-icon-144x144.png">
+	<!-- Social tags -->
+	<!-- Twitter Card data -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@badopticscollective">
+	<meta name="twitter:title" content="Bad Optics Collective">
+	<meta name="twitter:description" content="Bad Optics is a sonic, visual, and interactive art collective formed by friends who met in Chicago.">
+	<!--<meta name="twitter:creator" content="@author_handle">-->
+	<!-- Twitter Summary card images must be at least 120x120px -->
+	<meta name="twitter:image" content="/static/img/bad-optics-sharing-logo.jpg">
+	<!-- Open Graph data -->
+	<meta property="og:title" content="Bad Optics Collective" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="http://badoptics.co" />
+	<meta property="og:image" content="/static/img/bad-optics-sharing-logo.jpg" />
+	<meta property="og:image:width" content="640" />
+	<meta property="og:image:height" content="460" />
+	<meta property="og:description" content="Bad Optics is a sonic, visual, and interactive art collective formed by friends who met in Chicago." /> 
+	<meta property="og:site_name" content="Bad Optics Collective" />
+	<!--<meta property="fb:admins" content="Facebook numeric ID" />-->
 
 	<!-- Fonts -->
 	<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu" rel="stylesheet""> -->
 	<!-- Style -->
-	<link rel="stylesheet" href="static/style.css">
+	<link rel="stylesheet" href="/static/style.css">
 
 	<!-- Scripts -->
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-	<script src="static/js/jquery.min.js"></script>
+	<script src="/static/js/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 </head>
 
@@ -35,7 +71,7 @@
 				<div class="logo-line-spacer"></div>
 				<div class="logo-line"></div>
 				<div id="logoWrapper">
-					<img id="logo" src="static/bad-optics-borderless.png" alt="Bad Optics">
+					<img id="logo" src="/static/img/bad-optics-borderless.png" alt="Bad Optics">
 				</div>
 				<div class="logo-line"></div>
 				<div class="logo-line-spacer"></div>
@@ -48,12 +84,13 @@
 	</noscript>
 
 	<!-- tile popup scrim -->
-	<div id="popupScrim"></div> 
+	<!--<div id="popupScrim"></div>-->
 
 	<div id="header" class="text-mono antialias">
 		<div id="headerBackground"></div>
 		<div id="infoHeader">
-			<a href="/subscribe" class="unstyle-link">subscribe</a>
+			<a href="https://tinyletter.com/badoptics" target="_blank" class="unstyle-link">subscribe</a>
+			<div class="info-header-spacer"></div>
 			<a href="#about" class="unstyle-link">about us</a>
 		</div>
 		<div id="logoHeader">
@@ -61,10 +98,10 @@
 			<div class="logo-line"></div>
 			<div id="logoWrapper">
 				<a href="#">
-					<img id="logoInvert" src="static/bad-optics-borderless-invert.png" alt="Bad Optics Invert">
-					<img id="logo" src="static/bad-optics-borderless.png" alt="Bad Optics">
+					<img id="logoInvert" src="/static/img/bad-optics-borderless-invert.png" alt="Bad Optics Invert">
+					<img id="logo" src="/static/img/bad-optics-borderless.png" alt="Bad Optics">
 				</a>
-				<svg id="logoInvertSpot" width="100%" height="100%">
+				<svg id="logoInvertSpot" class="no-select" width="100%" height="100%">
 					<circle cx="19.8%" cy="68%" r="12%" fill="white" />
 				</svg>
 			</div>
@@ -74,7 +111,7 @@
 	</div>
 
 	<div id="mainNav" class="text-header antialias">
-		<div style="position: relative; display: inline-block; margin: auto;">
+		<div class="main-nav-container">
 			<div id="mainNavHeader">
 				<span>Expressions</span>
 			</div>
@@ -109,9 +146,13 @@
 			<div class="tile release-tile sonic-tile" style="background-image: url('');">
 				<div class="tile-content-container">
 					<div class="tile-content">
-						<img src="" alt="" class="tile-content-header-image">
+						<div class="tile-content-image-container">
+							<img src="" alt="" class="tile-content-header-image">
+						</div>
 						<div>
 							<a href="#sonic" class="text-small text-mono unstyle-link">[[<span class="tile-media">sonic</span>]]</a>
+							<br>
+							<span class="tile-date text-small text-mono"></span>
 							<br>
 							<span class="tile-content-h1 text-large"></span>
 							<br>
@@ -119,7 +160,7 @@
 							</p>
 							<p class="text-regular"></p>
 							<p class="text-mono tile-content-link-list">
-								<a class="unstyle-link tile-content-link" href=""></a>
+								<a class="unstyle-link tile-content-link" href="" target="_blank"></a>
 							</p>
 						</div>
 					</div>
@@ -135,275 +176,29 @@
 				</div>
 			</div>
 			-->
+
+
+
 			<!-- RELEASE TILES -->
-			<!-- 005 -->
-			<div class="tile release-tile sonic-tile" style="background-image: url('static/powers-that-b.jpg');">
-				<div class="tile-content-container">
-					<div class="tile-content">
-						<img src="static/powers-that-b.jpg" alt="The Powers That B" class="tile-content-header-image">
-						<div class="tile-content-text-section">
-							<a href="#sonic" class="text-small text-mono unstyle-link">[[<span class="tile-media">sonic</span>]]</a>
-							<br>
-							<span class="tile-content-h1 text-large">The Powers That B</span>
-							<br>
-							<span class="tile-content-h2 text-medium">Death Grips</span>
-							</p>
-							<p class="text-regular"><b><i>The Powers That B</i></b> is the fourth studio album, and first double album, by experimental hip hop group <i>Death Grips</i>.</p>
-							<p class="text-mono tile-content-link-list">
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Spotify</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">iTunes</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Bandcamp</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Soundcloud</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="tile-borders">
-					<div class="tile-title-text text-sans-web" style="font-weight: 200">
-						<span class="issue-number text-mono">009</span>
-					</div>
-					<div class="tile-border tile-border-top"></div>
-					<div class="tile-border tile-border-right"></div>
-					<div class="tile-border tile-border-bottom"></div>
-					<div class="tile-border tile-border-left"></div>
-				</div>
-			</div>
-			<!-- 004 -->
-			<div class="tile release-tile visual-tile" style="background-image: /*url('static/xavier.jpg');*/">
-				<div class="tile-content-container">
-					<div class="tile-content">
-						<img src="static/xavier.jpg" alt="Xavier Renegade Angel" class="tile-content-header-image">
-						<div class="tile-content-text-section">
-							<a href="#sonic" class="text-small text-mono unstyle-link">[[<span class="tile-media">visual</span>]]</a>
-							<br>
-							<span class="text-large">Xavier Renegade Angel</span>
-							<br>
-							<span class="text-medium">God Himself</span>
-							</p>
-							<p class="text-regular"><b><i>Xavier: Renegade Angel</i></b> is an American C.G. surrealist dark comedy-fantasy television series created by PFFR. <i>Vernon Chatman</i> and <i>John Lee</i> are also the creators of MTV's <i>Wonder Showzen</i>.</p>
-							<p class="text-mono tile-content-link-list">
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Youtube</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Vimeo</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">PornHub</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="tile-borders">
-					<div class="tile-title-text text-sans-web" style="font-weight: 200">
-						<span class="issue-number text-mono">008</span>
-					</div>
-					<div class="tile-border tile-border-top"></div>
-					<div class="tile-border tile-border-right"></div>
-					<div class="tile-border tile-border-bottom"></div>
-					<div class="tile-border tile-border-left"></div>
-				</div>
-			</div>
-			<!-- 003 -->
-			<div class="tile release-tile sonic-tile" style="background-image: /*url('static/veteran.jpg');*/">
-				<div class="tile-content-container">
-					<div class="tile-content">
-						<img src="static/veteran.jpg" alt="The Powers That B" class="tile-content-header-image">
-						<div class="tile-content-text-section">
-							<a href="#sonic" class="text-small text-mono unstyle-link">[[<span class="tile-media">sonic</span>]]</a>
-							<br>
-							<span class="text-large">The Powers That B</span>
-							<br>
-							<span class="text-medium">Death Grips</span>
-							</p>
-							<p class="text-regular"><b><i>The Powers That B</i></b> is the fourth studio album, and first double album, by experimental hip hop group <i>Death Grips</i>.</p>
-							<p class="text-mono tile-content-link-list">
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Spotify</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">iTunes</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Bandcamp</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Soundcloud</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="tile-borders">
-					<div class="tile-title-text text-sans-web" style="font-weight: 200">
-						<span class="issue-number text-mono">007</span>
-					</div>
-					<div class="tile-border tile-border-top"></div>
-					<div class="tile-border tile-border-right"></div>
-					<div class="tile-border tile-border-bottom"></div>
-					<div class="tile-border tile-border-left"></div>
-				</div>
-			</div>
-			<!-- 002 -->
-			<div class="tile release-tile visual-tile" style="background-image: /*url('static/sponge.jpg');*/">
-				<div class="tile-content-container">
-					<div class="tile-content">
-						<img src="static/sponge.jpg" alt="Xavier Renegade Angel" class="tile-content-header-image">
-						<div class="tile-content-text-section">
-							<a href="#sonic" class="text-small text-mono unstyle-link">[[<span class="tile-media">visual</span>]]</a>
-							<br>
-							<span class="text-large">Xavier Renegade Angel</span>
-							<br>
-							<span class="text-medium">God Himself</span>
-							</p>
-							<p class="text-regular"><b><i>Xavier: Renegade Angel</i></b> is an American C.G. surrealist dark comedy-fantasy television series created by PFFR. <i>Vernon Chatman</i> and <i>John Lee</i> are also the creators of MTV's <i>Wonder Showzen</i>.</p>
-							<p class="text-mono tile-content-link-list">
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Youtube</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Vimeo</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">PornHub</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="tile-borders">
-					<div class="tile-title-text text-sans-web" style="font-weight: 200">
-						<span class="issue-number text-mono">006</span>
-					</div>
-					<div class="tile-border tile-border-top"></div>
-					<div class="tile-border tile-border-right"></div>
-					<div class="tile-border tile-border-bottom"></div>
-					<div class="tile-border tile-border-left"></div>
-				</div>
-			</div>
 			<!-- 001 -->
-			<div class="tile release-tile sonic-tile" style="background-image: /*url('static/knuckles.jpg');*/">
+			<div class="tile release-tile sonic-tile" style="background-image: url('/static/img/whatdayistoday-160x160.jpg');">
 				<div class="tile-content-container">
 					<div class="tile-content">
-						<img src="static/knuckles.jpg" alt="The Powers That B" class="tile-content-header-image">
-						<div class="tile-content-text-section">
-							<a href="#sonic" class="text-small text-mono unstyle-link">[[<span class="tile-media">sonic</span>]]</a>
-							<br>
-							<span class="text-large">The Powers That B</span>
-							<br>
-							<span class="text-medium">Death Grips</span>
-							</p>
-							<p class="text-regular"><b><i>The Powers That B</i></b> is the fourth studio album, and first double album, by experimental hip hop group <i>Death Grips</i>.</p>
-							<p class="text-mono tile-content-link-list">
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Spotify</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">iTunes</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Bandcamp</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Soundcloud</a>
-							</p>
+						<div class="tile-content-image-container">
+							<img src="/static/img/whatdayistoday-800x800.jpg" alt="What Day Is Today" class="tile-content-header-image">
 						</div>
-					</div>
-				</div>
-				<div class="tile-borders">
-					<div class="tile-title-text text-sans-web" style="font-weight: 200">
-						<span class="issue-number text-mono">005</span>
-					</div>
-					<div class="tile-border tile-border-top"></div>
-					<div class="tile-border tile-border-right"></div>
-					<div class="tile-border tile-border-bottom"></div>
-					<div class="tile-border tile-border-left"></div>
-				</div>
-			</div>
-			<div class="tile release-tile sonic-tile" style="background-image: /*url('static/knuckles.jpg');*/">
-				<div class="tile-content-container">
-					<div class="tile-content">
-						<img src="static/knuckles.jpg" alt="The Powers That B" class="tile-content-header-image">
 						<div class="tile-content-text-section">
 							<a href="#sonic" class="text-small text-mono unstyle-link">[[<span class="tile-media">sonic</span>]]</a>
+							<span class="tile-date text-small text-mono">2018-08-17</span>
 							<br>
-							<span class="text-large">The Powers That B</span>
+							<span class="tile-content-h1 text-large">What Day Is Today</span>
 							<br>
-							<span class="text-medium">Death Grips</span>
+							<span class="tile-content-h2 text-medium">something soft</span>
 							</p>
-							<p class="text-regular"><b><i>The Powers That B</i></b> is the fourth studio album, and first double album, by experimental hip hop group <i>Death Grips</i>.</p>
+							<p class="text-regular"></p>
 							<p class="text-mono tile-content-link-list">
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Spotify</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">iTunes</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Bandcamp</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Soundcloud</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="tile-borders">
-					<div class="tile-title-text text-sans-web" style="font-weight: 200">
-						<span class="issue-number text-mono">004</span>
-					</div>
-					<div class="tile-border tile-border-top"></div>
-					<div class="tile-border tile-border-right"></div>
-					<div class="tile-border tile-border-bottom"></div>
-					<div class="tile-border tile-border-left"></div>
-				</div>
-			</div>
-			<div class="tile release-tile sonic-tile" style="background-image: /*url('static/knuckles.jpg');*/">
-				<div class="tile-content-container">
-					<div class="tile-content">
-						<img src="static/knuckles.jpg" alt="The Powers That B" class="tile-content-header-image">
-						<div class="tile-content-text-section">
-							<a href="#sonic" class="text-small text-mono unstyle-link">[[<span class="tile-media">sonic</span>]]</a>
-							<br>
-							<span class="text-large">The Powers That B</span>
-							<br>
-							<span class="text-medium">Death Grips</span>
-							</p>
-							<p class="text-regular"><b><i>The Powers That B</i></b> is the fourth studio album, and first double album, by experimental hip hop group <i>Death Grips</i>.</p>
-							<p class="text-mono tile-content-link-list">
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Spotify</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">iTunes</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Bandcamp</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Soundcloud</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="tile-borders">
-					<div class="tile-title-text text-sans-web" style="font-weight: 200">
-						<span class="issue-number text-mono">003</span>
-					</div>
-					<div class="tile-border tile-border-top"></div>
-					<div class="tile-border tile-border-right"></div>
-					<div class="tile-border tile-border-bottom"></div>
-					<div class="tile-border tile-border-left"></div>
-				</div>
-			</div>
-			<div class="tile release-tile sonic-tile" style="background-image: /*url('static/knuckles.jpg');*/">
-				<div class="tile-content-container">
-					<div class="tile-content">
-						<img src="static/knuckles.jpg" alt="The Powers That B" class="tile-content-header-image">
-						<div class="tile-content-text-section">
-							<a href="#sonic" class="text-small text-mono unstyle-link">[[<span class="tile-media">sonic</span>]]</a>
-							<br>
-							<span class="text-large">The Powers That B</span>
-							<br>
-							<span class="text-medium">Death Grips</span>
-							</p>
-							<p class="text-regular"><b><i>The Powers That B</i></b> is the fourth studio album, and first double album, by experimental hip hop group <i>Death Grips</i>.</p>
-							<p class="text-mono tile-content-link-list">
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Spotify</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">iTunes</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Bandcamp</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Soundcloud</a>
-							</p>
-						</div>
-					</div>
-				</div>
-				<div class="tile-borders">
-					<div class="tile-title-text text-sans-web" style="font-weight: 200">
-						<span class="issue-number text-mono">002</span>
-					</div>
-					<div class="tile-border tile-border-top"></div>
-					<div class="tile-border tile-border-right"></div>
-					<div class="tile-border tile-border-bottom"></div>
-					<div class="tile-border tile-border-left"></div>
-				</div>
-			</div>
-			<div class="tile release-tile sonic-tile" style="background-image: /*url('static/knuckles.jpg');*/">
-				<div class="tile-content-container">
-					<div class="tile-content">
-						<img src="static/knuckles.jpg" alt="The Powers That B" class="tile-content-header-image">
-						<div class="tile-content-text-section">
-							<a href="#sonic" class="text-small text-mono unstyle-link">[[<span class="tile-media">sonic</span>]]</a>
-							<br>
-							<span class="text-large">The Powers That B</span>
-							<br>
-							<span class="text-medium">Death Grips</span>
-							</p>
-							<p class="text-regular"><b><i>The Powers That B</i></b> is the fourth studio album, and first double album, by experimental hip hop group <i>Death Grips</i>.</p>
-							<p class="text-mono tile-content-link-list">
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Spotify</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">iTunes</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Bandcamp</a>
-								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/5Y04ylQjDWsawOUJXzY4YO">Soundcloud</a>
+								<a class="unstyle-link tile-content-link" href="https://open.spotify.com/album/15XHAOWRRuYDmFESRzCuv3?si=y-T9iBpfTcGn9W_ITJ1ECw" target="_blank">spotify</a>
+								<a class="unstyle-link tile-content-link" href="https://soundcloud.com/somethingsoft/sets/what-day-is-today" target="_blank">soundcloud</a>
 							</p>
 						</div>
 					</div>
@@ -418,13 +213,50 @@
 					<div class="tile-border tile-border-left"></div>
 				</div>
 			</div>
-			<!-- -- -->
 
-			<!-- ABOUT US TILES -->
-			<div class="tile about-tile" style="background-image: url('static/sponge.jpg');">
+			<!-- 002 -->
+			<div class="tile release-tile sonic-tile" style="background-image: url('/static/img/misadventures-160x160.jpg');">
 				<div class="tile-content-container">
 					<div class="tile-content">
-						<img src="static/sponge.jpg" alt="spongebob" class="tile-content-header-image">
+						<div class="tile-content-image-container">
+							<img src="/static/img/misadventures-500x500.jpg" alt="Misadventures" class="tile-content-header-image">
+						</div>
+						<div class="tile-content-text-section">
+							<a href="#sonic" class="text-small text-mono unstyle-link">[[<span class="tile-media">sonic</span>]]</a>
+							<span class="tile-date text-small text-mono">2018-10-18</span>
+							<br>
+							<span class="tile-content-h1 text-large">misadventures</span>
+							<br>
+							<span class="tile-content-h2 text-medium">HASSAAN</span>
+							</p>
+							<p class="text-regular"></p>
+							<p class="text-mono tile-content-link-list">
+								<a class="unstyle-link tile-content-link" href="https://soundcloud.com/hassaane/misadventures" target="_blank">soundcloud</a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="tile-borders">
+					<div class="tile-title-text text-sans-web" style="font-weight: 200">
+						<span class="issue-number text-mono">002</span>
+					</div>
+					<div class="tile-border tile-border-top"></div>
+					<div class="tile-border tile-border-right"></div>
+					<div class="tile-border tile-border-bottom"></div>
+					<div class="tile-border tile-border-left"></div>
+				</div>
+			</div>
+			<!-- -- -->
+
+
+
+			<!-- ABOUT US TILES -->
+			<!--<div class="tile about-tile" style="background-image: url('/static/img/sponge.jpg');">
+				<div class="tile-content-container">
+					<div class="tile-content">
+						<div class="tile-content-image-container">
+							<img src="/static/img/sponge.jpg" alt="spongebob" class="tile-content-header-image">
+						</div>
 						<div>
 							<span class="tile-content-h1 text-large">Spongethug</span>
 							</p>
@@ -444,7 +276,10 @@
 					<div class="tile-border tile-border-bottom"></div>
 					<div class="tile-border tile-border-left"></div>
 				</div>
-			</div>
+			</div>-->
+
+
+
 		</div>
 	</div>
 
@@ -474,6 +309,7 @@
 	<script type="text/javascript">
 		// Tile content initializer
 		let tile_content_top_offset = 30;
+		let tile_outer_height = 220;
 
 		function set_tile_content_container_positions() {
 			$('.tile-content-container').each(function() {
@@ -484,7 +320,7 @@
 				// Set tile-content top position
 				let tile = $(this).parent();
 				let tile_top = $(tile).position().top;
-				let tile_height = $(tile).outerHeight(true);
+				let tile_height = tile_outer_height;//$(tile).outerHeight(true);
 				let top_val = tile_top + tile_height + tile_content_top_offset;
 				$(this).css('top', top_val+'px');
 				// Set tile-content height and tile margin-bottom
@@ -739,6 +575,24 @@
 			}
 		});
 	</script>
+	<!-- RESIZE HANDLER -->
+	<script type="text/javascript">
+		const two_tile_width_max = 659;
+		let prev_width = null;
+
+		$(window).resize(function() {
+			let width = $(window).width();
+			if(prev_width === null) {
+				prev_width = width;
+				return;
+			}
+			else if((prev_width <= two_tile_width_max && width > two_tile_width_max)
+				 || (prev_width > two_tile_width_max && width <= two_tile_width_max)) {
+				set_tile_content_container_positions();
+			}
+			prev_width = width;
+		});
+	</script>
 	<!-- LOADED SCRIPT -->
 	<script type="text/javascript">
 		function setHtmlLoaded() {
@@ -750,5 +604,16 @@
 			$(window).trigger('scroll');
 		});
 	</script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132118800-1"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-132118800-1');
+	</script>
+
 </body>
 </html>
