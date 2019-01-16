@@ -539,7 +539,7 @@
 		let prev_route_word = null;
 
 		function route_change(route_path) {
-			let route = route_path.toLowerCase();
+			let route = /\/?[\w\d-]*/.exec(route_path)[0].toLowerCase();
 			let route_word = route.length > 0 && route[0] === '/' ? route.substr(1) : route;
 			let nav_choices = $('#mainNavWrapper .nav-choices').children('.choice-container');
 			let container_id = '#' + route_word + 'ChoiceContainer';
@@ -600,11 +600,7 @@
 			clearTimeout(main_fade_timeout);
 
 			// Test for release-page routing
-			let page_routed_tile = null;
-			try {
-				page_routed_tile = $('.tile#'+route_word);
-			}
-			catch(error) {}
+			let page_routed_tile = route_word.length > 0 ? $('.tile#'+route_word) : null;
 			let release_routing = false;
 			if($(page_routed_tile).length > 0) {
 				release_routing = true;
