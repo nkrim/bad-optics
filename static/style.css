@@ -214,6 +214,7 @@ html.loaded .logo-line-spacer, noscript .logo-line-spacer { width: 0; }
 html.loaded #mainNav { opacity: 1; }
 html.loaded #mainNavUnderline { transform: scaleX(1); }
 html.loaded #mainContent { opacity: 1; }
+html.loaded #footer { opacity: 1; }
 /*html.loaded.wf-active #mainNav { opacity: 1; }
 html.loaded.wf-active #mainNavUnderline { transform: scaleX(1); }
 html.loaded.wf-active #mainContent { opacity: 1; }*/
@@ -631,6 +632,9 @@ END MAIN CONTENT */
 	text-align: center;
 	color: #fff;
 	font-size: 10px;
+
+	opacity: 0;
+	transition: opacity 0.5s cubic-bezier(.8,0,.83,.67);
 }
 html.invert #footer { color: #080808; }
 
