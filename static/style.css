@@ -643,11 +643,15 @@ html.invert #footer { color: #080808; }
 }
 .social-icons svg {
 	fill: #444;
-	width: 32;
-	height: 32;
 }
 html.invert .social-icons svg {
 	fill: #aaa;
+}
+.social-icons svg:hover {
+	fill: #888;
+}
+html.invert .social-icons svg:hover {
+	fill: #666;
 }
 /* =======
 END FOOTER */
