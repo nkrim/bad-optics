@@ -92,6 +92,9 @@ html.invert #infoHeader { color: #080808; background: #fff;}
 #infoHeader > a {
 	padding: 10px 20px 14px;
 }
+#aboutLink {
+	cursor: pointer;
+}
 .info-header-spacer {
 	padding: 0;
 	width: 0;
