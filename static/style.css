@@ -647,10 +647,10 @@ html.invert #footer { color: #080808; }
 html.invert .social-icons svg {
 	fill: #aaa;
 }
-.social-icons svg:hover {
+.social-icons a:hover svg {
 	fill: #888;
 }
-html.invert .social-icons svg:hover {
+html.invert .social-icons a:hover svg {
 	fill: #666;
 }
 /* =======
