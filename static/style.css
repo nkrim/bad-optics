@@ -278,6 +278,7 @@ html.invert #mainNav { color: #080808; }
 #mainNav .nav-choices .choice-container {
 	display: inline-block;
 	padding: 0 10px;
+	cursor: pointer;
 }
 #mainNav .nav-choices .choice-container:first-child {
 	padding-left: 0;
@@ -379,7 +380,7 @@ html.invert .empty-message div { border-color: #080808; }
 	position: relative;
 	width: 880px;
 	margin: auto;
-	padding-bottom: 100px;
+	padding-bottom: 140px;
 
 	opacity: 0;
 	transition: opacity 0.5s cubic-bezier(.8,0,.83,.67);
@@ -390,6 +391,10 @@ html.invert .empty-message div { border-color: #080808; }
 
 /* TILES AND TILE SETS
 ---------------------- */
+#featuredTile {
+	width: 100%;
+}
+
 .tile-set {
 	position: relative;
 	width: 100%;
@@ -449,8 +454,6 @@ html.invert .tile-title-text { color: #080808; }
 	right: 27px;
 	overflow: hidden;
 
-	color: #fff;
-
 	box-sizing: border-box;
 	border-left: 3px solid #fff;
 	border-right: 3px solid #fff;;
@@ -460,9 +463,9 @@ html.invert .tile-title-text { color: #080808; }
 	transition: height 0.2s ease-in-out, visibility 0s linear 0.2s;
 }
 html.invert .tile-content-container {
-	color: #080808;
 	border-color: #080808;
 }
+
 .tile:not(.show) .tile-content-container.initialized {
 	height: 0 !important;
 }
@@ -476,7 +479,16 @@ html.invert .tile-content-container {
 	justify-content: flex-start;
 	align-items: flex-start;
 
+	color: #fff;
+
 	padding: 20px;
+}
+html.invert .tile-content {
+	color: #080808;
+}
+#featuredTile .tile-content {
+	padding: 30px;
+	padding-bottom: 0;
 }
 
 .tile-content-image-container {
@@ -485,9 +497,10 @@ html.invert .tile-content-container {
 .tile-content-header-image {
 	width: 300px;
 	padding-right: 40px;
+	cursor: pointer;
 }
-.tile-content a:hover .tile-media {
-	text-decoration: underline;
+#featuredTile.release-page .tile-content-header-image {
+	cursor: default;
 }
 
 .tile-content-text-section {
@@ -617,6 +630,22 @@ END MAIN CONTENT */
 	font-size: 10px;
 }
 html.invert #footer { color: #080808; }
+
+.social-icons {
+	display: flex;
+	justify-content: center;
+}
+.social-icons a {
+	margin: 0 16px 10px;
+}
+.social-icons svg {
+	fill: #444;
+	width: 32;
+	height: 32;
+}
+html.invert .social-icons svg {
+	fill: #aaa;
+}
 /* =======
 END FOOTER */
 
