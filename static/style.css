@@ -6,13 +6,13 @@ html {
 	background-position: center top;
 	background-size: 100% auto;
 	background-repeat: repeat-y;*/
+
+	position: relative;
+	min-height: 100vh;
 }
 html, body {
-	position: relative;
 	margin: 0;
 	width: 100%;
-	min-height: 100vh;
-	height: auto;
 }
 html.invert { background-color: #fff; background-image: none; }
 
@@ -516,6 +516,8 @@ html.invert .tile-content {
 
 .tile-content-h1, .tile-content-h2 {
 	font-style: italic;
+	margin: 0;
+	font-weight: 400;
 }
 
 .tile-content-link {
@@ -546,6 +548,11 @@ html.invert .tile-content-link { border-color: #080808; }
 }
 html.invert .tile-content-link: before {
 		background: linear-gradient(to right, #444, transparent 10px);
+}
+
+.text-link {
+	text-decoration: underline !important;
+	font-family: 'Courier New', Courier, monospace;
 }
 
 /* TILE BORDERS
@@ -663,12 +670,12 @@ END FOOTER */
 
 /* GENERIC CLASSES
 ================== */
-a.unstyle-link {
+a.unstyle-link, .unstyle-link a {
     color: inherit;
     text-decoration: none;
 }
 
-a.unstyle-link:hover, a.unstyle-link:focus {
+a.unstyle-link:hover, a.unstyle-link:focus, .unstyle-link a:hover, , .unstyle-link a:focus {
     color: inherit;
     text-decoration: none;
 }
@@ -779,7 +786,7 @@ END GENERIC CLASSES */
 	}
 
 	#logoHeader {
-		margin-bottom: 30px;
+		margin-bottom: 20px;
 	}
 
 	#mainNav {
