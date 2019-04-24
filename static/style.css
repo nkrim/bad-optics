@@ -477,6 +477,10 @@ html.invert .tile-content-container {
 	visibility: visible;
 	transition: height 0.2s ease-in-out, visibility 0s linear;
 }
+.tile-set.quick-close .tile-content-container {
+	display: none !important;
+	transition: none;
+}
 
 .tile-content {
 	display: flex;

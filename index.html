@@ -898,19 +898,28 @@
 	<!-- RESIZE HANDLER -->
 	<script type="text/javascript">
 		const two_tile_width_max = 659;
-		let prev_width = null;
+		let prev_width = $(window).width();
+
+		let resize_timeout = null;
 
 		$(window).resize(function() {
+			// Check for width change, if no change then return
 			let width = $(window).width();
-			if(prev_width === null) {
-				prev_width = width;
+			if(width === prev_width)
 				return;
-			}
-			else if((prev_width <= two_tile_width_max && width > two_tile_width_max)
-				 || (prev_width > two_tile_width_max && width <= two_tile_width_max)) {
-				set_tile_content_container_positions();
-			}
 			prev_width = width;
+
+			// Quickly close all tiles
+			$('.tile-set').addClass('quick-close');
+			$('.tile').removeClass('show');
+			$('.tile-set').removeClass('quick-close');
+
+			// Set short timeout to ensure tile-content is closed before repositioning and resizing content
+			if(resize_timeout)
+				clearTimeout(resize_timeout);
+			resize_timeout = setTimeout(function() {
+				set_tile_content_container_positions();
+			}, 100);
 		});
 	</script>
 	<!-- LOADED SCRIPT -->
