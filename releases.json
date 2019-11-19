@@ -1,0 +1,29 @@
+{
+	"test": 69,
+	"releases": 
+	[
+		{
+			"number": "001",
+			"release_type": "sonic",
+			"release_date": "2018-08-17",
+			"title": "What Day Is Today",
+			"artist": "something soft",
+			"description_html": "A collection of tracks made from aug 13. to aug19, 2018.", 
+			"description_text": "A collection of tracks made from aug 13. to aug 19, 2018.", 
+			"image": {
+				"path": "/static/img/whatdayistoday-800x800.jpg",
+				"width": 800,
+				"height": 800
+			},
+			"links": [
+				{ 
+					"service": "spotify",
+				 	"url": "https://open.spotify.com/album/15XHAOWRRuYDmFESRzCuv3?si=y-T9iBpfTcGn9W_ITJ1ECw" 
+				}, { 
+					"service": "soundcloud",
+					"url": "https://soundcloud.com/somethingsoft/sets/what-day-is-today"
+				}
+			]
+		}
+	] 
+}
