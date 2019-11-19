@@ -14,3 +14,9 @@ html
 				include pug_includes/tiles-template.pug
 		include pug_includes/footer.html
 		include pug_includes/scripts.html
+		//- init meta_swaps valuse from releases
+		script
+			- for(let i=0; i<releases.length; i++)
+				- let r = releases[i]
+				|
+				|meta_swaps['#{r.number}'] = {'title': '#{r.title} - #{r.artist}','description': '#{r.description_text}','url': 'http://badoptics.co/#{r.number}.html','image-url': 'http://badoptics.co#{r.image.path}','image-width': #{r.image.width},'image-height': #{r.image.height}};
