@@ -18,17 +18,37 @@ const minifyCSS = require('gulp-csso');
 // Globals
 const RELEASES_FILE = 'releases.json';
 
-function html() {
-	let releases_config = JSON.parse(fs.readFileSync(RELEASES_FILE));
+// Pre-parse releases json
+const releases_json = JSON.parse(fs.readFileSync(RELEASES_FILE));
+
+// HTML - Pug
+function index() {
   	return src('index-template.pug')
   		.pipe(rename('index.pug'))
     	.pipe(pug({
     		'pretty': true,
-    		'locals': releases_config
+    		'locals': releases_json
     	}))
     	.pipe(dest('build'));
 }
+function releases() {
+	return releases_json.releases.map(
+		r => (
+			() => src('release-template.pug')
+					.pipe(rename(`${r.number}.html`))
+					.pipe(pug({
+						'pretty': true,
+						'locals': r
+					}))
+					.pipe(dest('build'))
+		)
+	);
+}
+function html() {
 
+}
+
+// CSS
 function css() {
   	return src('src/css/*.css')
 		.pipe(sourcemaps.init())
@@ -38,6 +58,7 @@ function css() {
 		.pipe(dest('build/static/css'))
 }
 
+// JS - babel
 function js() {
   	return src('src/js/*.js')
   		.pipe(sourcemaps.init())
@@ -60,5 +81,5 @@ exports.clean = clean
 exports.resources = resources
 exports.js = js;
 exports.css = css;
-exports.html = html;
-exports.default = series(clean, parallel(html, css, js, resources));
+exports.html = parallel(index, ...releases());
+exports.default = series(clean, parallel(exports.html, css, js, resources));
