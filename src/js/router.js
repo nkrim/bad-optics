@@ -9,14 +9,6 @@ const meta_swaps = {
 		'image-url': 'http://badoptics.co/static/img/bad-optics-sharing-logo.jpg',
 		'image-width': 640,
 		'image-height': 460,
-	},
-	'001': {
-		'title': 'What Day Is Today - something soft',
-		'description': 'A collection of tracks made from aug 13. to aug 19, 2018.',
-		'url': 'http://badoptics.co/001.html',
-		'image-url': 'http://badoptics.co/static/img/whatdayistoday-800x800.jpg',
-		'image-width': 800,
-		'image-height': 800,
 	}
 };
 
@@ -287,53 +279,4 @@ $('.tile-content-header-image').click(function() {
 	let tile = $(this).parents('.tile');
 	let release_number = tile.attr('id');
 	router_pushState('','','/'+release_number+'.html');
-});
-
-
-// INVERT SCRIPT
-// ==================================================
-$('#logoInvertSpot circle').bind('click', function() {
-	$('html').toggleClass('invert');
-});
-
-
-// HEADER SCROLL ANIMATION
-// ==================================================
-// Lerp helper
-function lerp(x, y, t) {
-	if(t < 0) t = 0;
-	else if(t > 1) t = 1;
-	return x + (y-x)*t;
-}
-
-// Scroll Handler
-let scroll_thresh = 76;
-let initial_header_scale = 2;
-
-$(window).scroll(function() {
-	let y = window.scrollY;
-	let crossed_thresh = $('html').hasClass('scroll-threshold'); 
-	let logos = $('#logoWrapper');
-	if(y < scroll_thresh) {
-		$('html').removeClass('scroll-threshold');
-		let transform_scale = 'scale('+lerp(initial_header_scale, 1.1, y/scroll_thresh)+')';
-		$(logos).css({
-			'-webkit-transform' : transform_scale,
-		  	'-moz-transform'    : transform_scale,
-		  	'-ms-transform'     : transform_scale,
-		 	'-o-transform'      : transform_scale,
-		 	'transform'         : transform_scale,
-		});
-	}
-	else if(!$('html').hasClass('scroll-threshold')) {
-		$('html').addClass('scroll-threshold');
-		let transform_scale = 'scale(1.1)';
-		$(logos).css({
-			'-webkit-transform' : transform_scale,
-		  	'-moz-transform'    : transform_scale,
-		  	'-ms-transform'     : transform_scale,
-		 	'-o-transform'      : transform_scale,
-		 	'transform'         : transform_scale,
-		});
-	}
 });

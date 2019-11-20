@@ -15,71 +15,105 @@ const autoprefixer = require('autoprefixer');
 const postcss = require('gulp-postcss');
 const minifyCSS = require('gulp-csso');
 
-// Globals
+// Paths
+const paths = {
+	'pug': {
+		'data': 'releases.json',
+		'index': 'index-template.pug',
+		'release': 'release-template.pug',
+	},
+	'in': {
+		'css': 'src/css/*.css',
+		'js': ['src/js/*.js', '!src/js/index_exclude/*.js'],
+		'release_js': 
+			[
+				'index_exclude/loaded_release.js',
+				'invert.js',
+				'scroll.js',
+			].map(p => 'src/js/'+p),
+		'resources': 'resources/**/*',
+	},
+	'out': {
+		'base': 'build/',
+		'html': 'build/',
+		'css': 'build/static/css/',
+		'js': 'build/static/js/',
+	}
+}
 const RELEASES_FILE = 'releases.json';
 
 // Pre-parse releases json
-const releases_json = JSON.parse(fs.readFileSync(RELEASES_FILE));
+const releases = JSON.parse(fs.readFileSync(paths.pug.data));
 
 // HTML - Pug
 function index() {
-  	return src('index-template.pug')
+  	return src(paths.pug.index)
   		.pipe(rename('index.pug'))
     	.pipe(pug({
     		'pretty': true,
-    		'locals': releases_json
+    		'locals': releases
     	}))
-    	.pipe(dest('build'));
+    	.pipe(dest(paths.out.html));
 }
-function releases() {
-	return releases_json.releases.map(
+function release_pages() {
+	return releases.releases.map(
 		r => (
-			() => src('release-template.pug')
+			() => src(paths.pug.release)
 					.pipe(rename(`${r.number}.html`))
 					.pipe(pug({
 						'pretty': true,
 						'locals': r
 					}))
-					.pipe(dest('build'))
+					.pipe(dest(paths.out.html))
 		)
 	);
-}
-function html() {
-
 }
 
 // CSS
 function css() {
-  	return src('src/css/*.css')
+  	return src(paths.in.css)
 		.pipe(sourcemaps.init())
 		.pipe(postcss([ autoprefixer() ]))
 		.pipe(minifyCSS())
 		.pipe(sourcemaps.write('.'))
-		.pipe(dest('build/static/css'))
+		.pipe(dest(paths.out.css))
 }
 
 // JS - babel
-function js() {
-  	return src('src/js/*.js')
+function index_js() {
+  	return src(paths.in.js)
   		.pipe(sourcemaps.init())
 	  	.pipe(babel())
-	    .pipe(concat('app.min.js'))
+	    .pipe(concat('index.min.js'))
 	    .pipe(uglify())
 	    .pipe(sourcemaps.write("."))
-	    .pipe(dest('build/static/js'));
+	    .pipe(dest(paths.out.js));
+}
+function release_js() {
+	return src(paths.in.release_js)
+		.pipe(sourcemaps.init())
+	  	.pipe(babel())
+	    .pipe(concat('release.min.js'))
+	    .pipe(uglify())
+	    .pipe(sourcemaps.write("."))
+	    .pipe(dest(paths.out.js));
 }
 
+// Resources
 function resources() {
-	return src('resources/**/*').pipe(dest('build/'));
+	return src(paths.in.resources)
+		.pipe(dest(paths.out.base));
 }
 
+// Cleanup
 function clean() {
-	return del('build/*');
+	return del(paths.out.base+'*');
 }
 
+// Exports
 exports.clean = clean
 exports.resources = resources
-exports.js = js;
+exports.js = parallel(index_js, release_js);
 exports.css = css;
-exports.html = parallel(index, ...releases());
-exports.default = series(clean, parallel(exports.html, css, js, resources));
+exports.html = parallel(index, ...release_pages());
+exports.default = series(clean, parallel(exports.html, css, exports.js, resources));
