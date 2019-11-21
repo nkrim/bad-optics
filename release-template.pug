@@ -2,8 +2,12 @@ doctype html
 html
 	head
 		title #{title} - #{artist}
+		meta(
+			name='description'
+			content=description_text
+		)/
 		include pug_includes/head_base.html
-		//-include pug_includes/head_social_meta_release.html
+		include pug_includes/head_social_meta_release.pug
 	body
 		include pug_includes/noscript.html
 		include pug_includes/header_release.html
@@ -25,7 +29,7 @@ html
 						=title
 					h2.tile-content-h2.text-medium
 						=artist
-					p.text-regular
+					p.text-regular.unstyle-link
 						!=description_html
 					p.text-mono.tile-content-link-list
 						each link in links

@@ -28,6 +28,7 @@ const paths = {
 		'release_js': 
 			[
 				'index_exclude/loaded_release.js',
+				'index_exclude/router_override.js',
 				'invert.js',
 				'scroll.js',
 			].map(p => 'src/js/'+p),
@@ -40,7 +41,11 @@ const paths = {
 		'js': 'build/static/js/',
 	}
 }
-const RELEASES_FILE = 'releases.json';
+
+// Pug config
+const pug_config = {
+	'pretty': true,
+};
 
 // Pre-parse releases json
 const releases = JSON.parse(fs.readFileSync(paths.pug.data));
@@ -49,22 +54,19 @@ const releases = JSON.parse(fs.readFileSync(paths.pug.data));
 function index() {
   	return src(paths.pug.index)
   		.pipe(rename('index.pug'))
-    	.pipe(pug({
-    		'pretty': true,
-    		'locals': releases
-    	}))
+    	.pipe(pug(
+    		Object.assign({'locals': releases}, pug_config)
+    	))
     	.pipe(dest(paths.out.html));
 }
 function release_pages() {
-	return releases.releases.map(
-		r => (
-			() => src(paths.pug.release)
-					.pipe(rename(`${r.number}.html`))
-					.pipe(pug({
-						'pretty': true,
-						'locals': r
-					}))
-					.pipe(dest(paths.out.html))
+	return releases.releases.map(r => (
+		() => src(paths.pug.release)
+			.pipe(rename(`${r.number}.html`))
+			.pipe(pug(
+	    		Object.assign({'locals': r}, pug_config)
+	    	))
+			.pipe(dest(paths.out.html))
 		)
 	);
 }
@@ -83,8 +85,8 @@ function css() {
 function index_js() {
   	return src(paths.in.js)
   		.pipe(sourcemaps.init())
-	  	.pipe(babel())
 	    .pipe(concat('index.min.js'))
+	    .pipe(babel())
 	    .pipe(uglify())
 	    .pipe(sourcemaps.write("."))
 	    .pipe(dest(paths.out.js));
@@ -92,8 +94,8 @@ function index_js() {
 function release_js() {
 	return src(paths.in.release_js)
 		.pipe(sourcemaps.init())
-	  	.pipe(babel())
 	    .pipe(concat('release.min.js'))
+	    .pipe(babel())
 	    .pipe(uglify())
 	    .pipe(sourcemaps.write("."))
 	    .pipe(dest(paths.out.js));

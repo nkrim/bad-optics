@@ -2,6 +2,10 @@ doctype html
 html
 	head
 		title Bad Optics Collective
+		meta(
+			name='description'
+			content='Bad Optics is a sonic, visual, and interactive art collective formed by friends who met in Chicago.'
+		)
 		include pug_includes/head_base.html
 		include pug_includes/head_social_meta_index.html
 	body
@@ -20,4 +24,4 @@ html
 			- for(let i=0; i<releases.length; i++)
 				- let r = releases[i]
 				|
-				|meta_swaps['#{r.number}'] = {'title': '#{r.title} - #{r.artist}','description': '#{r.description_text}','url': 'http://badoptics.co/#{r.number}.html','image-url': 'http://badoptics.co#{r.image.path}','image-width': #{r.image.width},'image-height': #{r.image.height}};
+				|meta_swaps['#{r.number}'] = {'title': '#{r.title} - #{r.artist}','description': "#{r.description_text}",'url': 'http://badoptics.co/#{r.number}.html','image-url': 'http://badoptics.co#{r.image.path}','image-width': #{r.image.width},'image-height': #{r.image.height}};
