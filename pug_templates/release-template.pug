@@ -6,11 +6,11 @@ html
 			name='description'
 			content=description_text
 		)/
-		include pug_includes/head_base.html
-		include pug_includes/head_social_meta_release.pug
+		include ../pug_includes/head_base.html
+		include ../pug_includes/head_social_meta_release.pug
 	body
-		include pug_includes/noscript.html
-		include pug_includes/header_release.html
+		include ../pug_includes/noscript.html
+		include ../pug_includes/header_release.html
 		#mainContent.text-sans.antialias
 			#featuredTile.release-page: .tile-content
 				.tile-content-image-container
@@ -39,6 +39,6 @@ html
 								target="_blank"
 							)
 								=link.service
-		include pug_includes/footer.html
+		include ../pug_includes/footer.html
 		script(src='/static/js/release.min.js')
-		include pug_includes/scripts.html
+		include ../pug_includes/scripts.html

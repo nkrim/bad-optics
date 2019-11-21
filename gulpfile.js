@@ -22,8 +22,8 @@ const s3upload = require('gulp-s3-upload')({useIAM: true});
 const paths = {
 	pug: {
 		data: 'releases.json',
-		index: 'index-template.pug',
-		release: 'release-template.pug',
+		index: 'pug_templates/index-template.pug',
+		release: 'pug_templates/release-template.pug',
 	},
 	in: {
 		css: 'src/css/*.css',

@@ -6,19 +6,19 @@ html
 			name='description'
 			content='Bad Optics is a sonic, visual, and interactive art collective formed by friends who met in Chicago.'
 		)
-		include pug_includes/head_base.html
-		include pug_includes/head_social_meta_index.html
+		include ../pug_includes/head_base.html
+		include ../pug_includes/head_social_meta_index.html
 	body
-		include pug_includes/noscript.html
-		include pug_includes/header.html
-		include pug_includes/main_nav.html
+		include ../pug_includes/noscript.html
+		include ../pug_includes/header.html
+		include ../pug_includes/main_nav.html
 		#mainContent.text-sans.antialias
 			#featuredTile
 			.tile-set
-				include pug_includes/tiles-template.pug
-		include pug_includes/footer.html
+				include ../pug_includes/tile-set.pug
+		include ../pug_includes/footer.html
 		script(src='/static/js/index.min.js')
-		include pug_includes/scripts.html
+		include ../pug_includes/scripts.html
 		//- init meta_swaps valuse from releases
 		script
 			- for(let i=0; i<releases.length; i++)
