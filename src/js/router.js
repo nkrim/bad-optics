@@ -231,7 +231,6 @@ function route_change(route_path) {
 			set_featured_header(page_routed_tile, true);
 			// Scroll to top
 			let scroll_top = window.scrollY + $('#featuredTile')[0].getBoundingClientRect().top - 60;
-			console.log(scroll_top);
 			route_scroll_timeout = setTimeout(() => 
 				window.scrollTo({
 					top: scroll_top,
