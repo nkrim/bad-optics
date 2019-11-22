@@ -1,6 +1,7 @@
 // Includes
 const { src, dest, series, parallel } = require('gulp');
 const del = require('del');
+const log = require('fancy-log');
 // html
 const fs = require('fs');
 const pug = require('gulp-pug');
@@ -58,6 +59,7 @@ const releases = JSON.parse(fs.readFileSync(paths.pug.data));
 // s3 Metadata
 const s3meta = {'uploaded-via': 'gulp-s3-upload'};
 const s3cache = 'max-age=315360000';
+const cfdistro = 'E2HS6DFR9V8QEP';
 
 // HTML - Pug
 function index() {
@@ -117,7 +119,9 @@ function resources() {
 }
 
 // Upload
+let changed_keynames = null;
 function upload() {
+	changed_keynames = [];
 	return src(paths.out.base+'**/*')
 		.pipe(s3upload({
 			Bucket: 'badoptics.co',
@@ -126,46 +130,56 @@ function upload() {
 				Metadata: () => s3meta,
 				CacheControl: () => s3cache,
 			},
+			onChange: (k) => {
+				changed_keynames.push('/'+k);
+			}
+		},{
+			maxRetries: 5,
+		}));
+}
+function upload_no_invalidate() {
+	return src(paths.out.base+'**/*')
+		.pipe(s3upload({
+			Bucket: 'badoptics.co',
+			ACL: 'private',
+			maps:{
+				Metadata: () => s3meta,
+				CacheControl: () => s3cache,
+			}
 		},{
 			maxRetries: 5,
 		}));
 }
 
 // Invalidate
-function invalidate() {
+function invalidate_custom(paths) {
 	return src('*').pipe(
 		cloudfront({
-			distribution: 'E2HS6DFR9V8QEP',
-			paths: ['/index.html'],
+			distribution: cfdistro,
+			paths: paths,
 		}));
+}
+function invalidate_changed() {
+	if(changed_keynames === null || changed_keynames.length === 0)
+		return Promise.resolve(log('-- No changes, skipping invalidations'));
+	log('-- INVALIDATING:');
+	changed_keynames.forEach(e => log(e));
+	return invalidate_custom(changed_keynames);
+}
+function invalidate_root() {
+	return invalidate_custom(['/index.html']);
 }
 function invalidate_html() {
-	return src('*').pipe(
-		cloudfront({
-			distribution: 'E2HS6DFR9V8QEP',
-			paths: ['/*.html'],
-		}));
+	return invalidate_custom(['/*.html']);
 }
 function invalidate_js() {
-	return src('*').pipe(
-		cloudfront({
-			distribution: 'E2HS6DFR9V8QEP',
-			paths: ['/static/js/*'],
-		}));
+	return invalidate_custom(['/static/js/*']);
 }
 function invalidate_css() {
-	return src('*').pipe(
-		cloudfront({
-			distribution: 'E2HS6DFR9V8QEP',
-			paths: ['/static/css/*'],
-		}));
+	return invalidate_custom(['/static/css/*']);
 }
 function invalidate_all() {
-	return src('*').pipe(
-		cloudfront({
-			distribution: 'E2HS6DFR9V8QEP',
-			paths: ['/*'],
-		}));
+	return invalidate_custom(['/*']);
 }
 
 // Cleanup
@@ -182,17 +196,17 @@ exports.html = parallel(index, ...release_pages());
 // Exports - build combo
 exports.build = series(clean, parallel(exports.html, css, exports.js, resources));
 // Exports - uploading
-exports.upload = series(upload, () => Promise.resolve(console.log('--NOTE: Remember to make invalidatations in cloudfront!')));
+exports.upload = series(upload, invalidate_changed);
+exports.upload_no_invalidate = upload_no_invalidate;
+exports.upload_ni = exports.upload_no_invalidate;
 // Exports - invalidations
-exports.invalidate = invalidate;
+exports.invalidate_root = invalidate_root;
 exports.invalidate_js = invalidate_js;
 exports.invalidate_css = invalidate_css;
 exports.invalidate_html = invalidate_html;
 exports.invalidate_all = invalidate_all;
 // Exports - combos
-exports.full = series(exports.build, upload, invalidate);
-exports.full_html = series(exports.build, upload, invalidate_html);
-exports.full_all = series(exports.build, upload, invalidate_all);
-exports.fresh = exports.full_all
+exports.full = series(exports.build, exports.upload);
+exports.fresh = series(exports.build, upload_no_invalidate, invalidate_all);
 // Exports - default
 exports.default = exports.build;
