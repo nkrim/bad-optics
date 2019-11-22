@@ -150,14 +150,14 @@ function invalidate_js() {
 	return src('*').pipe(
 		cloudfront({
 			distribution: 'E2HS6DFR9V8QEP',
-			paths: ['/static/js/*.js'],
+			paths: ['/static/js/*'],
 		}));
 }
 function invalidate_css() {
 	return src('*').pipe(
 		cloudfront({
 			distribution: 'E2HS6DFR9V8QEP',
-			paths: ['/static/css/*.css'],
+			paths: ['/static/css/*'],
 		}));
 }
 function invalidate_all() {
