@@ -164,9 +164,9 @@ function invalidate_changed() {
 		return Promise.resolve(log('-- No changes, skipping invalidations'));
 	log('-- INVALIDATING:');
 	changed_keynames.forEach(e => log(e));
-	return invalidate_custom(changed_keynames);
+	return invalidate_custom('-- -- '+changed_keynames);
 }
-function invalidate_root() {
+function invalidate_index() {
 	return invalidate_custom(['/index.html']);
 }
 function invalidate_html() {
@@ -200,7 +200,7 @@ exports.upload = series(upload, invalidate_changed);
 exports.upload_no_invalidate = upload_no_invalidate;
 exports.upload_ni = exports.upload_no_invalidate;
 // Exports - invalidations
-exports.invalidate_root = invalidate_root;
+exports.invalidate_index = invalidate_index;
 exports.invalidate_js = invalidate_js;
 exports.invalidate_css = invalidate_css;
 exports.invalidate_html = invalidate_html;
