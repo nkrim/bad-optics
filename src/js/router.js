@@ -102,8 +102,10 @@ let main_fade_timeout = null;
 const crawl_speed = 200;
 let cur_crawl_timeout;
 let prev_route_word = null;
+let route_scroll_timeout = null;
 
 function route_change(route_path) {
+	clearTimeout(route_scroll_timeout);
 	let route = /\/?[\w\d-]*(?=\.html)?/.exec(route_path)[0].toLowerCase();
 	let route_word = route.length > 0 && route[0] === '/' ? route.substr(1) : route;
 	let nav_choices = $('#mainNavWrapper .nav-choices').children('.choice-container');
@@ -227,6 +229,15 @@ function route_change(route_path) {
 		// Set featured tile
 		if(release_routing) {
 			set_featured_header(page_routed_tile, true);
+			// Scroll to top
+			let scroll_top = window.scrollY + $('#featuredTile')[0].getBoundingClientRect().top - 60;
+			console.log(scroll_top);
+			route_scroll_timeout = setTimeout(() => 
+				window.scrollTo({
+					top: scroll_top,
+					behavior: 'smooth',
+				}), 
+				main_fade_duration);
 		}
 		else if(route_word === 'about') {
 			// Clear featured header if on about page
