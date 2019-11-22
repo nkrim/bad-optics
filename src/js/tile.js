@@ -30,6 +30,7 @@ set_tile_content_container_positions();
 // Tile click handler
 const tile_show_transition_duration = 200;
 let tile_show_timeout = null;
+let tile_scroll_timeout = null;
 
 $('.tile-borders').bind('click', function() {
 	let tile = $(this).parent('.tile');
@@ -39,18 +40,33 @@ $('.tile-borders').bind('click', function() {
 	}
 	else {
 		clearTimeout(tile_show_timeout);
+		clearTimeout(tile_scroll_timeout);
 		$('.tile.selected').removeClass('selected');
 		$(tile).addClass('selected');
-		if(tile_show_timeout !== null || $('.tile.show').length > 0) {
-			$('.tile.show').removeClass('show');
+		let scroll_time_offset = tile_show_transition_duration;
+		let showing = $('.tile.show');
+		if(tile_show_timeout !== null || $(showing).length > 0) {
+			// Scroll adjustments
+			scroll_time_offset += tile_show_transition_duration;
+			// Timeout to wait for closing animtaion
+			$(showing).removeClass('show');
 			tile_show_timeout = setTimeout((() => {
-				$(tile).addClass('show');
-				tile_show_timeout = null;
-			}).bind(tile), 
-			tile_show_transition_duration+10);
+					$(tile).addClass('show');
+					tile_show_timeout = null;
+				}).bind(tile), 
+				tile_show_transition_duration+10);
 		}
 		else {
 			$(tile).addClass('show');
 		}
+		// Scroll-to
+		tile_scroll_timeout = setTimeout((() => {
+				let scroll_top = window.scrollY + this.getBoundingClientRect().bottom - 40;
+				window.scrollTo({
+					top: scroll_top,
+					behavior: 'smooth',
+				});
+			}).bind($(tile)[0]),
+			scroll_time_offset);
 	}
 });

@@ -22,5 +22,5 @@ $(window).resize(function() {
 		clearTimeout(resize_timeout);
 	resize_timeout = setTimeout(function() {
 		set_tile_content_container_positions();
-	}, 100);
+	}, 210);
 });
