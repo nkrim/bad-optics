@@ -16,6 +16,8 @@ const postcss = require('gulp-postcss');
 const minifyCSS = require('gulp-csso');
 // upload
 const s3upload = require('gulp-s3-upload')({useIAM: true});
+// invalidate
+const cloudfront = require('gulp-cloudfront-invalidate');
 
 
 // Paths
@@ -129,18 +131,52 @@ function upload() {
 		}));
 }
 
+// Invalidate
+function invalidate() {
+	return src('*').pipe(
+		cloudfront({
+			distribution: 'E2HS6DFR9V8QEP',
+			paths: ['/index.html'],
+		}));
+}
+function invalidate_html() {
+	return src('*').pipe(
+		cloudfront({
+			distribution: 'E2HS6DFR9V8QEP',
+			paths: ['/*.html'],
+		}));
+}
+function invalidate_all() {
+	return src('*').pipe(
+		cloudfront({
+			distribution: 'E2HS6DFR9V8QEP',
+			paths: ['/*'],
+		}));
+}
+
 // Cleanup
 function clean() {
 	return del(paths.out.base+'*');
 }
 
-// Exports
+// Exports - standard
 exports.clean = clean
 exports.resources = resources
 exports.js = parallel(index_js, release_js);
 exports.css = css;
 exports.html = parallel(index, ...release_pages());
+// Exports - build combo
 exports.build = series(clean, parallel(exports.html, css, exports.js, resources));
-exports.upload = series(upload, ()=>Promise.resolve(console.log("NOTE: Remember to perform invalidations in cloudfront")));
-exports.full = series(exports.build, exports.upload);
+// Exports - uploading
+exports.upload = series(upload, () => Promise.resolve(console.log('--NOTE: Remember to make invalidatations in cloudfront!')));
+// Exports - invalidations
+exports.invalidate = invalidate;
+exports.invalidate_html = invalidate_html;
+exports.invalidate_all = invalidate_all;
+// Exports - combos
+exports.full = series(exports.build, upload, invalidate);
+exports.full_html = series(exports.build, upload, invalidate_html);
+exports.full_all = series(exports.build, upload, invalidate_all);
+exports.fresh = exports.full_all
+// Exports - default
 exports.default = exports.build;
