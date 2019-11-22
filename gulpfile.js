@@ -146,6 +146,20 @@ function invalidate_html() {
 			paths: ['/*.html'],
 		}));
 }
+function invalidate_js() {
+	return src('*').pipe(
+		cloudfront({
+			distribution: 'E2HS6DFR9V8QEP',
+			paths: ['/static/js/*.js'],
+		}));
+}
+function invalidate_css() {
+	return src('*').pipe(
+		cloudfront({
+			distribution: 'E2HS6DFR9V8QEP',
+			paths: ['/static/css/*.css'],
+		}));
+}
 function invalidate_all() {
 	return src('*').pipe(
 		cloudfront({
@@ -171,6 +185,8 @@ exports.build = series(clean, parallel(exports.html, css, exports.js, resources)
 exports.upload = series(upload, () => Promise.resolve(console.log('--NOTE: Remember to make invalidatations in cloudfront!')));
 // Exports - invalidations
 exports.invalidate = invalidate;
+exports.invalidate_js = invalidate_js;
+exports.invalidate_css = invalidate_css;
 exports.invalidate_html = invalidate_html;
 exports.invalidate_all = invalidate_all;
 // Exports - combos
