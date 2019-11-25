@@ -163,8 +163,8 @@ function invalidate_changed() {
 	if(changed_keynames === null || changed_keynames.length === 0)
 		return Promise.resolve(log('-- No changes, skipping invalidations'));
 	log('-- INVALIDATING:');
-	changed_keynames.forEach(e => log(e));
-	return invalidate_custom('-- -- '+changed_keynames);
+	changed_keynames.forEach(e => log('-- -- '+e));
+	return invalidate_custom(changed_keynames);
 }
 function invalidate_index() {
 	return invalidate_custom(['/index.html']);
