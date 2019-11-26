@@ -24,7 +24,7 @@ const cloudfront = require('gulp-cloudfront-invalidate');
 // Paths
 const paths = {
 	pug: {
-		data: 'releases.json',
+		data: 'data.json',
 		index: 'pug_templates/index-template.pug',
 		release: 'pug_templates/release-template.pug',
 	},
