@@ -1,5 +1,5 @@
 // Includes
-const { src, dest, series, parallel } = require('gulp');
+const { src, dest, series, parallel, lastRun } = require('gulp');
 const del = require('del');
 const log = require('fancy-log');
 // html
@@ -15,6 +15,8 @@ const uglify = require('gulp-uglify');
 const autoprefixer = require('autoprefixer');
 const postcss = require('gulp-postcss');
 const minifyCSS = require('gulp-csso');
+// resources
+const cwebp = require('gulp-cwebp');
 // upload
 const s3upload = require('gulp-s3-upload')({useIAM: true});
 // invalidate
@@ -39,12 +41,14 @@ const paths = {
 				'scroll.js',
 			].map(p => 'src/js/'+p),
 		resources: 'resources/**/*',
+		resource_images: 'resources/static/img/*.{jpg,png}',
 	},
 	out: {
 		base: 'build/',
 		html: 'build/',
 		css: 'build/static/css/',
 		js: 'build/static/js/',
+		webp: 'resources/static/img/',
 	}
 }
 
@@ -61,6 +65,11 @@ const s3meta = {'uploaded-via': 'gulp-s3-upload'};
 const s3cache = 'max-age=315360000';
 const cfdistro = 'E2HS6DFR9V8QEP';
 
+// Image quality
+const image_quality = 85;
+
+
+//=======================================================
 // HTML - Pug
 function index() {
   	return src(paths.pug.index)
@@ -113,9 +122,14 @@ function release_js() {
 }
 
 // Resources
-function resources() {
-	return src(paths.in.resources)
+function move_resources() {
+	return src([paths.in.resources, `!${paths.in.resource_images}`])
 		.pipe(dest(paths.out.base));
+}
+function webp_images() {
+	return src(paths.in.resource_images)
+		.pipe(cwebp({q: image_quality}))
+		.pipe(dest(paths.out.webp));
 }
 
 // Upload
@@ -189,12 +203,12 @@ function clean() {
 
 // Exports - standard
 exports.clean = clean
-exports.resources = resources
+exports.resources = series(webp_images, move_resources)
 exports.js = parallel(index_js, release_js);
 exports.css = css;
 exports.html = parallel(index, ...release_pages());
 // Exports - build combo
-exports.build = series(clean, parallel(exports.html, css, exports.js, resources));
+exports.build = series(clean, parallel(exports.html, css, exports.js, exports.resources));
 // Exports - uploading
 exports.upload = series(upload, invalidate_changed);
 exports.upload_no_invalidate = upload_no_invalidate;
