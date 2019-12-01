@@ -3,6 +3,7 @@
 // Tile content initializer
 let tile_content_top_offset = 30;
 let tile_outer_height = 220;
+let image_container_bottom_margin = 4;
 
 function set_tile_content_container_positions() {
 	$('.tile-content-container').each(function() {
@@ -10,6 +11,14 @@ function set_tile_content_container_positions() {
 		$(this).removeClass('initialized');
 		$(this).css('margin-bottom', '');
 		$(this).css('height', '');
+		// Set tile-content-image-container height
+		let image_container = $(this).find('.tile-content-image-container');
+		let image = $(image_container).children('img');
+		let image_ratio = parseFloat($(image).attr('image-ratio'));
+		let image_padding_right = parseFloat($(image).css('padding-right'));
+		let image_width = $(image_container).width() - image_padding_right;
+		let image_height = image_width/image_ratio + image_container_bottom_margin;
+		$(image_container).css('height', image_height+'px');
 		// Set tile-content top position
 		let tile = $(this).parent();
 		let tile_top = $(tile).position().top;
