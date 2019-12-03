@@ -3,7 +3,8 @@
 	div(
 		id=r.number
 		class=`tile release-tile ${r.release_type}-tile`
-		style=`background-image: url('${r.image.path}'), url('${r.image.alt_path}');`
+		style=`background-image: url('${r.image.path}');`
+		alt-path=r.image.alt_path
 	)
 		.tile-content-container: .tile-content
 			.tile-content-image-container
