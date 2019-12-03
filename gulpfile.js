@@ -123,7 +123,7 @@ function release_js() {
 
 // Resources
 function move_resources() {
-	return src([paths.in.resources, `!${paths.in.resource_images}`])
+	return src([paths.in.resources])
 		.pipe(dest(paths.out.base));
 }
 function webp_images() {

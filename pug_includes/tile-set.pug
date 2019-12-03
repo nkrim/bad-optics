@@ -3,16 +3,26 @@
 	div(
 		id=r.number
 		class=`tile release-tile ${r.release_type}-tile`
-		style=`background-image: url('${r.image.path}');`
+		style=`background-image: url('${r.image.path}'), url('${r.image.alt_path}');`
 	)
 		.tile-content-container: .tile-content
 			.tile-content-image-container
-				img(
-					src=r.image.path
-					alt=r.title
-					class='tile-content-header-image'
+				picture(
+					class="tile-content-header-image"
 					image-ratio=1.0*r.image.width/r.image.height
-				)/
+				)
+					source(
+						srcset=r.image.path
+						type="image/webp"
+					)
+					source(
+						srcset=r.image.alt_path
+						type=`image/${/\.([\w]+)$/i.exec(r.image.alt_path)[1].toLocaleLowerCase()}`
+					)
+					img(
+						src=r.image.alt_path
+						alt=r.title
+					)
 			.tile-content-text-section
 				span.tile-media.text-small.text-mono.unstyle-link
 					=`[[${r.release_type}]]`

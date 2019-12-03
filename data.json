@@ -11,6 +11,7 @@
 			"description_text": "A collection of tracks made from aug 13. to aug 19, 2018.", 
 			"image": {
 				"path": "/static/img/whatdayistoday-800x800.webp",
+				"alt_path": "/static/img/whatdayistoday-800x800.jpg",
 				"width": 800,
 				"height": 800
 			},
@@ -34,6 +35,7 @@
 			"description_text": "snippets from the well of memories.", 
 			"image": {
 				"path": "/static/img/misadventures-500x500.webp",
+				"alt_path": "/static/img/misadventures-500x500.jpg",
 				"width": 500,
 				"height": 500
 			},
@@ -54,6 +56,7 @@
 			"description_text": "A brief series of docudramas // In 1949 a pack of wolves assembles along the newly formed East German border // Encapsulating short but expository states of being // Their ears perk as the winds start to rise // Oct. 2018 - Jan. 2019", 
 			"image": {
 				"path": "/static/img/14-untitled-800x800.webp",
+				"alt_path": "/static/img/14-untitled-800x800.jpg",
 				"width": 800,
 				"height": 800
 			},
@@ -77,6 +80,7 @@
 			"description_text": "A Sokoban-style clone of Portal. Made using Stephen Lavelle's PuzzleScript.", 
 			"image": {
 				"path": "/static/img/portal-ban-800x800.webp",
+				"alt_path": "/static/img/portal-ban-800x800.jpg",
 				"width": 800,
 				"height": 800
 			},
@@ -100,6 +104,7 @@
 			"description_text": "//im trying to think// composed entirely from a singular news report //why is this so hard// about venezuela think of it what you will", 
 			"image": {
 				"path": "/static/img/llamada-800x800.webp",
+				"alt_path": "/static/img/llamada-800x800.jpg",
 				"width": 800,
 				"height": 800
 			},
@@ -123,6 +128,7 @@
 			"description_text": "production requires time and time brings discontentment. the view is splotchy but the picture turned out alright.", 
 			"image": {
 				"path": "/static/img/splotchy-800x800.webp",
+				"alt_path": "/static/img/splotchy-800x800.jpg",
 				"width": 800,
 				"height": 800
 			},
@@ -146,6 +152,7 @@
 			"description_text": "Regression, depression, a sense of deep repression", 
 			"image": {
 				"path": "/static/img/it-hurts-800x800.webp",
+				"alt_path": "/static/img/it-hurts-800x800.jpg",
 				"width": 800,
 				"height": 800
 			},
@@ -172,11 +179,7 @@
 			"description_text": "The first sonic collaboration within Bad Optics. Coming 2019-12-13.",
 			"image": {
 				"path": "/static/img/bad-optics-vol-1-800x800.webp",
-				"width": 800,
-				"height": 800
-			},
-			"sharing_image": {
-				"path": "/static/img/bad-optics-vol-1-800x800.webp",
+				"alt_path": "/static/img/bad-optics-vol-1-800x800.jpg",
 				"width": 800,
 				"height": 800
 			},

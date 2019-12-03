@@ -43,6 +43,13 @@ html.invert #noscriptMessage { color: #080808; }
 	visibility: visible;
 	transition: opacity 0.2s cubic-bezier(.8,0,.83,.67), visibility 0 linear;
 }
+
+/* PICTURE TO IMG CONVERSION FIX */
+picture > * {
+	width: inherit;
+	height: inherit;
+}
+
 /* ===========
 END WHOLE PAGE */
 
@@ -132,7 +139,7 @@ html.invert #infoHeader { color: #080808; background: #fff;}
 	position: relative;
 	height: 80px;
 
-	box-sizing: border-box;
+	/*box-sizing: border-box;*/
 	border: 4px solid #fff;
 	background: #080808;
 
@@ -504,7 +511,6 @@ html.invert .tile-content {
 }
 .tile-content-header-image {
 	width: 300px;
-	padding-right: 40px;
 	cursor: pointer;
 }
 #featuredTile.release-page .tile-content-header-image {
@@ -512,6 +518,7 @@ html.invert .tile-content {
 }
 
 .tile-content-text-section {
+	padding-left: 40px;
 	flex-grow: 1;
 }
 .tile-content-text-section > *:last-child {
@@ -764,6 +771,10 @@ END GENERIC CLASSES */
 	.tile-content-header-image {
 		width: 100%;
 		height: auto;
+		padding: 0;
+	}
+
+	.tile-content-text-section {
 		padding: 0;
 	}
 
