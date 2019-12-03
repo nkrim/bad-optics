@@ -4,8 +4,9 @@
 let tile_content_top_offset = 30;
 let tile_outer_height = 220;
 let image_container_bottom_margin = 4;
+let container_position_throttle = 200;
 
-function set_tile_content_container_positions() {
+function set_tile_content_container_positions_procedure() {
 	$('.tile-content-container').each(function() {
 		// Uninitialize tile
 		$(this).removeClass('initialized');
@@ -13,10 +14,11 @@ function set_tile_content_container_positions() {
 		$(this).css('height', '');
 		// Set tile-content-image-container height
 		let image_container = $(this).find('.tile-content-image-container');
+		$(image_container).css('height', '');
 		let image = $(image_container).children('img');
 		let image_ratio = parseFloat($(image).attr('image-ratio'));
 		let image_padding_right = parseFloat($(image).css('padding-right'));
-		let image_width = $(image_container).width() - image_padding_right;
+		let image_width = $(image).outerWidth() - image_padding_right;
 		let image_height = image_width/image_ratio + image_container_bottom_margin;
 		$(image_container).css('height', image_height+'px');
 		// Set tile-content top position
@@ -33,6 +35,14 @@ function set_tile_content_container_positions() {
 		// Set tile-content to initialized
 		$(this).addClass('initialized');
 	});
+	$('#featuredTile .tile-content-image-container').css('height', '');
+}
+let set_tile_content_container_positions_throttle = throttle(
+	set_tile_content_container_positions_procedure, 
+	container_position_throttle
+);
+function set_tile_content_container_positions() {
+	set_tile_content_container_positions_throttle();
 }
 set_tile_content_container_positions();
 
