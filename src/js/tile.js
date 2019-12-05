@@ -32,13 +32,11 @@ function set_tile_content_container_positions_procedure() {
 			let tile_content_outer_height = $(this).outerHeight(true);
 			tile.css('margin-bottom', tile_content_outer_height+'px');
 			let tile_content_height = $(this)[0].getBoundingClientRect().height;
-			console.log($(this)[0].getBoundingClientRect());
 			$(this).css('height', tile_content_height+'px');
 			// Set tile-content to initialized
 			$(this).addClass('initialized');
 		}).bind(this), 200);
 	});
-	console.log('---------');
 	$('#featuredTile .tile-content-image-container').css('height', '');
 }
 let set_tile_content_container_positions_debounce = throttle(
