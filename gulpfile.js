@@ -63,6 +63,7 @@ const releases = JSON.parse(fs.readFileSync(paths.pug.data));
 // s3 Metadata
 const s3meta = {'uploaded-via': 'gulp-s3-upload'};
 const s3cache = 'max-age=1,s-maxage=315360000';
+const s3cache_browser = 'max-age=86400,s-maxage=315360000';
 const cfdistro = 'E2HS6DFR9V8QEP';
 
 // Image quality
@@ -142,23 +143,15 @@ function upload() {
 			ACL: 'private',
 			maps:{
 				Metadata: () => s3meta,
-				CacheControl: () => s3cache,
+				CacheControl: (k) => {
+					if(/static\/img\//.exec(k)) {
+						return s3cache_browser
+					}
+					return s3cache;
+				}
 			},
 			onChange: (k) => {
 				changed_keynames.push('/'+k);
-			}
-		},{
-			maxRetries: 5,
-		}));
-}
-function upload_no_invalidate() {
-	return src(paths.out.base+'**/*')
-		.pipe(s3upload({
-			Bucket: 'badoptics.co',
-			ACL: 'private',
-			maps:{
-				Metadata: () => s3meta,
-				CacheControl: () => s3cache,
 			}
 		},{
 			maxRetries: 5,
@@ -211,7 +204,7 @@ exports.html = parallel(index, ...release_pages());
 exports.build = series(clean, parallel(exports.html, css, exports.js, exports.resources));
 // Exports - uploading
 exports.upload = series(upload, invalidate_changed);
-exports.upload_no_invalidate = upload_no_invalidate;
+exports.upload_no_invalidate = upload;
 exports.upload_ni = exports.upload_no_invalidate;
 // Exports - invalidations
 exports.invalidate_index = invalidate_index;
@@ -221,6 +214,6 @@ exports.invalidate_html = invalidate_html;
 exports.invalidate_all = invalidate_all;
 // Exports - combos
 exports.full = series(exports.build, exports.upload);
-exports.fresh = series(exports.build, upload_no_invalidate, invalidate_all);
+exports.fresh = series(exports.build, exports.upload_no_invalidate, invalidate_all);
 // Exports - default
 exports.default = exports.build;
