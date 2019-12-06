@@ -62,7 +62,7 @@ const releases = JSON.parse(fs.readFileSync(paths.pug.data));
 
 // s3 Metadata
 const s3meta = {'uploaded-via': 'gulp-s3-upload'};
-const s3cache = 'max-age=315360000';
+const s3cache = 'max-age=1,s-maxage=315360000';
 const cfdistro = 'E2HS6DFR9V8QEP';
 
 // Image quality
