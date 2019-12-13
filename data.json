@@ -175,8 +175,8 @@
 			"release_date": "2019-12-13",
 			"title": "Bad Optics Vol. 1",
 			"artist": "Various Artists",
-			"description_html": "<i>The first sonic collaboration within Bad Optics.</i><br><span class=\"text-mono\"><b>Coming 2019-12-13.</b></span>", 
-			"description_text": "The first sonic collaboration within Bad Optics. Coming 2019-12-13.",
+			"description_html": "After 12 months of painful labor, a babby is born.<br/>The first sonic collaboration within Bad Optics.", 
+			"description_text": "After 12 months of painful labor, a babby is born. The first sonic collaboration within Bad Optics.",
 			"image": {
 				"path": "/static/img/bad-optics-vol-1-800x800.webp",
 				"alt_path": "/static/img/bad-optics-vol-1-800x800.jpg",
@@ -185,8 +185,23 @@
 			},
 			"links": [
 				{
-					"service": "spotify presave",
-					"url": "https://show.co/TE6UweO"
+					"service": "spotify",
+					"url": "https://open.spotify.com/album/7AXcu0eSzB63wE5T15s7O1?si=Gzbnn1lhQE2DV_WcP_GQrg"
+				},
+				{
+					"service": "apple music",
+					"url": "https://music.apple.com/us/album/bad-optics-vol-1-ep/1489246167"
+				},
+				{
+					"service": "bandcamp",
+					"url": "https://badopticsco.bandcamp.com/"
+				},{
+					"service": "soundcloud",
+					"url": "https://soundcloud.com/badopticsco/sets/vol-1"
+				},
+				{
+					"service": "youtube",
+					"url": "https://www.youtube.com/channel/UCEtdQ6eJk4BKblopq8lZ-wQ/videos"
 				}
 			]
 		}
