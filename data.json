@@ -187,21 +187,18 @@
 				{
 					"service": "spotify",
 					"url": "https://open.spotify.com/album/7AXcu0eSzB63wE5T15s7O1?si=Gzbnn1lhQE2DV_WcP_GQrg"
-				},
-				{
+				}, {
 					"service": "apple music",
 					"url": "https://music.apple.com/us/album/bad-optics-vol-1-ep/1489246167"
-				},
-				{
+				}, {
 					"service": "bandcamp",
 					"url": "https://badopticsco.bandcamp.com/"
-				},{
+				}, {
 					"service": "soundcloud",
 					"url": "https://soundcloud.com/badopticsco/sets/vol-1"
-				},
-				{
-					"service": "youtube",
-					"url": "https://www.youtube.com/channel/UCEtdQ6eJk4BKblopq8lZ-wQ/videos"
+				}, {
+					"service": "amazon music",
+					"url": "https://music.amazon.com/albums/B081ZK3YTX"
 				}
 			]
 		}
