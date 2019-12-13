@@ -9,11 +9,8 @@ meta(
 	content=description_text)/
 meta(
 	name="twitter:image"
-	content=`${urlbase}${image_meta.path}`)/
+	content=`${urlbase}${image_meta.alt_path}`)/
 //- Twitter Summary card images must be at least 120x120px -->
-meta(
-	name="twitter:image"
-	content=`${urlbase}${image.path}`)/
 //-<meta name="twitter:creator" content="@author_handle">
 //- Open Graph data
 meta(
@@ -27,10 +24,10 @@ meta(
 	content=`${urlbase}/${number}.html`)/
 meta(
 	property="og:image"
-	content=`${urlbase}${image_meta.path}`)/
+	content=`${urlbase}${image_meta.alt_path}`)/
 meta(
 	property="og:image:width"
-	content=image.width)/
+	content=image_meta.width)/
 meta(
 	property="og:image:height"
-	content=image.height)/
+	content=image_meta.height)/
