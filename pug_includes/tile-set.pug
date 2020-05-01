@@ -34,6 +34,9 @@
 					=r.title
 				h2.tile-content-h2.text-medium
 					=r.artist
+				if r.sub_artist
+					h3.tile-content-h3.text-regular
+						=r.sub_artist
 				p.text-regular.unstyle-link
 					!=r.description_html
 				p.text-mono.tile-content-link-list

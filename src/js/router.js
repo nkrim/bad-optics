@@ -1,7 +1,7 @@
 // ROUTER
 // ==================================================
 // Data to swap for metadata based on the route of the album
-const meta_swaps = {
+var meta_swaps = {
 	'home': {
 		'title': 'Bad Optics Collective',
 		'description': 'Bad Optics is a sonic, visual, and interactive art collective formed by friends who met in Chicago.',
@@ -11,6 +11,9 @@ const meta_swaps = {
 		'image-height': 460,
 	}
 };
+// Set up about
+meta_swaps['about'] = Object.assign({}, meta_swaps['home']);
+meta_swaps['about']['title'] = 'About Us';
 
 // Meta tag swapping
 function swap_meta_tags(release) {
@@ -173,6 +176,9 @@ function route_change(route_path) {
 		release_routing = true;
 		swap_meta_tags(route_word);
 	}
+	else if(route_word === 'about') {
+		swap_meta_tags('about');
+	}
 	else {
 		swap_meta_tags(); // Use 'home' meta
 		
@@ -192,6 +198,9 @@ function route_change(route_path) {
 	let release_tiles = $(tiles).filter('.release-tile');
 	let about_tiles = $(tiles).filter('.about-tile');
 	let matching_tiles = $(tiles).filter(tile_class);
+	if(route_word !== 'about')
+		matching_tiles = matching_tiles.not()
+
 	if(release_routing) {
 		close_empty_message();
 	}
@@ -214,10 +223,10 @@ function route_change(route_path) {
 			$(tiles).hide();
 		}
 		else if(route_word === '') {
-			$(about_tiles).hide();
 			if($(release_tiles).length > 0) {
 				$(release_tiles).show();
 			}
+			$(about_tiles).hide();
 		}
 		else {
 			$(tiles).not(tile_class).hide();
@@ -245,6 +254,14 @@ function route_change(route_path) {
 		else {
 			// Set the featured tile
 			set_featured_header(route_word === '' ? release_tiles : matching_tiles);
+		}
+
+		// Set about-specific tile-set formatting
+		if(route_word === 'about') {
+			$('.tile-set').addClass('about-set');
+		}
+		else {
+			$('.tile-set').removeClass('about-set');	
 		}
 
 		set_tile_content_container_positions();

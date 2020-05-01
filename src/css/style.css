@@ -414,6 +414,11 @@ html.invert .empty-message div { border-color: #080808; }
 	justify-content: flex-start;
 
 }
+.tile-set.about-set {
+	justify-content: center;
+	max-width: 660px;
+	margin: auto;
+}
 
 .tile {
 	width: 160px;
@@ -429,6 +434,10 @@ html.invert .empty-message div { border-color: #080808; }
 html.invert .tile { background-color: #ccc; }
 .tile:not(.show) {
 	margin-bottom: 0 !important;
+}
+
+.about-tile .tile-content-header-image {
+	width: 200px;
 }
 
 /* TILE TITLE TEXT
@@ -525,7 +534,7 @@ html.invert .tile-content {
 	margin-bottom: 0;
 }
 
-.tile-content-h1, .tile-content-h2 {
+.tile-content-h1, .tile-content-h2, .tile-content-h3 {
 	font-style: italic;
 	margin: 0;
 	font-weight: 400;

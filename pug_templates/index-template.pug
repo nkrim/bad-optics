@@ -9,6 +9,9 @@ html
 		include ../pug_includes/head_base.html
 		include ../pug_includes/head_social_meta_index.html
 	body
+		//- TEMPORARY STYLE REMOVE LATER
+		style
+			=".tile.about-tile {background-color: #080808;}"
 		include ../pug_includes/noscript.html
 		include ../pug_includes/header.html
 		include ../pug_includes/main_nav.html
@@ -25,4 +28,4 @@ html
 				- let r = releases[i]
 				- let image_meta = r.sharing_image || r.image
 				|
-				|meta_swaps['#{r.number}'] = {'title': '#{r.title} - #{r.artist}','description': "#{r.description_text}",'url': 'http://badoptics.co/#{r.number}.html','image-url': 'http://badoptics.co#{image_meta.alt_path}','image-width': #{image_meta.width},'image-height': #{image_meta.height}};
+				|meta_swaps["#{r.number}"] = {"title": "#{r.title} - #{r.artist}","description": "#{r.description_text}","url": "http://badoptics.co/#{r.number}.html","image-url": "http://badoptics.co#{image_meta.alt_path}","image-width": #{image_meta.width},"image-height": #{image_meta.height}};
