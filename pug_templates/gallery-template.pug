@@ -1,0 +1,27 @@
+doctype html
+html
+	head
+		title #{title}
+		meta(
+			name='description'
+			content=description
+		)
+		include ../pug_includes/head_base.html
+		link(
+			rel='stylesheet'
+			href='/static/css/gallery-style.css'
+		)
+		//- include ../pug_includes/head_social_meta_release.pug
+	body
+		include ../pug_includes/noscript.html
+		include ../pug_includes/header_release.html
+
+		#gallery
+			h1#galleryTitle.text-header #{title}
+			h3#galleryDescription.text-header
+				!=description_html
+			include ../pug_includes/gallery_sections.pug
+
+		include ../pug_includes/footer.html
+		script(src='/static/js/gallery.min.js')
+		include ../pug_includes/scripts.html

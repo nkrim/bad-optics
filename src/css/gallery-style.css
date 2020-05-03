@@ -1,5 +1,25 @@
-/* WHOLE PAGE 
-============= */
+#gallery {
+	margin: auto;
+	text-align: center;
+}
+
+#galleryTitle, #galleryDescription, .gallery-section-title {
+	color: #fff;
+}
+
+.gallery-section-canvas {
+	position: relative;
+	margin: auto;
+}
+.gallery-image {
+	position: absolute;
+}
+
+
+
+
+/* WHOLE PAGE (SWIPED FROM style.css)
+===================================== */
 html {
 	background-color: #080808;
 	/*background-image: url('backroo.jpg');

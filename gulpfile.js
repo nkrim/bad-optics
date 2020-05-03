@@ -29,19 +29,27 @@ const paths = {
 		data: 'data.json',
 		index: 'pug_templates/index-template.pug',
 		release: 'pug_templates/release-template.pug',
+		gallery: 'pug_templates/gallery-template.pug',
 	},
 	in: {
 		css: 'src/css/*.css',
 		js: ['src/js/*.js', '!src/js/index_exclude/*.js'],
-		release_js: 
-			[
+		alt_js: {
+			'release': [
 				'index_exclude/loaded_release.js',
 				'index_exclude/router_override.js',
 				'invert.js',
 				'scroll.js',
-			].map(p => 'src/js/'+p),
+			],
+			'gallery': [
+				'index_exclude/loaded_gallery.js',
+				'index_exclude/router_override.js',
+				'invert.js',
+				'scroll.js',
+			],
+		},
 		resources: 'resources/**/*',
-		resource_images: 'resources/static/img/*.{jpg,png}',
+		resource_images: 'resources/static/img/**/*.{jpg,png}',
 	},
 	out: {
 		base: 'build/',
@@ -58,12 +66,12 @@ const pug_config = {
 };
 
 // Pre-parse json
-const releases = JSON.parse(fs.readFileSync(paths.pug.data));
+const data = JSON.parse(fs.readFileSync(paths.pug.data));
 
 // s3 Metadata
 const s3meta = {'uploaded-via': 'gulp-s3-upload'};
-const s3cache = 'max-age=1,s-maxage=315360000';
-const s3cache_browser = 'max-age=86400,s-maxage=315360000';
+const s3cache = 'max-age=60,s-maxage=31536000';
+const s3cache_browser = 'max-age=315360000,s-maxage=31536000';
 const cfdistro = 'E2HS6DFR9V8QEP';
 
 // Image quality
@@ -76,17 +84,28 @@ function index() {
   	return src(paths.pug.index)
   		.pipe(rename('index.pug'))
     	.pipe(pug(
-    		Object.assign({'locals': releases}, pug_config)
+    		Object.assign({'locals': data}, pug_config)
     	))
     	.pipe(dest(paths.out.html));
 }
 function release_pages() {
-	return releases.releases.map(r => (
+	return data.releases.map(r => (
 		() => src(paths.pug.release)
-			.pipe(rename(`${r.number}.html`))
 			.pipe(pug(
 	    		Object.assign({locals: r}, pug_config)
 	    	))
+	    	.pipe(rename(`${r.number}.html`))
+			.pipe(dest(paths.out.html))
+		)
+	);
+}
+function gallery_pages() {
+	return data.galleries.map(g => (
+		() => src(paths.pug.gallery)
+			.pipe(pug(
+				Object.assign({locals: g}, pug_config)
+			))
+			.pipe(rename(`visual/${g.title.replace(/\s+/g, '-')}.html`))
 			.pipe(dest(paths.out.html))
 		)
 	);
@@ -112,14 +131,18 @@ function index_js() {
 	    .pipe(sourcemaps.write("."))
 	    .pipe(dest(paths.out.js));
 }
-function release_js() {
-	return src(paths.in.release_js)
-		.pipe(sourcemaps.init())
-	    .pipe(concat('release.min.js'))
-	    .pipe(babel())
-	    .pipe(uglify())
-	    .pipe(sourcemaps.write("."))
-	    .pipe(dest(paths.out.js));
+function alt_js() {
+	return Object.entries(paths.in.alt_js).map(([name, ps]) => {
+		ps = ps.map(p => 'src/js/'+p);
+		return () => src(ps)
+			.pipe(sourcemaps.init())
+		    .pipe(concat(name+'.min.js'))
+		    .pipe(babel())
+		    .pipe(uglify())
+		    .pipe(sourcemaps.write("."))
+		    .pipe(dest(paths.out.js))
+		}
+	);
 }
 
 // Resources
@@ -197,9 +220,9 @@ function clean() {
 // Exports - standard
 exports.clean = clean
 exports.resources = series(webp_images, move_resources)
-exports.js = parallel(index_js, release_js);
+exports.js = parallel(index_js, ...alt_js());
 exports.css = css;
-exports.html = parallel(index, ...release_pages());
+exports.html = parallel(index, ...release_pages(), ...gallery_pages());
 // Exports - build combo
 exports.build = series(clean, parallel(exports.html, css, exports.js, exports.resources));
 // Exports - uploading

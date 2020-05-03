@@ -7,11 +7,12 @@ html
 			content='Bad Optics is a sonic, visual, and interactive art collective formed by friends who met in Chicago.'
 		)
 		include ../pug_includes/head_base.html
+		link(
+			rel='stylesheet'
+			href='/static/css/style.css'
+		)
 		include ../pug_includes/head_social_meta_index.html
 	body
-		//- TEMPORARY STYLE REMOVE LATER
-		style
-			=".tile.about-tile {background-color: #080808;}"
 		include ../pug_includes/noscript.html
 		include ../pug_includes/header.html
 		include ../pug_includes/main_nav.html
