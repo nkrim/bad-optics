@@ -2,6 +2,7 @@
 const { src, dest, series, parallel, lastRun } = require('gulp');
 const del = require('del');
 const log = require('fancy-log');
+const newer = require('gulp-newer');
 // html
 const fs = require('fs');
 const pug = require('gulp-pug');
@@ -42,6 +43,9 @@ const paths = {
 				'scroll.js',
 			],
 			'gallery': [
+				//'_utils.js',
+				'index_exclude/gallery_viewer.js',
+				'index_exclude/gallery_resize.js',
 				'index_exclude/loaded_gallery.js',
 				'index_exclude/router_override.js',
 				'invert.js',
@@ -56,7 +60,7 @@ const paths = {
 		html: 'build/',
 		css: 'build/static/css/',
 		js: 'build/static/js/',
-		webp: 'resources/static/img/',
+		webp: 'build/static/img/',
 	}
 }
 
@@ -81,39 +85,43 @@ const image_quality = 85;
 //=======================================================
 // HTML - Pug
 function index() {
+	let filename = 'index.html';
   	return src(paths.pug.index)
-  		.pipe(rename('index.pug'))
     	.pipe(pug(
     		Object.assign({'locals': data}, pug_config)
     	))
+    	.pipe(rename(filename))
     	.pipe(dest(paths.out.html));
 }
 function release_pages() {
-	return data.releases.map(r => (
-		() => src(paths.pug.release)
+	return data.releases.map(r => {
+		let filename = `${r.number}.html`;
+		return () => src(paths.pug.release)
 			.pipe(pug(
 	    		Object.assign({locals: r}, pug_config)
 	    	))
-	    	.pipe(rename(`${r.number}.html`))
+	    	.pipe(rename(filename))
 			.pipe(dest(paths.out.html))
-		)
+		}
 	);
 }
 function gallery_pages() {
-	return data.galleries.map(g => (
-		() => src(paths.pug.gallery)
+	return data.galleries.map(g => {
+		let filename = `visual/${g.title.replace(/\s+/g, '-')}.html`;
+		return () => src(paths.pug.gallery)
 			.pipe(pug(
 				Object.assign({locals: g}, pug_config)
 			))
-			.pipe(rename(`visual/${g.title.replace(/\s+/g, '-')}.html`))
+			.pipe(rename(filename))
 			.pipe(dest(paths.out.html))
-		)
+		}
 	);
 }
 
 // CSS
 function css() {
   	return src(paths.in.css)
+  		.pipe(newer(paths.out.css))
 		.pipe(sourcemaps.init())
 		.pipe(postcss([ autoprefixer() ]))
 		.pipe(minifyCSS())
@@ -123,9 +131,11 @@ function css() {
 
 // JS - babel
 function index_js() {
+	const filename = 'index.min.js';
   	return src(paths.in.js)
+  		.pipe(newer(paths.out.js+filename))
   		.pipe(sourcemaps.init())
-	    .pipe(concat('index.min.js'))
+	    .pipe(concat(filename))
 	    .pipe(babel())
 	    .pipe(uglify())
 	    .pipe(sourcemaps.write("."))
@@ -134,9 +144,11 @@ function index_js() {
 function alt_js() {
 	return Object.entries(paths.in.alt_js).map(([name, ps]) => {
 		ps = ps.map(p => 'src/js/'+p);
+		const filename = name+'.min.js';
 		return () => src(ps)
+			.pipe(newer(paths.out.js+filename))
 			.pipe(sourcemaps.init())
-		    .pipe(concat(name+'.min.js'))
+		    .pipe(concat(filename))
 		    .pipe(babel())
 		    .pipe(uglify())
 		    .pipe(sourcemaps.write("."))
@@ -147,11 +159,16 @@ function alt_js() {
 
 // Resources
 function move_resources() {
-	return src([paths.in.resources])
+	return src(paths.in.resources)
+		.pipe(newer(paths.out.base))
 		.pipe(dest(paths.out.base));
 }
 function webp_images() {
 	return src(paths.in.resource_images)
+		.pipe(newer({
+			dest: paths.out.webp,
+			ext: '.webp'
+		}))
 		.pipe(cwebp({q: image_quality}))
 		.pipe(dest(paths.out.webp));
 }
@@ -224,7 +241,9 @@ exports.js = parallel(index_js, ...alt_js());
 exports.css = css;
 exports.html = parallel(index, ...release_pages(), ...gallery_pages());
 // Exports - build combo
-exports.build = series(clean, parallel(exports.html, css, exports.js, exports.resources));
+exports.build_inplace = parallel(exports.html, css, exports.js, exports.resources);
+exports.build = series(clean, exports.build_inplace);
+exports.nohtml = parallel(css, exports.js, exports.resources);
 // Exports - uploading
 exports.upload = series(upload, invalidate_changed);
 exports.upload_no_invalidate = upload;
@@ -239,4 +258,4 @@ exports.invalidate_all = invalidate_all;
 exports.full = series(exports.build, exports.upload);
 exports.fresh = series(exports.build, exports.upload_no_invalidate, invalidate_all);
 // Exports - default
-exports.default = exports.build;
+exports.default = exports.build_inplace;

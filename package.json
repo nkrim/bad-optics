@@ -3394,6 +3394,7 @@
     "gulp-csso": "^4.0.1",
     "gulp-cwebp": "^3.0.0",
     "gulp-if": "^3.0.0",
+    "gulp-newer": "^1.4.0",
     "gulp-postcss": "^8.0.0",
     "gulp-pug": "^4.0.1",
     "gulp-rename": "^1.4.0",

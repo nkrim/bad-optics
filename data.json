@@ -369,23 +369,6 @@
 					"url": "https://www.amazon.com/Movin-Me-Up-Something-Soft/dp/B0845VCWKY/ref=sr_1_1?keywords=something+soft&qid=1580623659&s=dmusic&sr=1-1"
 				}
 			]
-		},
-		{
-			"number": "010",
-			"release_type": "visual",
-			"release_date": "2020-??-??",
-			"title": "something soft exhibit",
-			"artist": "something soft",
-			"description_html": "A cummy wummy exhibition", 
-			"description_text": "A cummy wummy exhibition",
-			"image": {
-				"path": "/static/img/i.webp",
-				"alt_path": "/static/img/i.png",
-				"width": 800,
-				"height": 800
-			},
-			"links": [
-			]
 		}
 	],
 	"galleries": [
@@ -399,12 +382,14 @@
 			"sections": [
 				{
 					"title": "first impressions",
-					"width": 800,
+					"width": 600,
 					"height": 650,
 					"images": [
 						{
 							"name": "first",
 							"file": "cvik-800x800",
+							"o_width": 800,
+							"o_height": 800,
 							"width": 400,
 							"height": 400,
 							"x": 0,
@@ -413,9 +398,11 @@
 						{
 							"name": "second",
 							"file": "bad-optics-borderless",
+							"o_width": 612,
+							"o_height": 432,
 							"width": 306,
 							"height": 216,
-							"x": 457,
+							"x": 294,
 							"y": 384
 						}
 					]
@@ -428,6 +415,8 @@
 						{
 							"name": "beauty",
 							"file": "matt-800x800",
+							"o_width": 800,
+							"o_height": 800,
 							"width": 300,
 							"height": 300,
 							"x": 50,
@@ -436,6 +425,8 @@
 						{
 							"name": "and",
 							"file": "i",
+							"o_width": 800,
+							"o_height": 800,
 							"width": 300,
 							"height": 300,
 							"x": 250,
@@ -444,10 +435,12 @@
 						{
 							"name": "beast",
 							"file": "noah-800x800",
+							"o_width": 800,
+							"o_height": 800,
 							"width": 300,
 							"height": 300,
 							"x": 450,
-							"y": 100
+							"y": 500
 						}
 					]
 				}

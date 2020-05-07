@@ -1,15 +1,18 @@
 -let path = f => `${image_dir}${f}.${image_ext}`
 -let alt_path = f => `${image_dir}${f}.${image_alt_ext}`
+-let i = 0
 each s in sections
 	.gallery-section
 		h2.gallery-section-title
 			=s.title
 		.gallery-section-canvas(
 			style=`width: ${s.width}px; height: ${s.height}px;`
+			canvas-width=s.width
 		)
 			each p in s.images
 				picture(
 					class="gallery-image"
+					gallery-index=i++
 					image-ratio=1.0*p.width/p.height
 					style=`width: ${p.width}px; height: ${p.height}px; left: ${p.x}px; top: ${p.y}px;`
 				)
@@ -24,4 +27,5 @@ each s in sections
 					img(
 						src=alt_path(p.file)
 						alt=p.name
+						tabindex=i
 					)
