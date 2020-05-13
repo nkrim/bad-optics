@@ -589,11 +589,6 @@
       "resolved": "https://registry.npmjs.org/copy-props/-/copy-props-2.0.4.tgz",
       "version": "2.0.4"
     },
-    "core-js": {
-      "integrity": "sha512-I39t74+4t+zau64EN1fE5v2W31Adtc/REhzWN+gWRRXg6WH5qAsZm62DHpQ1+Yhe4047T55jvzz7MUqF/dBBlA==",
-      "resolved": "https://registry.npmjs.org/core-js/-/core-js-2.6.10.tgz",
-      "version": "2.6.10"
-    },
     "core-util-is": {
       "integrity": "sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=",
       "resolved": "https://registry.npmjs.org/core-util-is/-/core-util-is-1.0.2.tgz",
@@ -3394,6 +3389,8 @@
     "gulp-csso": "^4.0.1",
     "gulp-cwebp": "^3.0.0",
     "gulp-if": "^3.0.0",
+    "gulp-image-resize": "^0.13.1",
+    "gulp-json-editor": "^2.5.4",
     "gulp-newer": "^1.4.0",
     "gulp-postcss": "^8.0.0",
     "gulp-pug": "^4.0.1",

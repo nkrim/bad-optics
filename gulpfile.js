@@ -18,16 +18,39 @@ const postcss = require('gulp-postcss');
 const minifyCSS = require('gulp-csso');
 // resources
 const cwebp = require('gulp-cwebp');
+// galleryprep
+const imageResize = require('gulp-image-resize');
+const jeditor = require('gulp-json-editor');
 // upload
 const s3upload = require('gulp-s3-upload')({useIAM: true});
 // invalidate
 const cloudfront = require('gulp-cloudfront-invalidate');
 
+// UTILITY
+// ---------------
+function flat(arr, depth=1) {
+	if(depth <= 0)
+		return arr;
+	let out_arr = [];
+	for(let i=0; i<arr.length; i++) {
+		if(!Array.isArray(arr[i]))
+			out_arr.push(arr[i]);
+		else {
+			let res = flat(arr[i], depth-1);
+			for(let j=0; j<res.length; j++)
+				out_arr.push(res[j]);
+		}
+	}
+	return out_arr;
+}
+
 
 // Paths
+// ---------------
 const paths = {
 	pug: {
-		data: 'data.json',
+		r_data: 'data-releases.json',
+		g_data: 'data-galleries.json',
 		index: 'pug_templates/index-template.pug',
 		release: 'pug_templates/release-template.pug',
 		gallery: 'pug_templates/gallery-template.pug',
@@ -54,6 +77,7 @@ const paths = {
 		},
 		resources: 'resources/**/*',
 		resource_images: 'resources/static/img/**/*.{jpg,png}',
+		gallery_images_raw: 'raw_gallery_images/',
 	},
 	out: {
 		base: 'build/',
@@ -61,8 +85,13 @@ const paths = {
 		css: 'build/static/css/',
 		js: 'build/static/js/',
 		webp: 'build/static/img/',
+		gallery_prep: 'resources/static/img/g/'
 	}
 }
+paths.clean = flat([
+	paths.out.base+'*',
+	paths.out.gallery_prep
+], Infinity);
 
 // Pug config
 const pug_config = {
@@ -70,7 +99,8 @@ const pug_config = {
 };
 
 // Pre-parse json
-const data = JSON.parse(fs.readFileSync(paths.pug.data));
+let r_data = JSON.parse(fs.readFileSync(paths.pug.r_data));
+let g_data = JSON.parse(fs.readFileSync(paths.pug.g_data));
 
 // s3 Metadata
 const s3meta = {'uploaded-via': 'gulp-s3-upload'};
@@ -81,20 +111,19 @@ const cfdistro = 'E2HS6DFR9V8QEP';
 // Image quality
 const image_quality = 85;
 
-
 //=======================================================
 // HTML - Pug
 function index() {
 	let filename = 'index.html';
   	return src(paths.pug.index)
     	.pipe(pug(
-    		Object.assign({'locals': data}, pug_config)
+    		Object.assign({'locals': r_data}, pug_config)
     	))
     	.pipe(rename(filename))
     	.pipe(dest(paths.out.html));
 }
 function release_pages() {
-	return data.releases.map(r => {
+	return r_data.releases.map(r => {
 		let filename = `${r.number}.html`;
 		return () => src(paths.pug.release)
 			.pipe(pug(
@@ -106,7 +135,7 @@ function release_pages() {
 	);
 }
 function gallery_pages() {
-	return data.galleries.map(g => {
+	return g_data.galleries.map(g => {
 		let filename = `visual/${g.title.replace(/\s+/g, '-')}.html`;
 		return () => src(paths.pug.gallery)
 			.pipe(pug(
@@ -173,6 +202,67 @@ function webp_images() {
 		.pipe(dest(paths.out.webp));
 }
 
+// Gallery Prep
+const overwriteMerge = (destinationArray, sourceArray, options) => sourceArray
+function data_gallery_viewer_scale_calc() {
+	const epsilon = 0.0000001;
+	g_data.galleries.map(g => {
+		g.sections.map(s => {
+			s.images.map(p => {
+				p.viewer_width = Math.ceil(p.raw_width*(g.viewer_image_scaling/100.0) - epsilon);
+				p.viewer_height = Math.ceil(p.raw_height*(g.viewer_image_scaling/100.0) - epsilon);
+				p.preview_width = Math.ceil(p.raw_width*(g.preview_image_scaling/100.0) - epsilon);
+				p.preview_height = Math.ceil(p.raw_height*(g.preview_image_scaling/100.0) - epsilon);
+				return p;
+			})
+			return s;
+		});
+		return g;
+	});
+	return src(paths.pug.g_data)
+		.pipe(jeditor({
+			galleries: g_data.galleries,
+		},
+		{},
+		{
+			arrayMerge: overwriteMerge,
+		}))
+		.pipe(dest('./'));
+}
+function gallery_image_prep() {
+	return flat(g_data.galleries.map(g => {
+		return g.sections.map(s => {
+			return s.images.map(p => {
+				let source_file = `${paths.in.gallery_images_raw}${g.gallery_dir}${s.section_dir}${p.file}.${g.image_alt_ext}`;
+				let output_file_no_suffix = `${g.gallery_dir}${s.section_dir}${p.file}`;
+				return [
+					() => {
+						let filename = `${output_file_no_suffix}-${p.viewer_width}x${p.viewer_height}.${g.image_alt_ext}`;
+						return src(source_file)
+							.pipe(newer(paths.out.gallery_prep+filename))
+							.pipe(imageResize({
+								width: p.viewer_width,
+								height: p.viewer_height,
+							}))
+							.pipe(rename(filename))
+							.pipe(dest(paths.out.gallery_prep))
+						},
+					() => {
+						let filename = `${output_file_no_suffix}-preview.${g.image_alt_ext}`;
+						return src(source_file)
+							.pipe(newer(paths.out.gallery_prep+filename))
+							.pipe(imageResize({
+								percentage: 25
+							}))
+							.pipe(rename(filename))
+							.pipe(dest(paths.out.gallery_prep))
+						},
+				]
+			});
+		});	
+	}), Infinity);
+}
+
 // Upload
 let changed_keynames = null;
 function upload() {
@@ -231,18 +321,19 @@ function invalidate_all() {
 
 // Cleanup
 function clean() {
-	return del(paths.out.base+'*');
+	return del(paths.clean);
 }
 
 // Exports - standard
-exports.clean = clean
-exports.resources = series(webp_images, move_resources)
+exports.clean = clean;
+exports.galleryprep = series(data_gallery_viewer_scale_calc, parallel(...gallery_image_prep()));
+exports.resources = series(webp_images, move_resources);
 exports.js = parallel(index_js, ...alt_js());
 exports.css = css;
 exports.html = parallel(index, ...release_pages(), ...gallery_pages());
 // Exports - build combo
 exports.build_inplace = parallel(exports.html, css, exports.js, exports.resources);
-exports.build = series(clean, exports.build_inplace);
+exports.build = series(clean, exports.galleryprep, exports.build_inplace);
 exports.nohtml = parallel(css, exports.js, exports.resources);
 // Exports - uploading
 exports.upload = series(upload, invalidate_changed);

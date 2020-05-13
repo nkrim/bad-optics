@@ -64,6 +64,8 @@ function set_image(i) {
 	$(p).removeClass('prep-image');
 	// Set cur_index
 	cur_index = i;
+	// Set #viewerText
+	$('#viewerText').text(`${$(p).attr('data-section')} - ${$(p).attr('data-name')}`);
 	// Load 2 after
 	let max_j = Math.min(cur_index+2, viewer_image_list.children().length-1);
 	for(let j=cur_index+1; j<=max_j; j++) {
