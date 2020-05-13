@@ -40,9 +40,9 @@
 			"title_html": "Behold<br>The Strike",
 			"section_dir": "behold-the-strike/",
 			"layout": "row-right",
-			"width": 800,
+			"width": 850,
 			"image_width": "auto",
-			"image_height": "120px",
+			"image_height": "130px",
 			"images": [{
 				"name": "A",
 				"file": "A",
@@ -103,9 +103,9 @@
 			"title_html": "Saturated",
 			"section_dir": "saturated/",
 			"layout": "row-right",
-			"width": 800,
+			"width": 850,
 			"image_width": "auto",
-			"image_height": "120px",
+			"image_height": "140px",
 			"images": [{
 				"name": "A",
 				"file": "A",
