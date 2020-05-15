@@ -9,6 +9,7 @@
 // REFERENCES
 // ----------
 const gallery_images = $('.gallery-image');
+const gallery_sections = $('.gallery-section')
 const viewer_image_list = $('#viewerImageList');
 const photo_viewer  = $('#photoViewer');
 
@@ -27,7 +28,7 @@ function close_viewer() {
 	unset_image();
 }
 
-function load_image(p) {
+function load_image(p, is_gallery_image=false) {
 	if($(p).hasClass('viewer-image-loaded'))
 		return false;
 	$(p).addClass('viewer-image-loaded');
@@ -40,6 +41,8 @@ function load_image(p) {
 	let i3 = document.createElement('img');
 	i3.src = $(p).attr('alt-data-path');
 	i3.alt = $(p).attr('data-name');
+	if(is_gallery_image)
+		i3.tabindex = parseInt($(p).attr('gallery-index'))+1;
 	p.appendChild(s1);
 	p.appendChild(s2);
 	p.appendChild(i3);
@@ -104,6 +107,28 @@ function prev_image() {
 	set_image(i);
 }
 
+// LAZY LOADING GALLERY
+// --------------------
+/*const threshold = 300;
+const section_loaded_class = 'gallery-section-loaded';
+function lazy_load_gallery() {
+	console.log(gallery_sections.length);
+	const window_height = window.innerHeight;
+	gallery_sections.each((_, section) => {
+		if($(section).hasClass(section_loaded_class))
+			return;
+		console.log(section)
+		if(section.getBoundingClientRect().top - window_height <= threshold) {
+			$(section).addClass(section_loaded_class);
+			console.log(`loading: ${$(section).find('gallery-section-title').text()}`)
+			$(section).find('picture').each((_, p) => {
+				load_image(p, true);
+			});
+		}
+	});
+}
+$(window).scroll(lazy_load_gallery);*/
+
 // EVENT HANDLERS
 // --------------
 function expand_image_handler(i) {
@@ -123,7 +148,7 @@ function apply_image_open_handlers() {
 	gallery_images.each(function(i) {
 		let index = parseInt($(this).attr('gallery-index'));
 		let f = expand_image_handler(index);
-		$(this).children('img').click(f);
+		$(this).click(f);
 	});
 }
 
