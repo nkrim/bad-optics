@@ -1,6 +1,7 @@
 {
 	"galleries": [{
-		"title": "something soft exhibit 010",
+		"title": "Machinations 19-20",
+		"url": "machinations",
 		"description": "ppee pee poo poo exhibit",
 		"description_html": "ppee pee poo poo<br>exhibit",
 		"gallery_dir": "010/",
@@ -36,9 +37,9 @@
 				"preview_height": 451
 			}]
 		}, {
-			"title": "Behold The Strike",
-			"title_html": "Behold<br>The Strike",
-			"section_dir": "behold-the-strike/",
+			"title": "Raffish",
+			"title_html": "Raffish",
+			"section_dir": "raffish/",
 			"layout": "row-right",
 			"width": 850,
 			"image_width": "auto",
@@ -97,6 +98,60 @@
 				"viewer_height": 792,
 				"preview_width": 564,
 				"preview_height": 396
+			}]
+		}, {
+			"title": "Virga",
+			"title_html": "Virga",
+			"section_dir": "virga/",
+			"layout": "row-top",
+			"width": 800,
+			"image_width": "auto",
+			"image_height": "160px",
+			"images": [{
+				"name": "A",
+				"file": "A",
+				"raw_width": 2513,
+				"raw_height": 1909,
+				"viewer_width": 1257,
+				"viewer_height": 955,
+				"preview_width": 629,
+				"preview_height": 478
+			}, {
+				"name": "B",
+				"file": "B",
+				"raw_width": 2593,
+				"raw_height": 1959,
+				"viewer_width": 1297,
+				"viewer_height": 980,
+				"preview_width": 649,
+				"preview_height": 490
+			}, {
+				"name": "C",
+				"file": "C",
+				"raw_width": 2525,
+				"raw_height": 1903,
+				"viewer_width": 1263,
+				"viewer_height": 952,
+				"preview_width": 632,
+				"preview_height": 476
+			}, {
+				"name": "D",
+				"file": "D",
+				"raw_width": 2506,
+				"raw_height": 1829,
+				"viewer_width": 1253,
+				"viewer_height": 915,
+				"preview_width": 627,
+				"preview_height": 458
+			}, {
+				"name": "E",
+				"file": "E",
+				"raw_width": 2644,
+				"raw_height": 1988,
+				"viewer_width": 1322,
+				"viewer_height": 994,
+				"preview_width": 661,
+				"preview_height": 497
 			}]
 		}, {
 			"title": "Saturated",
@@ -160,60 +215,6 @@
 				"viewer_height": 909,
 				"preview_width": 620,
 				"preview_height": 455
-			}]
-		}, {
-			"title": "Virga",
-			"title_html": "Virga",
-			"section_dir": "virga/",
-			"layout": "row-top",
-			"width": 800,
-			"image_width": "auto",
-			"image_height": "160px",
-			"images": [{
-				"name": "A",
-				"file": "A",
-				"raw_width": 2513,
-				"raw_height": 1909,
-				"viewer_width": 1257,
-				"viewer_height": 955,
-				"preview_width": 629,
-				"preview_height": 478
-			}, {
-				"name": "B",
-				"file": "B",
-				"raw_width": 2593,
-				"raw_height": 1959,
-				"viewer_width": 1297,
-				"viewer_height": 980,
-				"preview_width": 649,
-				"preview_height": 490
-			}, {
-				"name": "C",
-				"file": "C",
-				"raw_width": 2525,
-				"raw_height": 1903,
-				"viewer_width": 1263,
-				"viewer_height": 952,
-				"preview_width": 632,
-				"preview_height": 476
-			}, {
-				"name": "D",
-				"file": "D",
-				"raw_width": 2506,
-				"raw_height": 1829,
-				"viewer_width": 1253,
-				"viewer_height": 915,
-				"preview_width": 627,
-				"preview_height": 458
-			}, {
-				"name": "E",
-				"file": "E",
-				"raw_width": 2644,
-				"raw_height": 1988,
-				"viewer_width": 1322,
-				"viewer_height": 994,
-				"preview_width": 661,
-				"preview_height": 497
 			}]
 		}, {
 			"title": "Submergence",
@@ -325,21 +326,21 @@
 			}, {
 				"name": "C",
 				"file": "C",
-				"raw_width": 2590,
-				"raw_height": 1946,
-				"viewer_width": 1295,
-				"viewer_height": 973,
-				"preview_width": 648,
-				"preview_height": 487
-			}, {
-				"name": "D",
-				"file": "D",
 				"raw_width": 2487,
 				"raw_height": 1923,
 				"viewer_width": 1244,
 				"viewer_height": 962,
 				"preview_width": 622,
 				"preview_height": 481
+			}, {
+				"name": "D",
+				"file": "D",
+				"raw_width": 2590,
+				"raw_height": 1946,
+				"viewer_width": 1295,
+				"viewer_height": 973,
+				"preview_width": 648,
+				"preview_height": 487
 			}, {
 				"name": "E",
 				"file": "E",

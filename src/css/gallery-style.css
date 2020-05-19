@@ -355,9 +355,13 @@ END GALLERY STYLE */
 }
 
 /* At mobile widths always include close button */
+/* Remove hover effect on buttons */
 @media only screen and (max-width: 879px) {
-	#viewerTopClose {
+	#viewerTopClose, #viewerTopClose .viewer-x {
 		opacity: 1;
+	}
+	#viewerLeftButton:hover, #viewerRightButton:hover {
+		background-color: rgba(0,0,0,0.75);
 	}
 }
 

@@ -136,7 +136,8 @@ function release_pages() {
 }
 function gallery_pages() {
 	return g_data.galleries.map(g => {
-		let filename = `visual/${g.title.replace(/\s+/g, '-')}.html`;
+		//let filename = `visual/${g.title.replace(/\s+/g, '-')}.html`;
+		let filename = `visual/${g.url}.html`;
 		return () => src(paths.pug.gallery)
 			.pipe(pug(
 				Object.assign({locals: g}, pug_config)
