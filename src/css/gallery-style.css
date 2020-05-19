@@ -428,6 +428,7 @@ picture > img {
 	width: inherit;
 	height: inherit;
 	max-width: inherit;
+	max-height: inherit;
 }
 
 /* ===========
