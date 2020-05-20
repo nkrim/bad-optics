@@ -376,18 +376,18 @@
 			"release_date": "2020-05-20",
 			"title": "Machinations 19-20",
 			"artist": "matt (something soft)",
-			"description_html": "ppee pee poo poo<br>exhibit", 
-			"description_text": "ppee pee poo poo exhibit",
+			"description_html": "the premier gallery by matt (something soft). acts of self-expression and emotional containment with a focus on manipulation of texture and color. creating schematics of inner peace.<br><br>all pieces created between 2019 and 2020 and are acrylic on paper of canvas.", 
+			"description_text": "the premier gallery by matt (something soft). acts of self-expression and emotional containment with a focus on manipulation of texture and color. creating schematics of inner peace. all pieces created between 2019 and 2020 and are acrylic on paper of canvas.",
 			"image": {
-				"path": "https://i.redd.it/jmeydeu0prs31.jpg",
-				"alt_path": "https://i.redd.it/jmeydeu0prs31.jpg",
+				"path": "/static/img/machinations-800x800.webp",
+				"alt_path": "/static/img/machinations-800x800.jpg",
 				"width": 800,
 				"height": 800
 			},
 			"links": [
 				{
-					"service": "spotify",
-					"url": "https://open.spotify.com/album/5BYfBU9QSzZMBIEsh2if47?si=zVHXYQwFQHyvGzJEWYhi4Q"
+					"service": "go to gallery",
+					"url": "/visual/machinations.html"
 				}
 			]
 		}

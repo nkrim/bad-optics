@@ -22,13 +22,12 @@ function gallery_resize() {
 
 	// Determine if canvases need to be adjusted to mobile mode
 	let mobile_width_threshold = gallery_width < max_gallery_width;
-	gallery_canvases.each(function() {
-		const mobile_class = 'gallery-canvas-mobile';
-		if(mobile_width_threshold)
-			$(this).addClass(mobile_class);
-		else
-			$(this).removeClass(mobile_class);
-	});
+	
+	const mobile_class = 'gallery-mobile-mode';
+	if(mobile_width_threshold)
+		$('#gallery').addClass(mobile_class);
+	else
+		$('#gallery').removeClass(mobile_class);
 }
 
 $(window).resize(gallery_resize);

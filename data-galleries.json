@@ -2,8 +2,14 @@
 	"galleries": [{
 		"title": "Machinations 19-20",
 		"url": "machinations",
-		"description": "ppee pee poo poo exhibit",
-		"description_html": "ppee pee poo poo<br>exhibit",
+		"description_html": "the premier gallery by matt <a href=\"/something-soft.html\">(<i>something soft</i>)</a>. acts of self-expression and emotional containment with a focus on manipulation of texture and color. creating schematics of inner peace.<br><br>all pieces created between 2019 and 2020 and are acrylic on paper or canvas.",
+		"description_text": "the premier gallery by matt (something soft). acts of self-expression and emotional containment with a focus on manipulation of texture and color. creating schematics of inner peace. all pieces created between 2019 and 2020 and are acrylic on paper or canvas.",
+		"image": {
+			"path": "/static/img/machinations-800x800.webp",
+			"alt_path": "/static/img/machinations-800x800.jpg",
+			"width": 800,
+			"height": 800
+		},
 		"gallery_dir": "010/",
 		"image_ext": "webp",
 		"image_alt_ext": "jpg",

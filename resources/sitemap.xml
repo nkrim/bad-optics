@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>http://badoptics.co/</loc>
-		<lastmod>2019-01-15</lastmod>
+		<lastmod>2020-05-20</lastmod>
 	</url>
 	<url>
 		<loc>http://badoptics.co/about</loc>
@@ -67,5 +67,13 @@
 	<url>
 		<loc>http://badoptics.co/009.html</loc>
 		<lastmod>2020-02-02</lastmod>
+	</url>
+	<url>
+		<loc>http://badoptics.co/010.html</loc>
+		<lastmod>2020-05-20</lastmod>
+	</url>
+	<url>
+		<loc>http://badoptics.co/visual/machinations.html</loc>
+		<lastmod>2020-05-20</lastmod>
 	</url>
 </urlset>
