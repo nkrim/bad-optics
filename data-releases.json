@@ -160,7 +160,7 @@
 			"release_type": "sonic",
 			"release_date": "2018-10-18",
 			"title": "misadventures",
-			"artist": "HASSAAN",
+			"artist": "hassaan e",
 			"description_html": "snippets from the well of memories.", 
 			"description_text": "snippets from the well of memories.", 
 			"image": {
@@ -388,6 +388,27 @@
 				{
 					"service": "go to gallery",
 					"url": "/visual/machinations.html"
+				}
+			]
+		},
+		{
+			"number": "011",
+			"release_type": "sonic",
+			"release_date": "2020-06-06",
+			"title": "misunderstood",
+			"artist": "hassaan e",
+			"description_html": "<span class=\"text-mono\">journal entries from times of pain. remorse at the gaps between the islands of understanding.</span>",
+			"description_text": "journal entries from times of pain. remorse at the gaps between the islands of understanding.",
+			"image": {
+				"path": "/static/img/misunderstood-800x800.webp",
+				"alt_path": "/static/img/misunderstood-800x800.jpg",
+				"width": 800,
+				"height": 800
+			},
+			"links": [
+				{
+					"service": "pre-save",
+					"url": "https://distrokid.com/hyperfollow/hassaane/misunderstood"
 				}
 			]
 		}

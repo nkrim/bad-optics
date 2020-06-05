@@ -88,10 +88,10 @@ const paths = {
 		gallery_prep: 'resources/static/img/g/'
 	}
 }
-paths.clean = flat([
-	paths.out.base+'*',
-	paths.out.gallery_prep
-], Infinity);
+paths.clean = paths.out.base+'*';
+paths.clean_gallery = paths.out.gallery_prep;
+
+
 
 // Pug config
 const pug_config = {
@@ -324,9 +324,15 @@ function invalidate_all() {
 function clean() {
 	return del(paths.clean);
 }
+function clean_gallery() {
+	return del(paths.clean_gallery);
+}
 
-// Exports - standard
+// Exports - clean
 exports.clean = clean;
+exports.clean_gallery = clean_gallery;
+exports.clean_full = series(clean, clean_gallery);
+// Exports - standard
 exports.galleryprep = series(data_gallery_viewer_scale_calc, parallel(...gallery_image_prep()));
 exports.resources = series(webp_images, move_resources);
 exports.js = parallel(index_js, ...alt_js());
@@ -334,7 +340,8 @@ exports.css = css;
 exports.html = parallel(index, ...release_pages(), ...gallery_pages());
 // Exports - build combo
 exports.build_inplace = parallel(exports.html, css, exports.js, exports.resources);
-exports.build = series(clean, exports.galleryprep, exports.build_inplace);
+exports.build = series(clean, exports.build_inplace);
+exports.build_gallery = series(exports.clean_full, exports.galleryprep, exports.build_inplace);
 exports.nohtml = parallel(css, exports.js, exports.resources);
 // Exports - uploading
 exports.upload = series(upload, invalidate_changed);
