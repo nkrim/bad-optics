@@ -411,12 +411,20 @@
 					"url": "https://open.spotify.com/album/3F7dakSTLRAnPJ6YZiTBKn?si=taQWhIprQUWq13cpYYJt_A"
 				},
 				{
+					"service": "apple music",
+					"url": "https://music.apple.com/us/album/misunderstood/1515044061"
+				},
+				{
 					"service": "bandcamp",
 					"url": "https://badopticsco.bandcamp.com/album/misunderstood"
 				},
 				{
 					"service": "soundcloud",
 					"url": "https://soundcloud.com/badopticsco/sets/hassaan-e-misunderstood"
+				},
+				{
+					"service": "amazon music",
+					"url": "https://music.amazon.com/albums/B0894723BH?tab=CATALOG"
 				}
 			]
 		}
