@@ -407,8 +407,16 @@
 			},
 			"links": [
 				{
-					"service": "pre-save",
-					"url": "https://distrokid.com/hyperfollow/hassaane/misunderstood"
+					"service": "spotify",
+					"url": "https://open.spotify.com/album/3F7dakSTLRAnPJ6YZiTBKn?si=taQWhIprQUWq13cpYYJt_A"
+				},
+				{
+					"service": "bandcamp",
+					"url": "https://badopticsco.bandcamp.com/album/misunderstood"
+				},
+				{
+					"service": "soundcloud",
+					"url": "https://soundcloud.com/badopticsco/sets/hassaan-e-misunderstood"
 				}
 			]
 		}
