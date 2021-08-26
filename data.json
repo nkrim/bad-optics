@@ -370,5 +370,81 @@
 				}
 			]
 		}
-	] 
+	],
+	"galleries": [
+		{
+			"title": "something soft exhibit 010",
+			"description": "ppee pee poo poo exhibit",
+			"description_html": "ppee pee poo poo<br>exhibit",
+			"image_ext": "webp",
+			"image_alt_ext": "png",
+			"image_dir": "/static/img/",
+			"sections": [
+				{
+					"title": "first impressions",
+					"width": 600,
+					"height": 650,
+					"images": [
+						{
+							"name": "first",
+							"file": "cvik-800x800",
+							"o_width": 800,
+							"o_height": 800,
+							"width": 400,
+							"height": 400,
+							"x": 0,
+							"y": 50
+						},
+						{
+							"name": "second",
+							"file": "bad-optics-borderless",
+							"o_width": 612,
+							"o_height": 432,
+							"width": 306,
+							"height": 216,
+							"x": 294,
+							"y": 384
+						}
+					]
+				},
+				{
+					"title": "sloppy seconds",
+					"width": 800,
+					"height": 800,
+					"images": [
+						{
+							"name": "beauty",
+							"file": "matt-800x800",
+							"o_width": 800,
+							"o_height": 800,
+							"width": 300,
+							"height": 300,
+							"x": 50,
+							"y": 100
+						},
+						{
+							"name": "and",
+							"file": "i",
+							"o_width": 800,
+							"o_height": 800,
+							"width": 300,
+							"height": 300,
+							"x": 250,
+							"y": 300
+						},
+						{
+							"name": "beast",
+							"file": "noah-800x800",
+							"o_width": 800,
+							"o_height": 800,
+							"width": 300,
+							"height": 300,
+							"x": 450,
+							"y": 500
+						}
+					]
+				}
+			]
+		}
+	]
 }

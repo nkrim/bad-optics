@@ -436,6 +436,7 @@ html.invert .tile { background-color: #ccc; }
 	margin-bottom: 0 !important;
 }
 
+.tile.about-tile {background-color: #080808;}
 .about-tile .tile-content-header-image {
 	width: 200px;
 }

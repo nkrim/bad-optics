@@ -103,6 +103,7 @@ function set_featured_header(showing_tiles, release_page=false) {
 const main_fade_duration = 500;
 let main_fade_timeout = null;
 const crawl_speed = 200;
+const crawl_home_top = 140;
 let cur_crawl_timeout;
 let prev_route_word = null;
 let route_scroll_timeout = null;
@@ -188,8 +189,20 @@ function route_change(route_path) {
 		}
 	}
 
-	if(prev_route_word !== null && prev_route_word === route_word)
+	// Scroll to top on 'home' routing
+	if(prev_route_word !== null && route_word === '')
+		if(route_word === '')
+			route_scroll_timeout = setTimeout(() => 
+				window.scrollTo({
+					top: crawl_home_top,
+					behavior: 'smooth',
+				}), 
+				prev_route_word === route_word ? 0 : main_fade_duration);
+
+	// Test for and exit on redundant routing
+	if(prev_route_word !== null && prev_route_word === route_word) {
 		return;
+	}
 	else
 		prev_route_word = route_word;
 
